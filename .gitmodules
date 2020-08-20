@@ -1,0 +1,3 @@
+[submodule "charts/dctna"]
+	path = charts/dctna
+	url = git@github.com:philips-labs/dctna-helm.git
