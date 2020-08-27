@@ -2,6 +2,31 @@ apiVersion: v1
 entries:
   dctna:
   - apiVersion: v2
+    appVersion: 0.1.1
+    created: "2020-08-27T10:46:46.531648788Z"
+    description: A Helm chart for DCTNA.
+    digest: 5aa0c2b1a17046fb92a71763db8606ee6075f9cb14e546e3a1ff84b4ae7087db
+    home: https://github.com/philips-labs/dct-notary-admin
+    keywords:
+    - notary
+    - docker
+    - tuf
+    - dctna
+    - code-signing
+    - image-signing
+    kubeVersion: '>=1.15.0-0'
+    maintainers:
+    - email: marco.franssen@philips.com
+      name: Marco Franssen
+    name: dctna
+    sources:
+    - https://github.com/philips-labs/dct-notary-admin
+    - https://github.com/philips-labs/dctna-helm
+    type: application
+    urls:
+    - https://github.com/philips-labs/helm-charts/releases/download/dctna-0.2.1/dctna-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
     appVersion: 0.1.0
     created: "2020-08-21T15:23:23.966090674Z"
     description: A Helm chart for DCTNA.
