@@ -4,11 +4,25 @@
 
 replicaCount: 1
 
-image:
-  repository: gcr.io/spiffe-io/spire-server
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+server:
+  image:
+    repository: gcr.io/spiffe-io/spire-server
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: ""
+
+  dataStorage:
+    enabled: true
+    size: 1Gi
+    accessMode: ReadWriteOnce
+    storageClass: null
+
+agent:
+  image:
+    repository: gcr.io/spiffe-io/spire-agent
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: ""
 
 imagePullSecrets: []
 nameOverride: ""
@@ -77,10 +91,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-server:
-  dataStorage:
-    enabled: true
-    size: 1Gi
-    accessMode: ReadWriteOnce
-    storageClass: null
