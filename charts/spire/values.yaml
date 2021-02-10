@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: gcr.io/spiffe-io/spire-server
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -37,8 +37,8 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
-  port: 80
+  type: NodePort
+  port: 8081
 
 ingress:
   enabled: false
@@ -77,3 +77,10 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+server:
+  dataStorage:
+    enabled: true
+    size: 1Gi
+    accessMode: ReadWriteOnce
+    storageClass: null
