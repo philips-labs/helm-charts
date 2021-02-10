@@ -3,7 +3,7 @@ kind: StatefulSet
 metadata:
   name: {{ include "spire.fullname" . }}-server
   labels:
-    {{- include "spire.labels" . | nindent 4 }}
+    {{- include "spire.server.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
@@ -11,7 +11,7 @@ spec:
   serviceName: {{ include "spire.fullname" . }}-server
   selector:
     matchLabels:
-      {{- include "spire.selectorLabels" . | nindent 6 }}
+      {{- include "spire.server.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -19,7 +19,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "spire.selectorLabels" . | nindent 8 }}
+        {{- include "spire.server.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:

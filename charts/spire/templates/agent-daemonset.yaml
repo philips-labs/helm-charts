@@ -3,15 +3,15 @@ kind: DaemonSet
 metadata:
   name: {{ include "spire.fullname" . }}-agent
   labels:
-    {{- include "spire.labels" . | nindent 4 }}
+    {{- include "spire.agent.labels" . | nindent 4 }}
 spec:
   selector:
     matchLabels:
-      {{- include "spire.selectorLabels" . | nindent 6 }}
+      {{- include "spire.agent.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "spire.selectorLabels" . | nindent 8 }}
+        {{- include "spire.agent.selectorLabels" . | nindent 8 }}
     spec:
       hostPID: true
       hostNetwork: true

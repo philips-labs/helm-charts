@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ include "spire.fullname" . }}-server
   labels:
-    {{- include "spire.labels" . | nindent 4 }}
+    {{- include "spire.server.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,4 +12,4 @@ spec:
       targetPort: grpc
       protocol: TCP
   selector:
-    {{- include "spire.selectorLabels" . | nindent 4 }}
+    {{- include "spire.server.selectorLabels" . | nindent 4 }}

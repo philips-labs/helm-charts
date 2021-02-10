@@ -21,7 +21,8 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: {{ include "spire.fullname" . }}-server
+  namespace: {{ .Release.Namespace }}
 roleRef:
   kind: ClusterRole
-  name: {{ include "spire.fullname" . }}-server-trust-role
+  name: spire-server-trust-role
   apiGroup: rbac.authorization.k8s.io

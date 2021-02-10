@@ -31,11 +31,11 @@ Create chart name and version as used by the chart label.
 {{- end }}
 
 {{/*
-Common labels
+Common server labels
 */}}
-{{- define "spire.labels" -}}
+{{- define "spire.server.labels" -}}
 helm.sh/chart: {{ include "spire.chart" . }}
-{{ include "spire.selectorLabels" . }}
+{{ include "spire.server.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -43,10 +43,30 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
 {{/*
-Selector labels
+Selector server labels
 */}}
-{{- define "spire.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "spire.name" . }}
+{{- define "spire.server.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "spire.name" . }}-server
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+{{/*
+Common agent labels
+*/}}
+{{- define "spire.agent.labels" -}}
+helm.sh/chart: {{ include "spire.chart" . }}
+{{ include "spire.agent.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end }}
+
+{{/*
+Selector agent labels
+*/}}
+{{- define "spire.agent.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "spire.name" . }}-agent
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
