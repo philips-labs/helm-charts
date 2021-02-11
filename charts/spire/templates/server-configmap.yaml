@@ -8,7 +8,7 @@ data:
       bind_address = "0.0.0.0"
       bind_port = "8081"
       registration_uds_path = "/tmp/spire-registration.sock"
-      trust_domain = "example.org"
+      trust_domain = {{ .Values.spire.trustDomain | quote }}
       data_dir = "/run/spire/data"
       log_level = "DEBUG"
       #AWS requires the use of RSA.  EC cryptography is not supported
@@ -33,10 +33,9 @@ data:
       NodeAttestor "k8s_sat" {
         plugin_data {
           clusters = {
-            # NOTE: Change this to your cluster name
-            "demo-cluster" = {
+            {{ .Values.spire.clusterName | quote }} = {
               use_token_review_api_validation = true
-              service_account_whitelist = ["spire:spire-agent"]
+              service_account_whitelist = ["{{ .Release.Namespace }}:{{ include "spire.serviceAccountName" . }}-agent"]
             }
           }
         }
