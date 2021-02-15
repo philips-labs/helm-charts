@@ -4,11 +4,15 @@ on:
   push:
     paths:
       - 'charts/**'
+      - '.github/workflows/ci.yml'
+      - '.github/*.sh'
     branches-ignore:
       - main
   pull_request:
     paths:
       - 'charts/**'
+      - '.github/workflows/ci.yml'
+      - '.github/*.sh'
 
 jobs:
   lint-chart:
