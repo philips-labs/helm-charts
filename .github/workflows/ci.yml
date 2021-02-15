@@ -149,6 +149,7 @@ jobs:
           ct install --debug \
             --target-branch main \
             --chart-repos philips-labs=http://127.0.0.1:8879 \
+            --excluded-charts spire-client-example \
             --exclude-deprecated
 
       - name: Shutdown chartmuseum
