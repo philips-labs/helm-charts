@@ -76,4 +76,52 @@ entries:
     urls:
     - https://github.com/philips-labs/helm-charts/releases/download/dctna-0.2.0/dctna-0.2.0.tgz
     version: 0.2.0
+  spire:
+  - apiVersion: v2
+    appVersion: 0.12.0
+    created: "2021-02-15T16:01:03.70107853Z"
+    description: A Helm chart for deploying spire-server and spire-agent.
+    digest: 08df256f0643bf3175a55724e0440673401f07beccf16f84fd95720450e0c8e0
+    home: https://github.com/philips-labs/helm-charts/charts/spire
+    keywords:
+    - spiffe
+    - spire
+    - spire-server
+    - spire-agent
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: marco.franssen@philips.com
+      name: marcofranssen
+      url: https://marcofranssen.nl
+    name: spire
+    sources:
+    - https://github.com/philips-labs/helm-charts/charts/spire
+    type: application
+    urls:
+    - https://github.com/philips-labs/helm-charts/releases/download/spire-0.1.0/spire-0.1.0.tgz
+    version: 0.1.0
+  spire-client-example:
+  - apiVersion: v2
+    appVersion: 0.12.0
+    created: "2021-02-15T16:01:03.819473235Z"
+    description: A Helm chart for deploying a spire workload as example.
+    digest: 8adc8de25cc78d4ddc00147d93e20521ec09663c22827057c1377f194e4d3f73
+    home: https://github.com/philips-labs/helm-charts/charts/spire-client-example
+    keywords:
+    - spiffe
+    - spire
+    - client
+    - example
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: marco.franssen@philips.com
+      name: marcofranssen
+      url: https://marcofranssen.nl
+    name: spire-client-example
+    sources:
+    - https://github.com/philips-labs/helm-charts/charts/spire-client-example
+    type: application
+    urls:
+    - https://github.com/philips-labs/helm-charts/releases/download/spire-client-example-0.1.0/spire-client-example-0.1.0.tgz
+    version: 0.1.0
 generated: "2020-08-21T15:23:23.846268882Z"
