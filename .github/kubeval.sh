@@ -37,5 +37,6 @@ fi
 SCHEMA_LOCATION="https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/"
 
 for chart in $(ls -d charts/* | grep -v dctna) ; do
+  helm dependency update $chart
   helm template $chart | $SCRIPTPATH/bin/kubeval --strict --ignore-missing-schemas --kubernetes-version "${KUBERNETES_VERSION#v}" --schema-location "${SCHEMA_LOCATION}"
 done

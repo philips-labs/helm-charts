@@ -42,11 +42,20 @@ jobs:
             echo "::set-output name=changed::true"
           fi
 
+      - name: Host charts localhost
+        if: ${{ steps.list-changed.outputs.changed }}
+        run: .github/local-helm-repo.sh
+
       - name: Run chart-testing (lint)
         run: |
           ct lint --debug \
             --target-branch main \
-            --chart-repos philips-labs=https://philips-labs.github.io/helm-charts/
+            --chart-repos philips-labs=http://127.0.0.1:8879
+
+      - name: Shutdown chartmuseum
+        if: ${{ always() }}
+        run: |
+          killall chartmuseum
 
       - name: Run helm-docs
         run: .github/helm-docs.sh
@@ -71,7 +80,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.4
 
+      - name: Host charts localhost
+        if: ${{ needs.lint-chart.outputs.changed }}
+        run: .github/local-helm-repo.sh
+
       - name: Run kubeval
         env:
           KUBERNETES_VERSION: ${{ matrix.k8s }}
         run: .github/kubeval.sh
+
+      - name: Shutdown chartmuseum
+        if: ${{ always() }}
+        run: |
+          killall chartmuseum
