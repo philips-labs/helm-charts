@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - 'charts/**'
+    branches-ignore:
+      - main
   pull_request:
     paths:
       - 'charts/**'
