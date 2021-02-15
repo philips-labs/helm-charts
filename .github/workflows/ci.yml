@@ -48,7 +48,7 @@ jobs:
             echo "::set-output name=changed::true"
           fi
 
-      - name: Host charts localhost
+      - name: Setup charts repo localhost
         if: ${{ steps.list-changed.outputs.changed }}
         run: .github/local-helm-repo.sh
 
@@ -85,7 +85,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.4
 
-      - name: Host charts localhost
+      - name: Setup charts repo localhost
         if: ${{ needs.lint-chart.outputs.changed }}
         run: .github/local-helm-repo.sh
 
@@ -133,6 +133,10 @@ jobs:
         with:
           version: v3.3.1
 
+      - name: Setup charts repo localhost
+        if: ${{ needs.lint-chart.outputs.changed }}
+        run: .github/local-helm-repo.sh
+
       - name: Create kind ${{ matrix.k8s }} cluster
         uses: helm/kind-action@v1.1.0
         # Only build a kind cluster if there are chart changes to test.
@@ -144,5 +148,9 @@ jobs:
         run: |
           ct install --debug \
             --target-branch main \
-            --chart-repos philips-labs=https://philips-labs.github.io/helm-charts/ \
+            --chart-repos philips-labs=http://127.0.0.1:8879 \
             --exclude-deprecated
+
+      - name: Shutdown chartmuseum
+        if: ${{ always() }}
+        run: killall chartmuseum || true
