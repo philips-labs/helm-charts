@@ -1,6 +1,12 @@
 name: Continuous Integration
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - 'charts/**'
+  pull_request:
+    paths:
+      - 'charts/**'
 
 jobs:
   lint-chart:
