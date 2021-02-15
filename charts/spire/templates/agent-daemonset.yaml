@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{ include "spire.fullname" . }}-agent
+  labels:
+    {{- include "spire.agent.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "spire.agent.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "spire.agent.selectorLabels" . | nindent 8 }}
+    spec:
+      hostPID: true
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      serviceAccountName: {{ include "spire.serviceAccountName" . }}-agent
+      initContainers:
+        - name: init
+          # This is a small image with wait-for-it, choose whatever image
+          # you prefer that waits for a service to be up. This image is built
+          # from https://github.com/lqhl/wait-for-it
+          image: gcr.io/spiffe-io/wait-for-it:latest
+          args: ["-t", "30", "{{ include "spire.fullname" . }}-server:8081"]
+        - name: allocate-node
+          image: bitnami/kubectl:1.19
+          args: ["exec", "-n", "{{ .Release.Namespace }}", "{{ .Chart.Name }}-server-0", "--",
+                 "bin/spire-server", "entry", "create",
+                 "-spiffeID", "spiffe://{{ .Values.spire.trustDomain }}/ns/{{ .Release.Namespace }}/sa/{{ .Chart.Name }}-agent",
+                 "-selector", "k8s_sat:cluster:{{ .Values.spire.clusterName }}",
+                 "-selector", "k8s_sat:agent_ns:{{ .Release.Namespace }}",
+                 "-selector", "k8s_sat:agent_sa:{{ .Chart.Name }}-agent",
+                 "-node"]
+      containers:
+        - name: {{ .Chart.Name }}-agent
+          image: "{{ .Values.agent.image.repository }}:{{ .Values.agent.image.tag | default .Chart.AppVersion }}"
+          args: ["-config", "/run/spire/config/agent.conf"]
+          volumeMounts:
+            - name: spire-config
+              mountPath: /run/spire/config
+              readOnly: true
+            - name: spire-bundle
+              mountPath: /run/spire/bundle
+            - name: spire-agent-socket
+              mountPath: /run/spire/sockets
+              readOnly: false
+          livenessProbe:
+            exec:
+              command:
+                - /opt/spire/bin/spire-agent
+                - healthcheck
+                - -socketPath
+                - /run/spire/sockets/agent.sock
+            failureThreshold: 2
+            initialDelaySeconds: 15
+            periodSeconds: 60
+            timeoutSeconds: 3
+      volumes:
+        - name: spire-config
+          configMap:
+            name: {{ include "spire.fullname" . }}-agent
+        - name: spire-bundle
+          configMap:
+            name: {{ include "spire.fullname" . }}-bundle
+        - name: spire-agent-socket
+          hostPath:
+            path: /run/spire/sockets
+            type: DirectoryOrCreate

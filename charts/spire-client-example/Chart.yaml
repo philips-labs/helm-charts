@@ -1,0 +1,15 @@
+apiVersion: v2
+name: spire-client-example
+description: A Helm chart for deploying a spire workload as example.
+type: application
+version: 0.1.0
+appVersion: "0.12.0"
+keywords: ["spiffe", "spire", "client", "example"]
+home: https://github.com/philips-labs/helm-charts/charts/spire-client-example
+sources:
+  - https://github.com/philips-labs/helm-charts/charts/spire-client-example
+maintainers:
+  - name: marcofranssen
+    email: marco.franssen@philips.com
+    url: https://marcofranssen.nl
+kubeVersion: ">=1.19.0-0"
