@@ -6,7 +6,7 @@ data:
   agent.conf: |
     agent {
       data_dir = "/run/spire"
-      log_level = "DEBUG"
+      log_level = "{{ .Values.spire.agent.logLevel }}"
       server_address = "spire-server"
       server_port = "8081"
       socket_path = "/run/spire/sockets/agent.sock"

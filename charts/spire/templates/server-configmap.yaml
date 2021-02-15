@@ -10,7 +10,7 @@ data:
       registration_uds_path = "/tmp/spire-registration.sock"
       trust_domain = {{ .Values.spire.trustDomain | quote }}
       data_dir = "/run/spire/data"
-      log_level = "DEBUG"
+      log_level = "{{ .Values.spire.server.logLevel }}"
       #AWS requires the use of RSA.  EC cryptography is not supported
       ca_key_type = "rsa-2048"
 

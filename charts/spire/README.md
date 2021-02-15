@@ -60,6 +60,8 @@ Kubernetes: `>=1.19.0-0`
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
+| spire.agent.logLevel | string | `"INFO"` |  |
 | spire.clusterName | string | `"example-cluster"` |  |
+| spire.server.logLevel | string | `"INFO"` |  |
 | spire.trustDomain | string | `"example.org"` |  |
 | tolerations | list | `[]` |  |

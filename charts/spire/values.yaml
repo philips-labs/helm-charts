@@ -97,3 +97,7 @@ affinity: {}
 spire:
   clusterName: "example-cluster"
   trustDomain: "example.org"
+  agent:
+    logLevel: INFO
+  server:
+    logLevel: INFO
