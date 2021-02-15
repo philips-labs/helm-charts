@@ -41,3 +41,6 @@ jobs:
           ct lint --debug \
             --target-branch main \
             --chart-repos philips-labs=https://philips-labs.github.io/helm-charts/
+
+      - name: Run helm-docs
+        run: .github/helm-docs.sh
