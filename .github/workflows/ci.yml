@@ -56,8 +56,7 @@ jobs:
 
       - name: Shutdown chartmuseum
         if: ${{ always() }}
-        run: |
-          killall chartmuseum
+        run: killall chartmuseum || true
 
       - name: Run helm-docs
         run: .github/helm-docs.sh
@@ -93,8 +92,7 @@ jobs:
 
       - name: Shutdown chartmuseum
         if: ${{ always() }}
-        run: |
-          killall chartmuseum
+        run: killall chartmuseum || true
 
   test:
     name: Test
