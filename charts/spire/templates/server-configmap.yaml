@@ -53,6 +53,8 @@ data:
 
       Notifier "k8sbundle" {
         plugin_data {
+          namespace = "{{ .Release.Namespace }}"
+          config_map = "{{ include "spire.fullname" . }}-bundle"
         }
       }
     }
