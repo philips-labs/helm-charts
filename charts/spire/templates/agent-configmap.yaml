@@ -17,7 +17,6 @@ data:
     plugins {
       NodeAttestor "k8s_sat" {
         plugin_data {
-          # NOTE: Change this to your cluster name
           cluster = {{ .Values.spire.clusterName | quote }}
         }
       }
