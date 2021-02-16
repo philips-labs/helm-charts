@@ -79,6 +79,29 @@ entries:
   spire:
   - apiVersion: v2
     appVersion: 0.12.0
+    created: "2021-02-16T09:25:46.530896702Z"
+    description: A Helm chart for deploying spire-server and spire-agent.
+    digest: 6c9c9603c6b8e98ed880a658832f7ad42329269abb2aa1f53966f155c3707746
+    home: https://github.com/philips-labs/helm-charts/charts/spire
+    keywords:
+    - spiffe
+    - spire
+    - spire-server
+    - spire-agent
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: marco.franssen@philips.com
+      name: marcofranssen
+      url: https://marcofranssen.nl
+    name: spire
+    sources:
+    - https://github.com/philips-labs/helm-charts/charts/spire
+    type: application
+    urls:
+    - https://github.com/philips-labs/helm-charts/releases/download/spire-0.1.1/spire-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 0.12.0
     created: "2021-02-15T16:01:03.70107853Z"
     description: A Helm chart for deploying spire-server and spire-agent.
     digest: 08df256f0643bf3175a55724e0440673401f07beccf16f84fd95720450e0c8e0
@@ -101,6 +124,29 @@ entries:
     - https://github.com/philips-labs/helm-charts/releases/download/spire-0.1.0/spire-0.1.0.tgz
     version: 0.1.0
   spire-client-example:
+  - apiVersion: v2
+    appVersion: 0.12.0
+    created: "2021-02-16T09:25:46.648185492Z"
+    description: A Helm chart for deploying a spire workload as example.
+    digest: 4750d86396f17b52256fd2c1fbf0415e05e745d04784c9ea5422df3687214244
+    home: https://github.com/philips-labs/helm-charts/charts/spire-client-example
+    keywords:
+    - spiffe
+    - spire
+    - client
+    - example
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: marco.franssen@philips.com
+      name: marcofranssen
+      url: https://marcofranssen.nl
+    name: spire-client-example
+    sources:
+    - https://github.com/philips-labs/helm-charts/charts/spire-client-example
+    type: application
+    urls:
+    - https://github.com/philips-labs/helm-charts/releases/download/spire-client-example-0.1.1/spire-client-example-0.1.1.tgz
+    version: 0.1.1
   - apiVersion: v2
     appVersion: 0.12.0
     created: "2021-02-15T16:01:03.819473235Z"
