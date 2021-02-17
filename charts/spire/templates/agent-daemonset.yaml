@@ -26,12 +26,12 @@ spec:
           args: ["-t", "30", "{{ include "spire.fullname" . }}-server:8081"]
         - name: allocate-node
           image: bitnami/kubectl:1.19
-          args: ["exec", "-n", "{{ .Release.Namespace }}", "{{ .Chart.Name }}-server-0", "--",
+          args: ["exec", "-n", "{{ .Release.Namespace }}", "{{ include "spire.fullname" . }}-server-0", "--",
                  "bin/spire-server", "entry", "create",
-                 "-spiffeID", "spiffe://{{ .Values.spire.trustDomain }}/ns/{{ .Release.Namespace }}/sa/{{ .Chart.Name }}-agent",
+                 "-spiffeID", "spiffe://{{ .Values.spire.trustDomain }}/ns/{{ .Release.Namespace }}/sa/{{ include "spire.serviceAccountName" . }}-agent",
                  "-selector", "k8s_sat:cluster:{{ .Values.spire.clusterName }}",
                  "-selector", "k8s_sat:agent_ns:{{ .Release.Namespace }}",
-                 "-selector", "k8s_sat:agent_sa:{{ .Chart.Name }}-agent",
+                 "-selector", "k8s_sat:agent_sa:{{ include "spire.serviceAccountName" . }}-agent",
                  "-node"]
       containers:
         - name: {{ .Chart.Name }}-agent

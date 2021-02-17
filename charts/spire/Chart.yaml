@@ -2,7 +2,7 @@ apiVersion: v2
 name: spire
 description: A Helm chart for deploying spire-server and spire-agent.
 type: application
-version: 0.1.1
+version: 0.1.2
 appVersion: "0.12.0"
 keywords: ["spiffe", "spire", "spire-server", "spire-agent"]
 home: https://github.com/philips-labs/helm-charts/charts/spire
