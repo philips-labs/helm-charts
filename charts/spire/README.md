@@ -60,3 +60,6 @@ Kubernetes: `>=1.19.0-0`
 | spire.server.logLevel | string | `"INFO"` |  |
 | spire.trustDomain | string | `"example.org"` |  |
 | tolerations | list | `[]` |  |
+| workloadRegistrar.image.pullPolicy | string | `"IfNotPresent"` |  |
+| workloadRegistrar.image.repository | string | `"gcr.io/spiffe-io/k8s-workload-registrar"` |  |
+| workloadRegistrar.image.tag | string | `""` |  |

@@ -42,6 +42,9 @@ spec:
               containerPort: 8081
               protocol: TCP
           volumeMounts:
+            - name: spire-server-socket
+              mountPath: {{ include "spire.sockets" . }}
+              readOnly: false
             - name: spire-config
               mountPath: /run/spire/config
               readOnly: true
@@ -69,6 +72,24 @@ spec:
             periodSeconds: 5
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+        - name: {{ .Chart.Name }}-workload-registrar
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.workloadRegistrar.image.repository }}:{{ .Values.workloadRegistrar.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.workloadRegistrar.image.pullPolicy }}
+          args:
+            - -config
+            - /run/spire/k8s-workload-registrar/config/workload-registrar.conf
+          ports:
+            - containerPort: 8443
+              name: registrar-port
+          volumeMounts:
+            - name: spire-server-socket
+              mountPath: {{ include "spire.sockets" . }}
+              readOnly: true
+            - name: spire-workload-registrar-config
+              mountPath: /run/spire/k8s-workload-registrar/config
+              readOnly: true
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -82,9 +103,16 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
+        - name: spire-workload-registrar-config
+          configMap:
+            name: {{ include "spire.fullname" . }}-workload-registrar
         - name: spire-config
           configMap:
             name: {{ include "spire.fullname" . }}-server
+        - name: spire-server-socket
+          hostPath:
+            path: /run/spire/server-sockets
+            type: DirectoryOrCreate
   volumeClaimTemplates:
     {{- if eq (.Values.server.dataStorage.enabled | toString) "true" }}
     - metadata:
