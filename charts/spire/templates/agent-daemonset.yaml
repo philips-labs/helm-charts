@@ -9,6 +9,8 @@ spec:
   selector:
     matchLabels:
       {{- include "spire.agent.selectorLabels" . | nindent 6 }}
+  updateStrategy:
+    type: RollingUpdate
   template:
     metadata:
       labels:
