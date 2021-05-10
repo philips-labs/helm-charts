@@ -78,6 +78,29 @@ entries:
     version: 0.2.0
   spire:
   - apiVersion: v2
+    appVersion: 0.12.2
+    created: "2021-05-10T10:29:48.127158634Z"
+    description: A Helm chart for deploying spire-server and spire-agent.
+    digest: 35cc31c07852fd20e78564b6c8be669b6919ceaec67432afc9e7e83ccb6c68a5
+    home: https://github.com/philips-labs/helm-charts/charts/spire
+    keywords:
+    - spiffe
+    - spire
+    - spire-server
+    - spire-agent
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: marco.franssen@philips.com
+      name: marcofranssen
+      url: https://marcofranssen.nl
+    name: spire
+    sources:
+    - https://github.com/philips-labs/helm-charts/charts/spire
+    type: application
+    urls:
+    - https://github.com/philips-labs/helm-charts/releases/download/spire-0.1.4/spire-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
     appVersion: 0.12.0
     created: "2021-04-23T13:50:56.587186504Z"
     description: A Helm chart for deploying spire-server and spire-agent.
@@ -216,4 +239,4 @@ entries:
     urls:
     - https://github.com/philips-labs/helm-charts/releases/download/spire-client-example-0.1.0/spire-client-example-0.1.0.tgz
     version: 0.1.0
-generated: "2021-04-23T13:50:56.5875286Z"
+generated: "2021-05-10T10:29:48.127201534Z"
