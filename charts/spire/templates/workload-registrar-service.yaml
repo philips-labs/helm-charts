@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "spire.fullname" . }}-k8s-workload-registrar
+  labels:
+    {{- include "spire.server.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - name: https
+      port: 443
+      targetPort: registrar-port
+      protocol: TCP
+  selector:
+    {{- include "spire.server.selectorLabels" . | nindent 4 }}
