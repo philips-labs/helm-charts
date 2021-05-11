@@ -70,6 +70,6 @@ spec:
           projected:
             sources:
             - serviceAccountToken:
-                path: spire-agent
+                path: {{ include "spire.serviceAccountName" . }}-agent
                 expirationSeconds: 7200
-                audience: spire-server
+                audience: {{ include "spire.serviceAccountName" . }}-server
