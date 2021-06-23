@@ -46,8 +46,6 @@ Kubernetes: `>=1.19.0-0`
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
-| spire.agentServiceAccount | string | `"spire-agent"` |  |
-| spire.clusterName | string | `"example-cluster"` |  |
 | spire.namespace | string | `"spire"` |  |
-| spire.trustDomain | string | `"example.org"` |  |
+| spire.releaseName | string | `"spire-server"` |  |
 | tolerations | list | `[]` |  |

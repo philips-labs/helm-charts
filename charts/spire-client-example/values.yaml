@@ -69,6 +69,3 @@ affinity: {}
 spire:
   namespace: spire
   releaseName: spire-server
-  agentServiceAccount: spire-agent
-  clusterName: "example-cluster"
-  trustDomain: "example.org"
