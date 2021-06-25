@@ -6,6 +6,7 @@ on:
       - 'charts/**'
       - '.github/workflows/ci.yml'
       - '.github/*.sh'
+      - '.github/kind-config.yaml'
     branches-ignore:
       - main
   pull_request:
@@ -13,6 +14,7 @@ on:
       - 'charts/**'
       - '.github/workflows/ci.yml'
       - '.github/*.sh'
+      - '.github/kind-config.yaml'
 
 jobs:
   lint-chart:
