@@ -22,8 +22,9 @@ spec:
 containers:
 - command:
   - kube-apiserver
-  - --service-account-api-audiences=api
+  - --api-audiences=api,spire-server
   - --service-account-issuer=api,spire-agent
+  - --service-account-key-file=/run/config/pki/sa.pub
   - --service-account-signing-key-file=/run/config/pki/sa.key
 ```
 
