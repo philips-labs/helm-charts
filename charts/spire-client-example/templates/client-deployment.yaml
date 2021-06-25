@@ -36,15 +36,7 @@ spec:
           # you prefer that waits for a service to be up. This image is built
           # from https://github.com/lqhl/wait-for-it
           image: gcr.io/spiffe-io/wait-for-it:latest
-          args: ["-t", "30", "spire-server.spire:8081"]
-        - name: allocate-workload
-          image: bitnami/kubectl:1.19
-          args: ["exec", "-n", "spire", "spire-server-0", "--",
-                 "/opt/spire/bin/spire-server", "entry", "create",
-                 "-spiffeID", "spiffe://{{ .Values.spire.trustDomain }}/ns/{{ .Release.Namespace }}/sa/{{ include "spire-client-example.serviceAccountName" . }}",
-                 "-parentID", "spiffe://{{ .Values.spire.trustDomain }}/ns/{{ .Values.spire.namespace }}/sa/{{ .Values.spire.agentServiceAccount }}",
-                 "-selector", "k8s:ns:{{ .Release.Namespace }}",
-                 "-selector", "k8s:sa:{{ include "spire-client-example.serviceAccountName" . }}"]
+          args: ["-t", "30", "{{ .Values.spire.releaseName }}.{{ .Values.spire.namespace }}:8081"]
       containers:
         - name: {{ .Chart.Name }}
           securityContext:

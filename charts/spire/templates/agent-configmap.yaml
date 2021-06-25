@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ include "spire.fullname" . }}-agent
+  namespace: {{ .Release.Namespace }}
 data:
   agent.conf: |
     agent {
@@ -15,7 +16,7 @@ data:
     }
 
     plugins {
-      NodeAttestor "k8s_sat" {
+      NodeAttestor "k8s_psat" {
         plugin_data {
           cluster = {{ .Values.spire.clusterName | quote }}
         }
@@ -39,4 +40,12 @@ data:
           plugin_data {
           }
       }
+    }
+
+    health_checks {
+      listener_enabled = true
+      bind_address = "0.0.0.0"
+      bind_port = "8080"
+      live_path = "/live"
+      ready_path = "/ready"
     }

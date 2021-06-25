@@ -2,7 +2,7 @@
 
 <!-- This README.md is generated. -->
 
-![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.12.2](https://img.shields.io/badge/AppVersion-0.12.2-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.12.2](https://img.shields.io/badge/AppVersion-0.12.2-informational?style=flat-square)
 
 A Helm chart for deploying a spire workload as example.
 
@@ -46,8 +46,6 @@ Kubernetes: `>=1.19.0-0`
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
-| spire.agentServiceAccount | string | `"spire-agent"` |  |
-| spire.clusterName | string | `"example-cluster"` |  |
 | spire.namespace | string | `"spire"` |  |
-| spire.trustDomain | string | `"example.org"` |  |
+| spire.releaseName | string | `"spire-server"` |  |
 | tolerations | list | `[]` |  |

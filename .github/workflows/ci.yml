@@ -6,6 +6,7 @@ on:
       - 'charts/**'
       - '.github/workflows/ci.yml'
       - '.github/*.sh'
+      - '.github/kind-config.yaml'
     branches-ignore:
       - main
   pull_request:
@@ -13,6 +14,7 @@ on:
       - 'charts/**'
       - '.github/workflows/ci.yml'
       - '.github/*.sh'
+      - '.github/kind-config.yaml'
 
 jobs:
   lint-chart:
@@ -109,8 +111,9 @@ jobs:
       fail-fast: false
       matrix:
         k8s:
-          - v1.19.7
-          - v1.20.2
+          - v1.19.11
+          - v1.20.7
+          - v1.21.1
 
     steps:
       - name: Checkout
@@ -142,7 +145,10 @@ jobs:
         # Only build a kind cluster if there are chart changes to test.
         if: needs.lint-chart.outputs.changed == 'true'
         with:
+          version: v0.11.1
           node_image: kindest/node:${{ matrix.k8s }}
+          config: .github/kind/conf/kind-config.yaml
+          log_level: debug
 
       - name: Run chart-testing (install)
         run: |

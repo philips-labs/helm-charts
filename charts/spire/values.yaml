@@ -4,6 +4,13 @@
 
 replicaCount: 1
 
+workloadRegistrar:
+  image:
+    repository: gcr.io/spiffe-io/k8s-workload-registrar
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: ""
+
 server:
   image:
     repository: gcr.io/spiffe-io/spire-server

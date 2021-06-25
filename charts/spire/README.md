@@ -2,9 +2,31 @@
 
 <!-- This README.md is generated. -->
 
-![Version: 0.1.5](https://img.shields.io/badge/Version-0.1.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.12.3](https://img.shields.io/badge/AppVersion-0.12.3-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.12.3](https://img.shields.io/badge/AppVersion-0.12.3-informational?style=flat-square)
 
 A Helm chart for deploying spire-server and spire-agent.
+
+> :warning: Please note this chart requires Projected Service Account Tokens which has to be enabled on your k8s api server.
+
+To enable Projected Service Account Tokens on Docker for Mac/Windows run the following
+command to SSH into the Docker Desktop K8s VM.
+
+```bash
+docker run -it --privileged --pid=host debian nsenter -t 1 -m -u -n -i sh
+```
+
+Then add the following to `/etc/kubernetes/manifests/kube-apiserver.yaml`
+
+```yaml
+spec:
+containers:
+- command:
+  - kube-apiserver
+  - --api-audiences=api,spire-server
+  - --service-account-issuer=api,spire-agent
+  - --service-account-key-file=/run/config/pki/sa.pub
+  - --service-account-signing-key-file=/run/config/pki/sa.key
+```
 
 **Homepage:** <https://github.com/philips-labs/helm-charts/charts/spire>
 
@@ -60,3 +82,6 @@ Kubernetes: `>=1.19.0-0`
 | spire.server.logLevel | string | `"INFO"` |  |
 | spire.trustDomain | string | `"example.org"` |  |
 | tolerations | list | `[]` |  |
+| workloadRegistrar.image.pullPolicy | string | `"IfNotPresent"` |  |
+| workloadRegistrar.image.repository | string | `"gcr.io/spiffe-io/k8s-workload-registrar"` |  |
+| workloadRegistrar.image.tag | string | `""` |  |
