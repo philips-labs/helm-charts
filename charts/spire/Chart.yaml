@@ -16,16 +16,16 @@ description: |
 
   ```yaml
   spec:
-  containers:
-  - command:
-    - kube-apiserver
-    - --api-audiences=api,spire-server
-    - --service-account-issuer=api,spire-agent
-    - --service-account-key-file=/run/config/pki/sa.pub
-    - --service-account-signing-key-file=/run/config/pki/sa.key
+    containers:
+      - command:
+          - kube-apiserver
+          - --api-audiences=api,spire-server
+          - --service-account-issuer=api,spire-agent
+          - --service-account-key-file=/run/config/pki/sa.pub
+          - --service-account-signing-key-file=/run/config/pki/sa.key
   ```
 type: application
-version: 0.2.0
+version: 0.2.1
 appVersion: "0.12.3"
 keywords: ["spiffe", "spire", "spire-server", "spire-agent"]
 home: https://github.com/philips-labs/helm-charts/charts/spire
