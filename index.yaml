@@ -79,6 +79,37 @@ entries:
   spire:
   - apiVersion: v2
     appVersion: 0.12.3
+    created: "2021-06-25T09:12:37.119390577Z"
+    description: 'A Helm chart for deploying spire-server and spire-agent.  > :warning:
+      Please note this chart requires Projected Service Account Tokens which has to
+      be enabled on your k8s api server.  To enable Projected Service Account Tokens
+      on Docker for Mac/Windows run the following command to SSH into the Docker Desktop
+      K8s VM.  ```bash docker run -it --privileged --pid=host debian nsenter -t 1
+      -m -u -n -i sh ```  Then add the following to `/etc/kubernetes/manifests/kube-apiserver.yaml`  ```yaml
+      spec:   containers:     - command:         - kube-apiserver         - --api-audiences=api,spire-server         -
+      --service-account-issuer=api,spire-agent         - --service-account-key-file=/run/config/pki/sa.pub         -
+      --service-account-signing-key-file=/run/config/pki/sa.key ``` '
+    digest: c475587c8d6fee36af24a8c7e02611f73d2e7acea49e14f49baee3571fa74c44
+    home: https://github.com/philips-labs/helm-charts/charts/spire
+    keywords:
+    - spiffe
+    - spire
+    - spire-server
+    - spire-agent
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: marco.franssen@philips.com
+      name: marcofranssen
+      url: https://marcofranssen.nl
+    name: spire
+    sources:
+    - https://github.com/philips-labs/helm-charts/charts/spire
+    type: application
+    urls:
+    - https://github.com/philips-labs/helm-charts/releases/download/spire-0.2.1/spire-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
+    appVersion: 0.12.3
     created: "2021-06-25T09:00:27.652333485Z"
     description: 'A Helm chart for deploying spire-server and spire-agent.  > :warning:
       Please note this chart requires Projected Service Account Tokens which has to
@@ -339,4 +370,4 @@ entries:
     urls:
     - https://github.com/philips-labs/helm-charts/releases/download/spire-client-example-0.1.0/spire-client-example-0.1.0.tgz
     version: 0.1.0
-generated: "2021-06-25T09:00:27.769072343Z"
+generated: "2021-06-25T09:12:37.119494576Z"
