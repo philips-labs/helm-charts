@@ -6,7 +6,7 @@ metadata:
   labels:
     {{- include "spire.server.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.service.type }}
+  type: {{ .Values.server.service.type }}
   ports:
     - name: https
       port: 443
