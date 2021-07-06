@@ -15,8 +15,9 @@ data:
       #AWS requires the use of RSA.  EC cryptography is not supported
       ca_key_type = "rsa-2048"
 
+      {{- if eq (.Values.oidc.enabled | toString) "true" }}
       jwt_issuer = "{{ .Values.oidc.domain }}"
-
+      {{ end }}
       default_svid_ttl = "1h"
       ca_subject = {
         country = ["NL"],

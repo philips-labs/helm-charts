@@ -61,6 +61,7 @@ Kubernetes: `>=1.19.0-0`
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
 | oidc.domain | string | `"oidc-discovery.example.org"` |  |
+| oidc.enabled | bool | `false` |  |
 | oidc.image.pullPolicy | string | `"IfNotPresent"` |  |
 | oidc.image.repository | string | `"gcr.io/spiffe-io/oidc-discovery-provider"` |  |
 | oidc.image.tag | string | `""` |  |
