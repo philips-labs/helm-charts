@@ -28,6 +28,23 @@ server:
     type: NodePort
     port: 8081
 
+oidc:
+  image:
+    repository: gcr.io/spiffe-io/oidc-discovery-provider
+    pullPolicy: IfNotPresent
+    tag: ""
+
+  logLevel: INFO
+
+  service:
+    type: NodePort
+    port: 443
+
+  domain: "oidc-discovery.example.org"
+
+  letsEncrypt:
+    emailAddress: letsencrypt@example.org
+
 agent:
   image:
     repository: gcr.io/spiffe-io/spire-agent
