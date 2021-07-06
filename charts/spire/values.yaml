@@ -29,6 +29,8 @@ server:
     port: 8081
 
 oidc:
+  enabled: false
+
   image:
     repository: gcr.io/spiffe-io/oidc-discovery-provider
     pullPolicy: IfNotPresent

@@ -91,6 +91,7 @@ spec:
             - name: spire-workload-registrar-config
               mountPath: /run/spire/k8s-workload-registrar/config
               readOnly: true
+        {{- if eq (.Values.oidc.enabled | toString) "true" }}
         - name: spire-oidc
           image: "{{ .Values.oidc.image.repository }}:{{ .Values.oidc.image.tag | default .Chart.AppVersion }}"
           args:
@@ -116,6 +117,7 @@ spec:
               command: ["/bin/ps", "aux", " ||", "grep", "oidc-discovery-provider -config /run/spire/oidc/config/oidc-discovery-provider.conf"]
             initialDelaySeconds: 5
             periodSeconds: 5
+        {{ end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -135,9 +137,11 @@ spec:
         - name: spire-config
           configMap:
             name: {{ include "spire.fullname" . }}-server
+        {{- if eq (.Values.oidc.enabled | toString) "true" }}
         - name: spire-oidc-config
           configMap:
             name: {{ include "spire.fullname" . }}-oidc-discovery-provider
+        {{ end }}
         - name: spire-server-socket
           hostPath:
             path: /run/spire/server-sockets
