@@ -24,6 +24,10 @@ server:
     accessMode: ReadWriteOnce
     storageClass: null
 
+  service:
+    type: NodePort
+    port: 8081
+
 agent:
   image:
     repository: gcr.io/spiffe-io/spire-agent
@@ -61,10 +65,6 @@ securityContext: {}
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
-
-service:
-  type: NodePort
-  port: 8081
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

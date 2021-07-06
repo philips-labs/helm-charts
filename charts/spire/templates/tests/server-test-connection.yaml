@@ -11,5 +11,5 @@ spec:
     - name: check-port
       image: busybox
       command: ['nc']
-      args: ['-zvw3', '{{ include "spire.fullname" . }}-server', '{{ .Values.service.port }}']
+      args: ['-zvw3', '{{ include "spire.fullname" . }}-server', '{{ .Values.server.service.port }}']
   restartPolicy: Never

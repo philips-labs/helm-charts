@@ -72,8 +72,8 @@ Kubernetes: `>=1.19.0-0`
 | server.image.pullPolicy | string | `"IfNotPresent"` |  |
 | server.image.repository | string | `"gcr.io/spiffe-io/spire-server"` |  |
 | server.image.tag | string | `""` |  |
-| service.port | int | `8081` |  |
-| service.type | string | `"NodePort"` |  |
+| server.service.port | int | `8081` |  |
+| server.service.type | string | `"NodePort"` |  |
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
