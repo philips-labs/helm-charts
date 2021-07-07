@@ -40,7 +40,7 @@ oidc:
 
   service:
     type: NodePort
-    port: 443
+    port: 80
 
   domain: "oidc-discovery.example.org"
 

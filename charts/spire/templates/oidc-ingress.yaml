@@ -19,12 +19,12 @@ spec:
               service:
                 name: {{ include "spire.fullname" . }}-oidc
                 port:
-                  name: https
+                  name: http
           - path: /keys
             pathType: ImplementationSpecific
             backend:
               service:
                 name: {{ include "spire.fullname" . }}-oidc
                 port:
-                  name: https
+                  name: http
 {{ end }}
