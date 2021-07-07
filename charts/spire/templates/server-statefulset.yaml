@@ -98,7 +98,7 @@ spec:
             - -config
             - /run/spire/oidc/config/oidc-discovery-provider.conf
           ports:
-            - containerPort: 443
+            - containerPort: {{ .Values.oidc.service.port }}
               name: spire-oidc-port
           volumeMounts:
             - name: spire-server-socket

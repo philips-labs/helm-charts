@@ -67,7 +67,7 @@ Kubernetes: `>=1.19.0-0`
 | oidc.image.tag | string | `""` |  |
 | oidc.letsEncrypt.emailAddress | string | `"letsencrypt@example.org"` |  |
 | oidc.logLevel | string | `"INFO"` |  |
-| oidc.service.port | int | `443` |  |
+| oidc.service.port | int | `80` |  |
 | oidc.service.type | string | `"NodePort"` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
