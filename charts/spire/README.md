@@ -60,11 +60,12 @@ Kubernetes: `>=1.19.0-0`
 | imagePullSecrets | list | `[]` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
-| oidc.domain | string | `"oidc-discovery.example.org"` |  |
 | oidc.enabled | bool | `false` |  |
 | oidc.image.pullPolicy | string | `"IfNotPresent"` |  |
 | oidc.image.repository | string | `"gcr.io/spiffe-io/oidc-discovery-provider"` |  |
 | oidc.image.tag | string | `""` |  |
+| oidc.ingress.domain | string | `"oidc-discovery.example.org"` |  |
+| oidc.ingress.enabled | bool | `true` |  |
 | oidc.letsEncrypt.emailAddress | string | `"letsencrypt@example.org"` |  |
 | oidc.logLevel | string | `"INFO"` |  |
 | oidc.service.port | int | `80` |  |
