@@ -42,7 +42,9 @@ oidc:
     type: NodePort
     port: 80
 
-  domain: "oidc-discovery.example.org"
+  ingress:
+    enabled: true
+    domain: "oidc-discovery.example.org"
 
   letsEncrypt:
     emailAddress: letsencrypt@example.org

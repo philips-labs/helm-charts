@@ -8,7 +8,7 @@ data:
   oidc-discovery-provider.conf: |
     log_level = "{{ .Values.oidc.logLevel }}"
 
-    domain = "{{ .Values.oidc.domain }}"
+    domain = "{{ .Values.oidc.ingress.domain }}"
     insecure_addr = ":{{ .Values.oidc.service.port }}"
     # acme {
     #     directory_url = "https://acme-v02.api.letsencrypt.org/directory"

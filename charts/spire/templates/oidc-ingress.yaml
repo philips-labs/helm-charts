@@ -1,4 +1,4 @@
-{{- if eq (.Values.oidc.enabled | toString) "true" }}
+{{- if and (eq (.Values.oidc.enabled | toString) "true") (eq (.Values.oidc.ingress.enabled | toString) "true") }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -7,10 +7,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - {{ .Values.oidc.domain }}
+        - {{ .Values.oidc.ingress.domain }}
       secretName: oidc-secret
   rules:
-    - host: {{ .Values.oidc.domain }}
+    - host: {{ .Values.oidc.ingress.domain }}
       http:
         paths:
           - path: /.well-known/openid-configuration
