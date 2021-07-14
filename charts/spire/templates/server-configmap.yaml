@@ -8,7 +8,7 @@ data:
     server {
       bind_address = "0.0.0.0"
       bind_port = "8081"
-      registration_uds_path = "{{ include "spire.sockets" . }}/registration.sock"
+      socket_path = "{{ include "spire.sockets" . }}/registration.sock"
       trust_domain = {{ .Values.spire.trustDomain | quote }}
       data_dir = "/run/spire/data"
       log_level = "{{ .Values.spire.server.logLevel }}"
@@ -35,7 +35,7 @@ data:
         plugin_data {
           clusters = {
             {{ .Values.spire.clusterName | quote }} = {
-              service_account_whitelist = ["{{ .Release.Namespace }}:{{ include "spire.serviceAccountName" . }}-agent"]
+              service_account_allow_list = ["{{ .Release.Namespace }}:{{ include "spire.serviceAccountName" . }}-agent"]
             }
           }
         }
