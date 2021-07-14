@@ -65,7 +65,7 @@ Kubernetes: `>=1.19.0-0`
 | oidc.image.repository | string | `"gcr.io/spiffe-io/oidc-discovery-provider"` |  |
 | oidc.image.tag | string | `""` |  |
 | oidc.ingress.domain | string | `"oidc-discovery.example.org"` |  |
-| oidc.ingress.enabled | bool | `true` |  |
+| oidc.ingress.enabled | bool | `false` |  |
 | oidc.letsEncrypt.emailAddress | string | `"letsencrypt@example.org"` |  |
 | oidc.logLevel | string | `"INFO"` |  |
 | oidc.service.port | int | `80` |  |
