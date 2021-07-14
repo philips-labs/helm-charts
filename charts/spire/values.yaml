@@ -43,7 +43,7 @@ oidc:
     port: 80
 
   ingress:
-    enabled: true
+    enabled: false
     domain: "oidc-discovery.example.org"
 
   letsEncrypt:
