@@ -32,6 +32,11 @@ agent:
     tag: ""
 
 imagePullSecrets: []
+  # - name: my-docker-registry
+  #   username: my-docker-user
+  #   password: my-docker-password
+  #   registryURL: my-private.docker-registry.com
+
 nameOverride: ""
 fullnameOverride: ""
 
