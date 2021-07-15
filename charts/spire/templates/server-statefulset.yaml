@@ -1,7 +1,8 @@
+{{- $fullname := include "spire.fullname" . }}
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ include "spire.fullname" . }}-server
+  name: {{ $fullname }}-server
   labels:
     {{- include "spire.server.labels" . | nindent 4 }}
 spec:
@@ -23,7 +24,9 @@ spec:
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
+        {{- range . }}
+        - name: {{ printf "%s-%s" $fullname .name }}
+        {{- end }}
       {{- end }}
       serviceAccountName: {{ include "spire.serviceAccountName" . }}-server
       shareProcessNamespace: true
