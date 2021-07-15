@@ -31,6 +31,26 @@ Create chart name and version as used by the chart label.
 {{- end }}
 
 {{/*
+Common labels
+*/}}
+{{- define "spire.labels" -}}
+helm.sh/chart: {{ include "spire.chart" . }}
+{{ include "spire.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end }}
+
+{{/*
+Selector labels
+*/}}
+{{- define "spire.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "spire.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+{{/*
 Common server labels
 */}}
 {{- define "spire.server.labels" -}}
