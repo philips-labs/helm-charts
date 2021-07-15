@@ -79,6 +79,37 @@ entries:
   spire:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2021-07-15T12:08:02.877923598Z"
+    description: 'A Helm chart for deploying spire-server and spire-agent.  > :warning:
+      Please note this chart requires Projected Service Account Tokens which has to
+      be enabled on your k8s api server.  To enable Projected Service Account Tokens
+      on Docker for Mac/Windows run the following command to SSH into the Docker Desktop
+      K8s VM.  ```bash docker run -it --privileged --pid=host debian nsenter -t 1
+      -m -u -n -i sh ```  Then add the following to `/etc/kubernetes/manifests/kube-apiserver.yaml`  ```yaml
+      spec:   containers:     - command:         - kube-apiserver         - --api-audiences=api,spire-server         -
+      --service-account-issuer=api,spire-agent         - --service-account-key-file=/run/config/pki/sa.pub         -
+      --service-account-signing-key-file=/run/config/pki/sa.key ``` '
+    digest: 2d62019eab9756f21078885fe9a2a83f0172fee23019411b355311a9793519a4
+    home: https://github.com/philips-labs/helm-charts/charts/spire
+    keywords:
+    - spiffe
+    - spire
+    - spire-server
+    - spire-agent
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: marco.franssen@philips.com
+      name: marcofranssen
+      url: https://marcofranssen.nl
+    name: spire
+    sources:
+    - https://github.com/philips-labs/helm-charts/charts/spire
+    type: application
+    urls:
+    - https://github.com/philips-labs/helm-charts/releases/download/spire-0.3.1/spire-0.3.1.tgz
+    version: 0.3.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2021-07-14T11:16:07.151393059Z"
     description: 'A Helm chart for deploying spire-server and spire-agent.  > :warning:
       Please note this chart requires Projected Service Account Tokens which has to
@@ -401,4 +432,4 @@ entries:
     urls:
     - https://github.com/philips-labs/helm-charts/releases/download/spire-client-example-0.1.0/spire-client-example-0.1.0.tgz
     version: 0.1.0
-generated: "2021-07-14T11:16:07.151454259Z"
+generated: "2021-07-15T12:08:02.877987398Z"
