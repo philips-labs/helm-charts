@@ -24,6 +24,31 @@ server:
     accessMode: ReadWriteOnce
     storageClass: null
 
+  service:
+    type: ClusterIP
+    port: 8081
+
+oidc:
+  enabled: false
+
+  image:
+    repository: gcr.io/spiffe-io/oidc-discovery-provider
+    pullPolicy: IfNotPresent
+    tag: ""
+
+  logLevel: INFO
+
+  service:
+    type: ClusterIP
+    port: 80
+
+  ingress:
+    enabled: false
+    domain: "oidc-discovery.example.org"
+
+  letsEncrypt:
+    emailAddress: letsencrypt@example.org
+
 agent:
   image:
     repository: gcr.io/spiffe-io/spire-agent
@@ -61,10 +86,6 @@ securityContext: {}
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
-
-service:
-  type: NodePort
-  port: 8081
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

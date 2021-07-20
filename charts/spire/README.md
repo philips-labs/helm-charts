@@ -2,7 +2,7 @@
 
 <!-- This README.md is generated. -->
 
-![Version: 0.3.1](https://img.shields.io/badge/Version-0.3.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 A Helm chart for deploying spire-server and spire-agent.
 
@@ -60,6 +60,16 @@ Kubernetes: `>=1.19.0-0`
 | imagePullSecrets | list | `[]` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
+| oidc.enabled | bool | `false` |  |
+| oidc.image.pullPolicy | string | `"IfNotPresent"` |  |
+| oidc.image.repository | string | `"gcr.io/spiffe-io/oidc-discovery-provider"` |  |
+| oidc.image.tag | string | `""` |  |
+| oidc.ingress.domain | string | `"oidc-discovery.example.org"` |  |
+| oidc.ingress.enabled | bool | `false` |  |
+| oidc.letsEncrypt.emailAddress | string | `"letsencrypt@example.org"` |  |
+| oidc.logLevel | string | `"INFO"` |  |
+| oidc.service.port | int | `80` |  |
+| oidc.service.type | string | `"ClusterIP"` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | replicaCount | int | `1` |  |
@@ -72,8 +82,8 @@ Kubernetes: `>=1.19.0-0`
 | server.image.pullPolicy | string | `"IfNotPresent"` |  |
 | server.image.repository | string | `"gcr.io/spiffe-io/spire-server"` |  |
 | server.image.tag | string | `""` |  |
-| service.port | int | `8081` |  |
-| service.type | string | `"NodePort"` |  |
+| server.service.port | int | `8081` |  |
+| server.service.type | string | `"ClusterIP"` |  |
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
