@@ -373,6 +373,30 @@ entries:
   spire-client-example:
   - apiVersion: v2
     appVersion: 0.12.2
+    created: "2021-07-30T10:01:05.470268502Z"
+    deprecated: true
+    description: A Helm chart for deploying a spire workload as example.
+    digest: 081a3eab1a477145410d1f88d612b897c2f8eb4b4231d0c476ba4245c1bb6f4d
+    home: https://github.com/philips-labs/helm-charts/charts/spire-client-example
+    keywords:
+    - spiffe
+    - spire
+    - client
+    - example
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: marco.franssen@philips.com
+      name: marcofranssen
+      url: https://marcofranssen.nl
+    name: spire-client-example
+    sources:
+    - https://github.com/philips-labs/helm-charts/charts/spire-client-example
+    type: application
+    urls:
+    - https://github.com/philips-labs/helm-charts/releases/download/spire-client-example-0.2.1/spire-client-example-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
+    appVersion: 0.12.2
     created: "2021-06-25T09:00:27.768994343Z"
     description: A Helm chart for deploying a spire workload as example.
     digest: 61707c368c1c9c5764fd82b9263dc67647b3775cd5e82071d82a1b77fa9c42a5
@@ -463,4 +487,4 @@ entries:
     urls:
     - https://github.com/philips-labs/helm-charts/releases/download/spire-client-example-0.1.0/spire-client-example-0.1.0.tgz
     version: 0.1.0
-generated: "2021-07-21T13:47:13.247924496Z"
+generated: "2021-07-30T10:01:05.470332802Z"
