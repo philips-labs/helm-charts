@@ -13,6 +13,6 @@ updates:
       interval: "weekly"
 
   - package-ecosystem: "gitsubmodule"
-    directory: "/charts/dctna"
+    directory: "/"
     schedule:
       interval: "daily"
