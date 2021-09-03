@@ -1,0 +1,112 @@
+{{- if eq (.Values.oidc.enabled | toString) "true" }}
+{{- $fullname := include "spire.fullname" . }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ printf "%s-oidc" $fullname }}
+  labels:
+    {{- include "spire.oidc.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "spire.oidc.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "spire.oidc.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- range . }}
+        - name: {{ printf "%s-%s" $fullname .name }}
+        {{- end }}
+      {{- end }}
+      serviceAccountName: {{ include "spire.serviceAccountName" . }}-agent
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: spire-oidc
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.oidc.image.repository }}:{{ .Values.oidc.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.oidc.image.pullPolicy }}
+          args:
+            - -config
+            - /run/spire/oidc/config/oidc-discovery-provider.conf
+          {{- if not .Values.oidc.insecureScheme.enabled }}
+          ports:
+            - containerPort: 443
+              name: https
+          {{- end }}
+          volumeMounts:
+            - name: spire-agent-sockets
+              mountPath: /run/spire/agent-sockets
+              readOnly: true
+            - name: spire-oidc-sockets
+              mountPath: /run/spire/oidc-sockets
+              readOnly: false
+            - name: spire-oidc-config
+              mountPath: /run/spire/oidc/config/
+              readOnly: true
+          readinessProbe:
+            exec:
+              command: ["/bin/ps", "aux", "|", "grep", "oidc-discovery-provider -config /run/spire/oidc/config/oidc-discovery-provider.conf"]
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            exec:
+              command: ["/bin/ps", "aux", "|", "grep", "oidc-discovery-provider -config /run/spire/oidc/config/oidc-discovery-provider.conf"]
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+        {{- if .Values.oidc.insecureScheme.enabled }}
+        - name: nginx
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.oidc.insecureScheme.nginx.repository }}:{{ .Values.oidc.insecureScheme.nginx.tag }}"
+          imagePullPolicy: {{ .Values.oidc.insecureScheme.nginx.pullPolicy }}
+          ports:
+            - containerPort: 80
+              name: http
+          volumeMounts:
+            - name: spire-oidc-sockets
+              mountPath: /run/spire/oidc-sockets
+              readOnly: true
+            - name: spire-oidc-config
+              mountPath: /etc/nginx/templates/default.conf.template
+              subPath: default.conf.template
+              readOnly: true
+        {{- end }}
+      volumes:
+        - name: spire-oidc-sockets
+          hostPath:
+            path: /run/spire/oidc-sockets
+            type: DirectoryOrCreate
+        - name: spire-agent-sockets
+          hostPath:
+            path: /run/spire/agent-sockets
+            type: DirectoryOrCreate
+        - name: spire-oidc-config
+          configMap:
+            name: {{ include "spire.fullname" . }}-oidc-discovery-provider
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{ end }}

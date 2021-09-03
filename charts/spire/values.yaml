@@ -24,6 +24,48 @@ server:
     accessMode: ReadWriteOnce
     storageClass: null
 
+  service:
+    type: ClusterIP
+    port: 8081
+
+oidc:
+  enabled: false
+
+  image:
+    repository: gcr.io/spiffe-io/oidc-discovery-provider
+    pullPolicy: IfNotPresent
+    tag: ""
+
+  logLevel: INFO
+
+  service:
+    type: NodePort
+    port: 80
+    annotations: {}
+      # external-dns.alpha.kubernetes.io/hostname: oidc-discovery.example.org
+
+  jwtIssuer: oidc-discovery.example.org
+
+  domains:
+    - localhost
+    - spire-oidc.spire
+    - spire-oidc.spire.svc.cluster.local
+    - oidc-discovery.example.org
+
+  insecureScheme:
+    enabled: false
+
+    nginx:
+      repository: nginx
+      pullPolicy: IfNotPresent
+      tag: "alpine"
+
+  acme:
+    tosAccepted: false
+    cacheDir: /run/spire
+    directoryUrl: https://acme-v02.api.letsencrypt.org/directory
+    emailAddress: letsencrypt@example.org
+
 agent:
   image:
     repository: gcr.io/spiffe-io/spire-agent
@@ -61,10 +103,6 @@ securityContext: {}
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
-
-service:
-  type: NodePort
-  port: 8081
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

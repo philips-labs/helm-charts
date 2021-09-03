@@ -6,10 +6,10 @@ metadata:
   labels:
     {{- include "spire.server.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.service.type }}
+  type: {{ .Values.server.service.type }}
   ports:
     - name: grpc
-      port: {{ .Values.service.port }}
+      port: {{ .Values.server.service.port }}
       targetPort: grpc
       protocol: TCP
   selector:
