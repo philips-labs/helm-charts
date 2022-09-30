@@ -11,6 +11,9 @@ workloadRegistrar:
     # Overrides the image tag whose default is the chart appVersion.
     tag: ""
 
+  service:
+    annotations: {}
+
 server:
   image:
     repository: gcr.io/spiffe-io/spire-server
@@ -27,6 +30,7 @@ server:
   service:
     type: ClusterIP
     port: 8081
+    annotations: {}
 
 oidc:
   enabled: false
