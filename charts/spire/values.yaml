@@ -29,6 +29,9 @@ workloadRegistrar:
     #   cpu: 100m
     #   memory: 64Mi
 
+  service:
+    annotations: {}
+
 server:
   replicaCount: 1
   image:
@@ -65,13 +68,6 @@ server:
     type: ClusterIP
     port: 8081
     annotations: {}
-
-waitForIt:
-  image:
-    repository: gcr.io/spiffe-io/wait-for-it
-    pullPolicy: IfNotPresent
-    tag: "latest"
-  resources: {}
 
   podSecurityContext: {}
     # fsGroup: 2000
