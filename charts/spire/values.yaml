@@ -32,6 +32,12 @@ server:
     port: 8081
     annotations: {}
 
+waitForIt:
+  image:
+    repository: gcr.io/spiffe-io/wait-for-it
+    pullPolicy: IfNotPresent
+    tag: "latest"
+
 oidc:
   enabled: false
 
