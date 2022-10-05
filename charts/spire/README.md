@@ -51,9 +51,11 @@ Kubernetes: `>=1.19.0-0`
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
+| agent.annotations | object | `{}` |  |
 | agent.image.pullPolicy | string | `"IfNotPresent"` |  |
 | agent.image.repository | string | `"gcr.io/spiffe-io/spire-agent"` |  |
 | agent.image.tag | string | `""` |  |
+| agent.resources | object | `{}` |  |
 | autoscaling.enabled | bool | `false` |  |
 | autoscaling.maxReplicas | int | `100` |  |
 | autoscaling.minReplicas | int | `1` |  |
@@ -95,6 +97,7 @@ Kubernetes: `>=1.19.0-0`
 | server.image.pullPolicy | string | `"IfNotPresent"` |  |
 | server.image.repository | string | `"gcr.io/spiffe-io/spire-server"` |  |
 | server.image.tag | string | `""` |  |
+| server.service.annotations | object | `{}` |  |
 | server.service.port | int | `8081` |  |
 | server.service.type | string | `"ClusterIP"` |  |
 | serviceAccount.annotations | object | `{}` |  |
@@ -105,6 +108,11 @@ Kubernetes: `>=1.19.0-0`
 | spire.server.logLevel | string | `"INFO"` |  |
 | spire.trustDomain | string | `"example.org"` |  |
 | tolerations | list | `[]` |  |
+| waitForIt.image.pullPolicy | string | `"IfNotPresent"` |  |
+| waitForIt.image.repository | string | `"gcr.io/spiffe-io/waitForIt"` |  |
+| waitForIt.image.tag | string | `""` |  |
+| waitForIt.resources | object | `{}` |  |
 | workloadRegistrar.image.pullPolicy | string | `"IfNotPresent"` |  |
 | workloadRegistrar.image.repository | string | `"gcr.io/spiffe-io/k8s-workload-registrar"` |  |
 | workloadRegistrar.image.tag | string | `""` |  |
+| workloadRegistrar.service.annotations | object | `{}` |  |

@@ -28,6 +28,8 @@ spec:
           image: "{{ .Values.waitForIt.image.repository }}:{{ .Values.waitForIt.image.tag }}"
           imagePullPolicy: {{ .Values.waitForIt.image.pullPolicy }}
           args: ["-t", "30", "{{ include "spire.fullname" . }}-server:8081"]
+          resources:
+            {{- toYaml .Values.waitForIt.resources | nindent 12 }}
       containers:
         - name: {{ .Chart.Name }}-agent
           image: "{{ .Values.agent.image.repository }}:{{ .Values.agent.image.tag | default .Chart.AppVersion }}"

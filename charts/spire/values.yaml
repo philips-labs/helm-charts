@@ -37,6 +37,7 @@ waitForIt:
     repository: gcr.io/spiffe-io/wait-for-it
     pullPolicy: IfNotPresent
     tag: "latest"
+  resources: {}
 
 oidc:
   enabled: false
@@ -82,6 +83,8 @@ agent:
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
     tag: ""
+  annotations: {}
+  resources: {}
 
 imagePullSecrets: []
   # - name: my-docker-registry
