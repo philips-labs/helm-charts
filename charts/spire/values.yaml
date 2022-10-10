@@ -139,6 +139,8 @@ nodeSelector: {}
 
 tolerations: []
 
+topologySpreadConstraints: []
+
 affinity: {}
 
 # spireSettings
