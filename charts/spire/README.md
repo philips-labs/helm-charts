@@ -121,4 +121,5 @@ Kubernetes: `>=1.19.0-0`
 | workloadRegistrar.image.pullPolicy | string | `"IfNotPresent"` |  |
 | workloadRegistrar.image.repository | string | `"gcr.io/spiffe-io/k8s-workload-registrar"` |  |
 | workloadRegistrar.image.tag | string | `""` |  |
+| workloadRegistrar.resources | object | `{}` |  |
 | workloadRegistrar.service.annotations | object | `{}` |  |
