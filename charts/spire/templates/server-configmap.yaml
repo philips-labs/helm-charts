@@ -56,6 +56,18 @@ data:
           config_map = "{{ include "spire.fullname" . }}-bundle"
         }
       }
+
+      {{- if eq (.Values.spire.certManager.enabled | toString) "true" }}
+      UpstreamAuthority "cert-manager" {
+          plugin_data {
+              issuer_name = "{{ .Values.certManager.issuerName }}"
+              issuer_kind =  "{{ .Values.certManager.issuerKind }}"
+              issuer_group = "{{ .Values.certManager.issuerGroup }}"
+              namespace = "{{ .Values.certManager.namespace }}"
+              kube_config_file = "{{ .Values.certManager.kubeConfigFile }}"
+          }
+      }
+      {{ end }}
     }
 
     health_checks {
