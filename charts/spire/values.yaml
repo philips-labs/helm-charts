@@ -83,7 +83,6 @@ agent:
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
     tag: ""
-  annotations: {}
   resources: {}
 
 imagePullSecrets: []
@@ -151,3 +150,10 @@ spire:
     logLevel: INFO
   server:
     logLevel: INFO
+  certManager:
+    enabled: false
+    issuerName: "spire-ca"
+    issuerKind: "Issuer"
+    issuerGroup: "cert-manager.io"
+    namespace: "sandbox"
+    kubeConfigFile: "/etc/kubernetes/kubeconfig"
