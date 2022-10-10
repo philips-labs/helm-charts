@@ -51,7 +51,6 @@ Kubernetes: `>=1.19.0-0`
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
-| agent.annotations | object | `{}` |  |
 | agent.image.pullPolicy | string | `"IfNotPresent"` |  |
 | agent.image.repository | string | `"gcr.io/spiffe-io/spire-agent"` |  |
 | agent.image.tag | string | `""` |  |
@@ -104,6 +103,12 @@ Kubernetes: `>=1.19.0-0`
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
 | spire.agent.logLevel | string | `"INFO"` |  |
+| spire.certManager.enabled | bool | `false` |  |
+| spire.certManager.issuerName | string | `spire-ca` |  |
+| spire.certManager.issuerKind | string | `Issuer` |  |
+| spire.certManager.issuerGroup | string | `cert-manager.io` |  |
+| spire.certManager.kubeConfigFile | string | `/etc/kubernetes/kubeconfig` |  |
+| spire.certManager.namespace | string | `sandbox` |  |
 | spire.clusterName | string | `"example-cluster"` |  |
 | spire.server.logLevel | string | `"INFO"` |  |
 | spire.trustDomain | string | `"example.org"` |  |
