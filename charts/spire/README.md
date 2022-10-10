@@ -113,6 +113,7 @@ Kubernetes: `>=1.19.0-0`
 | spire.server.logLevel | string | `"INFO"` |  |
 | spire.trustDomain | string | `"example.org"` |  |
 | tolerations | list | `[]` |  |
+| topologySpreadConstraints | list | `[]` |  |
 | waitForIt.image.pullPolicy | string | `"IfNotPresent"` |  |
 | waitForIt.image.repository | string | `"gcr.io/spiffe-io/waitForIt"` |  |
 | waitForIt.image.tag | string | `""` |  |
