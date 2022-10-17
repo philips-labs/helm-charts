@@ -55,6 +55,7 @@ Kubernetes: `>=1.19.0-0`
 | agent.image.repository | string | `"gcr.io/spiffe-io/spire-agent"` |  |
 | agent.image.tag | string | `""` |  |
 | agent.resources | object | `{}` |  |
+| agent.socketPath | string | `"/run/spire/agent-sockets/agent.sock"` |  |
 | autoscaling.enabled | bool | `false` |  |
 | autoscaling.maxReplicas | int | `100` |  |
 | autoscaling.minReplicas | int | `1` |  |
