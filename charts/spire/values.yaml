@@ -85,6 +85,7 @@ agent:
     # Overrides the image tag whose default is the chart appVersion.
     tag: ""
   resources: {}
+  socketPath: "/run/spire/agent-sockets/agent.sock"
 
 imagePullSecrets: []
   # - name: my-docker-registry
