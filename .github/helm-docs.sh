@@ -3,7 +3,7 @@
 set -euo pipefail
 
 SCRIPTPATH=$(dirname "$0")
-HELM_DOCS_VERSION="1.5.0"
+HELM_DOCS_VERSION="1.11.0"
 
 function install_helm_docs {
   case "$(uname -s)" in
