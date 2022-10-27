@@ -29,6 +29,18 @@ nodeDriverRegistrar:
     tag: "v2.0.1"
   resources: {}
 
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # requests:
+    #   cpu: 50m
+    #   memory: 32Mi
+    # limits:
+    #   cpu: 100m
+    #   memory: 64Mi
+
 server:
   image:
     repository: gcr.io/spiffe-io/spire-server
@@ -38,6 +50,18 @@ server:
 
   nodeSelector:
     kubernetes.io/arch: amd64
+
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # requests:
+    #   cpu: 200m
+    #   memory: 256Mi
+    # limits:
+    #   cpu: 200m
+    #   memory: 256Mi
 
   dataStorage:
     enabled: true
@@ -57,6 +81,23 @@ waitForIt:
     tag: "latest"
   resources: {}
 
+csiDriver:
+  image:
+    repository: ghcr.io/spiffe/spiffe-csi-driver
+    pullPolicy: IfNotPresent
+    tag: 0.2.0
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # requests:
+    #   cpu: 50m
+    #   memory: 32Mi
+    # limits:
+    #   cpu: 100m
+    #   memory: 64Mi
+
 oidc:
   enabled: false
 
@@ -67,6 +108,18 @@ oidc:
 
   nodeSelector:
     kubernetes.io/arch: amd64
+
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # requests:
+    #   cpu: 50m
+    #   memory: 32Mi
+    # limits:
+    #   cpu: 100m
+    #   memory: 64Mi
 
   logLevel: INFO
 
@@ -110,6 +163,18 @@ agent:
   nodeSelector:
     kubernetes.io/arch: amd64
 
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # requests:
+    #   cpu: 50m
+    #   memory: 64Mi
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+
 imagePullSecrets: []
   # - name: my-docker-registry
   #   username: my-docker-user
@@ -140,18 +205,6 @@ securityContext: {}
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
-
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
 
 autoscaling:
   enabled: false
