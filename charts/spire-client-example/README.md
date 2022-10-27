@@ -14,7 +14,7 @@ A Helm chart for deploying a spire workload as example.
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| marcofranssen | marco.franssen@philips.com | https://marcofranssen.nl |
+| marcofranssen | <marco.franssen@philips.com> | <https://marcofranssen.nl> |
 
 ## Source Code
 

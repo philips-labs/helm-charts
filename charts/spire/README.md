@@ -36,7 +36,7 @@ spec:
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| marcofranssen | marco.franssen@philips.com | https://marcofranssen.nl |
+| marcofranssen | <marco.franssen@philips.com> | <https://marcofranssen.nl> |
 
 ## Source Code
 
