@@ -10,6 +10,12 @@ A Helm chart for deploying a spire workload as example.
 
 **Homepage:** <https://github.com/philips-labs/helm-charts/charts/spire-client-example>
 
+## Maintainers
+
+| Name | Email | Url |
+| ---- | ------ | --- |
+| marcofranssen | <marco.franssen@philips.com> | <https://marcofranssen.nl> |
+
 ## Source Code
 
 * <https://github.com/philips-labs/helm-charts/charts/spire-client-example>
