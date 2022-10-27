@@ -2,7 +2,7 @@
 
 <!-- This README.md is generated. -->
 
-![Version: 0.5.1](https://img.shields.io/badge/Version-0.5.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.4.4](https://img.shields.io/badge/AppVersion-1.4.4-informational?style=flat-square)
+![Version: 0.5.2](https://img.shields.io/badge/Version-0.5.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.4.4](https://img.shields.io/badge/AppVersion-1.4.4-informational?style=flat-square)
 
 A Helm chart for deploying spire-server and spire-agent.
 
@@ -55,10 +55,15 @@ Kubernetes: `>=1.21.0-0`
 | agent.image.repository | string | `"gcr.io/spiffe-io/spire-agent"` |  |
 | agent.image.tag | string | `""` |  |
 | agent.nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
+| agent.resources | object | `{}` |  |
 | autoscaling.enabled | bool | `false` |  |
 | autoscaling.maxReplicas | int | `100` |  |
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
+| csiDriver.image.pullPolicy | string | `"IfNotPresent"` |  |
+| csiDriver.image.repository | string | `"ghcr.io/spiffe/spiffe-csi-driver"` |  |
+| csiDriver.image.tag | string | `"0.2.0"` |  |
+| csiDriver.resources | object | `{}` |  |
 | fullnameOverride | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
 | nameOverride | string | `""` |  |
@@ -81,13 +86,13 @@ Kubernetes: `>=1.21.0-0`
 | oidc.jwtIssuer | string | `"oidc-discovery.example.org"` |  |
 | oidc.logLevel | string | `"INFO"` |  |
 | oidc.nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
+| oidc.resources | object | `{}` |  |
 | oidc.service.annotations | object | `{}` |  |
 | oidc.service.port | int | `80` |  |
 | oidc.service.type | string | `"NodePort"` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | replicaCount | int | `1` |  |
-| resources | object | `{}` |  |
 | securityContext | object | `{}` |  |
 | server.dataStorage.accessMode | string | `"ReadWriteOnce"` |  |
 | server.dataStorage.enabled | bool | `true` |  |
@@ -97,6 +102,7 @@ Kubernetes: `>=1.21.0-0`
 | server.image.repository | string | `"gcr.io/spiffe-io/spire-server"` |  |
 | server.image.tag | string | `""` |  |
 | server.nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
+| server.resources | object | `{}` |  |
 | server.service.port | int | `8081` |  |
 | server.service.type | string | `"ClusterIP"` |  |
 | serviceAccount.annotations | object | `{}` |  |
@@ -110,3 +116,4 @@ Kubernetes: `>=1.21.0-0`
 | workloadRegistrar.image.pullPolicy | string | `"IfNotPresent"` |  |
 | workloadRegistrar.image.repository | string | `"gcr.io/spiffe-io/k8s-workload-registrar"` |  |
 | workloadRegistrar.image.tag | string | `""` |  |
+| workloadRegistrar.resources | object | `{}` |  |
