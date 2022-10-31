@@ -58,6 +58,9 @@ server:
     #   cpu: 200m
     #   memory: 256Mi
 
+  nodeSelector:
+    kubernetes.io/arch: amd64
+
   dataStorage:
     enabled: true
     size: 1Gi
@@ -266,6 +269,9 @@ oidc:
       cacheDir: /run/spire
       directoryUrl: https://acme-v02.api.letsencrypt.org/directory
       emailAddress: letsencrypt@example.org
+
+  nodeSelector:
+    kubernetes.io/arch: amd64
 
 imagePullSecrets: []
   # - name: my-docker-registry
