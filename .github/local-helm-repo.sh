@@ -23,8 +23,8 @@ sleep 1
 helm repo add philips-labs http://127.0.0.1:8879
 
 for chart in $(ls -d charts/* | grep -v dctna); do
-  helm package -u $chart
+  helm package -u "$chart"
   chart_package=$(ls -f | grep "${chart#*/}")
   curl --data-binary "@$chart_package" http://localhost:8879/api/charts
-  rm -rf $chart_package
+  rm -rf "$chart_package"
 done
