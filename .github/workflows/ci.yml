@@ -145,7 +145,7 @@ jobs:
         # Only build a kind cluster if there are chart changes to test.
         if: needs.lint-chart.outputs.changed == 'true'
         with:
-          version: v0.11.1
+          version: v0.16.0
           node_image: kindest/node:${{ matrix.k8s }}
           config: .github/kind/conf/kind-config.yaml
           log_level: debug
