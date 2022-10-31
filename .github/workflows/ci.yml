@@ -16,6 +16,10 @@ on:
       - '.github/*.sh'
       - '.github/kind-config.yaml'
 
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint-chart:
     runs-on: ubuntu-20.04
@@ -47,7 +51,7 @@ jobs:
         run: |
           changed=$(ct list-changed --target-branch main)
           if [[ -n "$changed" ]]; then
-            echo "::set-output name=changed::true"
+            echo "changed=true" >> $GITHUB_OUTPUT
           fi
 
       - name: Setup charts repo localhost
@@ -120,7 +124,7 @@ jobs:
           version: v0.16.0
           node_image: kindest/node:${{ matrix.k8s }}
           config: .github/kind/conf/kind-config.yaml
-          log_level: debug
+          verbosity: 1
 
       - name: Run chart-testing (install)
         run: |
