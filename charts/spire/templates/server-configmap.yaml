@@ -59,15 +59,17 @@ data:
 
       {{- if eq (.Values.spire.certManager.enabled | toString) "true" }}
       UpstreamAuthority "cert-manager" {
-          plugin_data {
-              issuer_name = "{{ .Values.spire.certManager.issuerName }}"
-              issuer_kind =  "{{ .Values.spire.certManager.issuerKind }}"
-              issuer_group = "{{ .Values.spire.certManager.issuerGroup }}"
-              namespace = "{{ .Values.spire.certManager.namespace }}"
-              kube_config_file = "{{ .Values.spire.certManager.kubeConfigFile }}"
-          }
+        plugin_data {
+          issuer_name = "{{ .Values.spire.certManager.issuerName }}"
+          issuer_kind =  "{{ .Values.spire.certManager.issuerKind }}"
+          issuer_group = "{{ .Values.spire.certManager.issuerGroup }}"
+          namespace = "{{ .Values.spire.certManager.namespace }}"
+          {{- if ne .Values.spire.certManager.kubeConfigFile "" }}
+          kube_config_file = "{{ .Values.spire.certManager.kubeConfigFile }}"
+          {{- end }}
+        }
       }
-      {{ end }}
+      {{- end }}
     }
 
     health_checks {
