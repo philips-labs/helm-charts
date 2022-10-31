@@ -160,4 +160,4 @@ spire:
     issuerKind: "Issuer"
     issuerGroup: "cert-manager.io"
     namespace: "sandbox"
-    kubeConfigFile: "/etc/kubernetes/kubeconfig"
+    kubeConfigFile: ""
