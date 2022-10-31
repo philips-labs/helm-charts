@@ -16,6 +16,10 @@ on:
       - '.github/*.sh'
       - '.github/kind-config.yaml'
 
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint-chart:
     runs-on: ubuntu-20.04
