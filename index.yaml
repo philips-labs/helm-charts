@@ -103,6 +103,38 @@ entries:
     version: 0.2.0
   spire:
   - apiVersion: v2
+    appVersion: 1.4.4
+    created: "2022-10-31T08:24:28.90803886Z"
+    description: 'A Helm chart for deploying spire-server and spire-agent.  > :warning:
+      Please note this chart requires Projected Service Account Tokens which has to
+      be enabled on your k8s api server.  > :warning: Minimum Spire version is `v1.0.2`.  To
+      enable Projected Service Account Tokens on Docker for Mac/Windows run the following
+      command to SSH into the Docker Desktop K8s VM.  ```bash docker run -it --privileged
+      --pid=host debian nsenter -t 1 -m -u -n -i sh ```  Then add the following to
+      `/etc/kubernetes/manifests/kube-apiserver.yaml`  ```yaml spec:   containers:     -
+      command:         - kube-apiserver         - --api-audiences=api,spire-server         -
+      --service-account-issuer=api,spire-agent         - --service-account-key-file=/run/config/pki/sa.pub         -
+      --service-account-signing-key-file=/run/config/pki/sa.key ``` '
+    digest: 59cb055603f0bb9e3d270040a118da6da6a95cf2787c99d5eb16d329b800802d
+    home: https://github.com/philips-labs/helm-charts/charts/spire
+    keywords:
+    - spiffe
+    - spire
+    - spire-server
+    - spire-agent
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: marco.franssen@philips.com
+      name: marcofranssen
+      url: https://marcofranssen.nl
+    name: spire
+    sources:
+    - https://github.com/philips-labs/helm-charts/charts/spire
+    type: application
+    urls:
+    - https://github.com/philips-labs/helm-charts/releases/download/spire-0.5.0/spire-0.5.0.tgz
+    version: 0.5.0
+  - apiVersion: v2
     appVersion: 1.0.2
     created: "2021-09-03T14:30:10.977596702Z"
     description: 'A Helm chart for deploying spire-server and spire-agent.  > :warning:
@@ -429,6 +461,30 @@ entries:
     version: 0.1.0
   spire-client-example:
   - apiVersion: v2
+    appVersion: 1.4.4
+    created: "2022-10-31T08:24:29.190732194Z"
+    deprecated: true
+    description: A Helm chart for deploying a spire workload as example.
+    digest: 7032f7b138d01f2e8d17330a9b5f0b05d4f0a2922737b02897ea05a5d1712e9d
+    home: https://github.com/philips-labs/helm-charts/charts/spire-client-example
+    keywords:
+    - spiffe
+    - spire
+    - client
+    - example
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: marco.franssen@philips.com
+      name: marcofranssen
+      url: https://marcofranssen.nl
+    name: spire-client-example
+    sources:
+    - https://github.com/philips-labs/helm-charts/charts/spire-client-example
+    type: application
+    urls:
+    - https://github.com/philips-labs/helm-charts/releases/download/spire-client-example-0.2.2/spire-client-example-0.2.2.tgz
+    version: 0.2.2
+  - apiVersion: v2
     appVersion: 0.12.2
     created: "2021-07-30T10:01:05.470268502Z"
     deprecated: true
@@ -544,4 +600,4 @@ entries:
     urls:
     - https://github.com/philips-labs/helm-charts/releases/download/spire-client-example-0.1.0/spire-client-example-0.1.0.tgz
     version: 0.1.0
-generated: "2021-09-03T14:30:10.977720108Z"
+generated: "2022-10-31T08:24:29.190845894Z"
