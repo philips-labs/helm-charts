@@ -34,6 +34,10 @@ spec:
           args: ["-t", "30", "{{ include "spire.fullname" . }}-server:8081"]
           resources:
             {{- toYaml .Values.waitForIt.resources | nindent 12 }}
+      {{- with .Values.agent.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}-agent
           image: "{{ .Values.agent.image.repository }}:{{ .Values.agent.image.tag | default .Chart.AppVersion }}"
