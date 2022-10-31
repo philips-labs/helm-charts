@@ -108,7 +108,7 @@ Kubernetes: `>=1.19.0-0`
 | spire.certManager.issuerName | string | `spire-ca` |  |
 | spire.certManager.issuerKind | string | `Issuer` |  |
 | spire.certManager.issuerGroup | string | `cert-manager.io` |  |
-| spire.certManager.kubeConfigFile | string | `/etc/kubernetes/kubeconfig` |  |
+| spire.certManager.kubeConfigFile | string | `""` |  |
 | spire.certManager.namespace | string | `sandbox` |  |
 | spire.clusterName | string | `"example-cluster"` |  |
 | spire.server.logLevel | string | `"INFO"` |  |
