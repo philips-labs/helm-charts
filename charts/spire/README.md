@@ -2,7 +2,7 @@
 
 <!-- This README.md is generated. -->
 
-![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.2](https://img.shields.io/badge/AppVersion-1.0.2-informational?style=flat-square)
+![Version: 0.5.1](https://img.shields.io/badge/Version-0.5.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.4.4](https://img.shields.io/badge/AppVersion-1.4.4-informational?style=flat-square)
 
 A Helm chart for deploying spire-server and spire-agent.
 
@@ -36,7 +36,7 @@ spec:
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| marcofranssen | marco.franssen@philips.com | https://marcofranssen.nl |
+| marcofranssen | <marco.franssen@philips.com> | <https://marcofranssen.nl> |
 
 ## Source Code
 
@@ -44,7 +44,7 @@ spec:
 
 ## Requirements
 
-Kubernetes: `>=1.19.0-0`
+Kubernetes: `>=1.21.0-0`
 
 ## Values
 
@@ -54,6 +54,7 @@ Kubernetes: `>=1.19.0-0`
 | agent.image.pullPolicy | string | `"IfNotPresent"` |  |
 | agent.image.repository | string | `"gcr.io/spiffe-io/spire-agent"` |  |
 | agent.image.tag | string | `""` |  |
+| agent.nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
 | agent.resources | object | `{}` |  |
 | agent.socketPath | string | `"/run/spire/agent-sockets/agent.sock"` |  |
 | autoscaling.enabled | bool | `false` |  |
@@ -63,7 +64,6 @@ Kubernetes: `>=1.19.0-0`
 | fullnameOverride | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
 | nameOverride | string | `""` |  |
-| nodeSelector | object | `{}` |  |
 | oidc.acme.cacheDir | string | `"/run/spire"` |  |
 | oidc.acme.directoryUrl | string | `"https://acme-v02.api.letsencrypt.org/directory"` |  |
 | oidc.acme.emailAddress | string | `"letsencrypt@example.org"` |  |
@@ -82,6 +82,7 @@ Kubernetes: `>=1.19.0-0`
 | oidc.insecureScheme.nginx.tag | string | `"alpine"` |  |
 | oidc.jwtIssuer | string | `"oidc-discovery.example.org"` |  |
 | oidc.logLevel | string | `"INFO"` |  |
+| oidc.nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
 | oidc.service.annotations | object | `{}` |  |
 | oidc.service.port | int | `80` |  |
 | oidc.service.type | string | `"NodePort"` |  |
@@ -97,6 +98,7 @@ Kubernetes: `>=1.19.0-0`
 | server.image.pullPolicy | string | `"IfNotPresent"` |  |
 | server.image.repository | string | `"gcr.io/spiffe-io/spire-server"` |  |
 | server.image.tag | string | `""` |  |
+| server.nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
 | server.service.annotations | object | `{}` |  |
 | server.service.port | int | `8081` |  |
 | server.service.type | string | `"ClusterIP"` |  |

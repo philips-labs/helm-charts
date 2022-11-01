@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.0.2
+        uses: actions/checkout@v3.1.0
         with:
           fetch-depth: 0
 
@@ -29,6 +29,6 @@ jobs:
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.4.0
+        uses: helm/chart-releaser-action@v1.4.1
         env:
           CR_TOKEN: '${{ secrets.GITHUB_TOKEN }}'

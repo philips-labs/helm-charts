@@ -22,6 +22,9 @@ server:
     # Overrides the image tag whose default is the chart appVersion.
     tag: ""
 
+  nodeSelector:
+    kubernetes.io/arch: amd64
+
   dataStorage:
     enabled: true
     size: 1Gi
@@ -47,6 +50,9 @@ oidc:
     repository: gcr.io/spiffe-io/oidc-discovery-provider
     pullPolicy: IfNotPresent
     tag: ""
+
+  nodeSelector:
+    kubernetes.io/arch: amd64
 
   logLevel: INFO
 
@@ -86,6 +92,9 @@ agent:
     tag: ""
   resources: {}
   socketPath: "/run/spire/agent-sockets/agent.sock"
+
+  nodeSelector:
+    kubernetes.io/arch: amd64
 
 imagePullSecrets: []
   # - name: my-docker-registry
@@ -136,8 +145,6 @@ autoscaling:
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
-
-nodeSelector: {}
 
 tolerations: []
 

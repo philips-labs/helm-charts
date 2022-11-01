@@ -27,8 +27,8 @@ description: |
           - --service-account-signing-key-file=/run/config/pki/sa.key
   ```
 type: application
-version: 0.4.0
-appVersion: "1.0.2"
+version: 0.5.1
+appVersion: "1.4.4"
 keywords: ["spiffe", "spire", "spire-server", "spire-agent"]
 home: https://github.com/philips-labs/helm-charts/charts/spire
 sources:
@@ -37,4 +37,4 @@ maintainers:
   - name: marcofranssen
     email: marco.franssen@philips.com
     url: https://marcofranssen.nl
-kubeVersion: ">=1.19.0-0"
+kubeVersion: ">=1.21.0-0"
