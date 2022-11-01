@@ -32,6 +32,18 @@ workloadRegistrar:
   service:
     annotations: {}
 
+spiffeCsiDriver:
+  image:
+    repository: ghcr.io/spiffe/spiffe-csi-driver
+    pullPolicy: IfNotPresent
+    tag: "nightly"
+
+nodeDriverRegistrar:
+  image:
+    repository: quay.io/k8scsi/csi-node-driver-registrar
+    pullPolicy: IfNotPresent
+    tag: "v2.0.1"
+
 server:
   replicaCount: 1
   image:
