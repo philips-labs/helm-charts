@@ -70,8 +70,8 @@ spec:
             {{- toYaml .Values.agent.resources | nindent 12 }}
         # This is the container which runs the SPIFFE CSI driver.
         - name: spiffe-csi-driver
-          image: "{{ .Values.spiffeCsiDriver.image.repository }}:{{ .Values.spiffeCsiDriver.image.tag }}"
-          imagePullPolicy: {{ .Values.spiffeCsiDriver.image.pullPolicy }}
+          image: {{ .Values.csiDriver.image.repository}}:{{ .Values.csiDriver.image.tag}}
+          imagePullPolicy: {{ .Values.csiDriver.image.pullPolicy}}
           args: [
             "-workload-api-socket-dir", "/spire-agent-socket",
             "-csi-socket-path", "/spiffe-csi/csi.sock",
@@ -105,7 +105,7 @@ spec:
         # of all the little details required to register a CSI driver with
         # the kubelet.
         - name: node-driver-registrar
-          image: "{{ .Values.nodeDriverRegistrar.image.repository }}:{{ .Values.nodeDriverRegistrar.image.tag }}"
+          image: {{ .Values.nodeDriverRegistrar.image.repository }}:{{ .Values.nodeDriverRegistrar.image.tag }}
           imagePullPolicy: {{ .Values.nodeDriverRegistrar.image.pullPolicy }}
           args: [
             "-csi-address", "/spiffe-csi/csi.sock",

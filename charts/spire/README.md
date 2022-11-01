@@ -2,7 +2,7 @@
 
 <!-- This README.md is generated. -->
 
-![Version: 0.5.2](https://img.shields.io/badge/Version-0.5.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.4.4](https://img.shields.io/badge/AppVersion-1.4.4-informational?style=flat-square)
+![Version: 0.5.3](https://img.shields.io/badge/Version-0.5.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.4.4](https://img.shields.io/badge/AppVersion-1.4.4-informational?style=flat-square)
 
 A Helm chart for deploying spire-server and spire-agent.
 
@@ -67,10 +67,10 @@ Kubernetes: `>=1.21.0-0`
 | fullnameOverride | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
 | nameOverride | string | `""` |  |
-| nodeDriverRegistrar.image.pullPolicy | string `"IfNotPresent"` |
-| nodeDriverRegistrar.image.repository | string `"quay.io/k8scsi/csi-node-driver-registrar"` |
-| nodeDriverRegistrar.image.tag | string `"v2.0.1"` |
-| nodeDriverRegistrar.resources | object | `{}` |
+| nodeDriverRegistrar.image.pullPolicy | string | `"IfNotPresent"` |  |
+| nodeDriverRegistrar.image.repository | string | `"quay.io/k8scsi/csi-node-driver-registrar"` |  |
+| nodeDriverRegistrar.image.tag | string | `"v2.0.1"` |  |
+| nodeDriverRegistrar.resources | object | `{}` |  |
 | oidc.acme.cacheDir | string | `"/run/spire"` |  |
 | oidc.acme.directoryUrl | string | `"https://acme-v02.api.letsencrypt.org/directory"` |  |
 | oidc.acme.emailAddress | string | `"letsencrypt@example.org"` |  |
