@@ -8,7 +8,7 @@ Ensure you have clear and concise commits, written in the present tense. See [Ku
 
 ```diff
 + git commit -m "Bump spire appVersion 1.4.4"
-- git commit -m "Bumped rekor chart to version 1.4.4"
+- git commit -m "Bumped spire appVersion 1.4.4"
 ```
 
 ## PRs
@@ -31,3 +31,11 @@ Any changes to Chart.yaml or values.yaml require an update of the README.md. Thi
 ```shell
 helm-docs -g charts/«chart-name» -t .github/README.md.tmpl
 ```
+
+Or use the little convenience script.
+
+```shell
+.github/helm-docs.sh
+```
+
+[helm-docs]: https://github.com/norwoodj/helm-docs "Generate documentation for your Helm chart."
