@@ -64,9 +64,10 @@ Kubernetes: `>=1.21.0-0`
 | fullnameOverride | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
 | nameOverride | string | `""` |  |
-| nodeDriverRegistrar.image.pullPolicy | string `"IfNotPresent"`
-| nodeDriverRegistrar.image.repository | string `"quay.io/k8scsi/csi-node-driver-registrar"`
-| nodeDriverRegistrar.image.tag | string `"v2.0.1"`
+| nodeDriverRegistrar.image.pullPolicy | string `"IfNotPresent"` |
+| nodeDriverRegistrar.image.repository | string `"quay.io/k8scsi/csi-node-driver-registrar"` |
+| nodeDriverRegistrar.image.tag | string `"v2.0.1"` |
+| nodeDriverRegistrar.resources | object | `{}` |
 | oidc.acme.cacheDir | string | `"/run/spire"` |  |
 | oidc.acme.directoryUrl | string | `"https://acme-v02.api.letsencrypt.org/directory"` |  |
 | oidc.acme.emailAddress | string | `"letsencrypt@example.org"` |  |
@@ -108,9 +109,10 @@ Kubernetes: `>=1.21.0-0`
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
-| spiffeCsiDriver.image.pullPolicy | string `"IfNotPresent"`
-| spiffeCsiDriver.image.repository | string `"ghcr.io/spiffe/spiffe-csi-driver"`
-| spiffeCsiDriver.image.tag | string `"nightly"`
+| spiffeCsiDriver.image.pullPolicy | string `"IfNotPresent"` |
+| spiffeCsiDriver.image.repository | string `"ghcr.io/spiffe/spiffe-csi-driver"` |
+| spiffeCsiDriver.image.tag | string `"nightly"` |
+| spiffeCsiDriver.resources | object | `{}` |
 | spire.agent.logLevel | string | `"INFO"` |  |
 | spire.certManager.enabled | bool | `false` |  |
 | spire.certManager.issuerName | string | `spire-ca` |  |

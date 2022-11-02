@@ -97,6 +97,8 @@ spec:
               name: mountpoint-dir
           securityContext:
             privileged: true
+          resources:
+            {{- toYaml .Values.spiffeCsiDriver.resources | nindent 12 }}
         # This container runs the CSI Node Driver Registrar which takes care
         # of all the little details required to register a CSI driver with
         # the kubelet.
@@ -115,6 +117,8 @@ spec:
             # directory
             - name: kubelet-plugin-registration-dir
               mountPath: /registration
+          resources:
+            {{- toYaml .Values.nodeDriverRegistrar.resources | nindent 12 }}
       volumes:
         - name: spire-config
           configMap:

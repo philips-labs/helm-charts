@@ -20,12 +20,14 @@ spiffeCsiDriver:
     repository: ghcr.io/spiffe/spiffe-csi-driver
     pullPolicy: IfNotPresent
     tag: "nightly"
+  resources: {}
 
 nodeDriverRegistrar:
   image:
     repository: quay.io/k8scsi/csi-node-driver-registrar
     pullPolicy: IfNotPresent
     tag: "v2.0.1"
+  resources: {}
 
 server:
   image:
