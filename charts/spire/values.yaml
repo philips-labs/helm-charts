@@ -265,6 +265,11 @@ oidc:
     # runAsNonRoot: true
     # runAsUser: 1000
 
+  tolerations: []
+
+  affinity: {}
+  podAnnotations: {}
+
   insecureScheme:
     enabled: false
 
