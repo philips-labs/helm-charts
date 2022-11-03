@@ -72,6 +72,17 @@ waitForIt:
     tag: "latest"
   resources: {}
 
+  podSecurityContext: {}
+    # fsGroup: 2000
+
+  securityContext: {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+
 csiDriver:
   image:
     registry: ghcr.io
@@ -151,6 +162,17 @@ oidc:
     - spire-oidc.spire.svc.cluster.local
     - oidc-discovery.example.org
 
+  podSecurityContext: {}
+    # fsGroup: 2000
+
+  securityContext: {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+
   insecureScheme:
     enabled: false
 
@@ -209,16 +231,6 @@ serviceAccount:
 
 podAnnotations: {}
 
-podSecurityContext: {}
-  # fsGroup: 2000
-
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
 
 autoscaling:
   enabled: false
