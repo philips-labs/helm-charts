@@ -9,6 +9,13 @@ waitForIt:
     version: ""
   resources: {}
 
+waitForIt:
+  image:
+    registry: gcr.io
+    repository: spiffe-io/wait-for-it
+    pullPolicy: IfNotPresent
+    version: ""
+
 workloadRegistrar:
   image:
     registry: gcr.io
@@ -31,13 +38,6 @@ workloadRegistrar:
 
   service:
     annotations: {}
-
-spiffeCsiDriver:
-  image:
-    repository: ghcr.io/spiffe/spiffe-csi-driver
-    pullPolicy: IfNotPresent
-    tag: "nightly"
-  resources: {}
 
 server:
   replicaCount: 1
@@ -189,23 +189,6 @@ nodeDriverRegistrar:
     repository: k8scsi/csi-node-driver-registrar
     pullPolicy: IfNotPresent
     version: v2.0.1
-  resources: {}
-    # We usually recommend not to specify default resources and to leave this as a conscious
-    # choice for the user. This also increases chances charts run on environments with little
-    # resources, such as Minikube. If you do want to specify resources, uncomment the following
-    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-    # requests:
-    #   cpu: 50m
-    #   memory: 32Mi
-    # limits:
-    #   cpu: 100m
-    #   memory: 64Mi
-
-nodeDriverRegistrar:
-  image:
-    repository: quay.io/k8scsi/csi-node-driver-registrar
-    pullPolicy: IfNotPresent
-    tag: v2.0.1
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
