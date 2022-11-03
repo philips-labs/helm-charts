@@ -275,8 +275,8 @@ oidc:
 
     nginx:
       image:
-        registry: docker.io
-        repository: nginx
+        registry: cgr.dev
+        repository: chainguard/nginx
         pullPolicy: IfNotPresent
         version: 1.23.2-alpine
         # chainguard image does not support the templates feature
