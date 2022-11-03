@@ -103,6 +103,39 @@ entries:
     version: 0.2.0
   spire:
   - apiVersion: v2
+    appVersion: 1.5.0
+    created: "2022-11-03T15:42:08.030990458Z"
+    description: 'A Helm chart for deploying spire-server and spire-agent.  > :warning:
+      Please note this chart requires Projected Service Account Tokens which has to
+      be enabled on your k8s api server.  > :warning: Minimum Spire version is `v1.0.2`.  To
+      enable Projected Service Account Tokens on Docker for Mac/Windows run the following
+      command to SSH into the Docker Desktop K8s VM.  ```bash docker run -it --privileged
+      --pid=host debian nsenter -t 1 -m -u -n -i sh ```  Then add the following to
+      `/etc/kubernetes/manifests/kube-apiserver.yaml`  ```yaml spec:   containers:     -
+      command:         - kube-apiserver         - --api-audiences=api,spire-server         -
+      --service-account-issuer=api,spire-agent         - --service-account-key-file=/run/config/pki/sa.pub         -
+      --service-account-signing-key-file=/run/config/pki/sa.key ``` '
+    digest: 2ca2ca9ad136f2bea4d5f91b08f87eaea11b3fe595e62daaf380ae1e8881d4fe
+    home: https://github.com/philips-labs/helm-charts/charts/spire
+    keywords:
+    - spiffe
+    - spire
+    - spire-server
+    - spire-agent
+    - oidc
+    kubeVersion: '>=1.21.0-0'
+    maintainers:
+    - email: marco.franssen@philips.com
+      name: marcofranssen
+      url: https://marcofranssen.nl
+    name: spire
+    sources:
+    - https://github.com/philips-labs/helm-charts/charts/spire
+    type: application
+    urls:
+    - https://github.com/philips-labs/helm-charts/releases/download/spire-0.5.5/spire-0.5.5.tgz
+    version: 0.5.5
+  - apiVersion: v2
     appVersion: 1.4.4
     created: "2022-11-03T12:29:55.784948813Z"
     description: 'A Helm chart for deploying spire-server and spire-agent.  > :warning:
@@ -728,4 +761,4 @@ entries:
     urls:
     - https://github.com/philips-labs/helm-charts/releases/download/spire-client-example-0.1.0/spire-client-example-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-03T12:29:55.785065914Z"
+generated: "2022-11-03T15:42:08.031096059Z"
