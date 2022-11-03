@@ -42,8 +42,6 @@ workloadRegistrar:
 server:
   replicaCount: 1
   image:
-    # registry: gcr.io
-    # repository: spiffe-io/spire-server
     registry: ghcr.io
     repository: spiffe/spire-server
     pullPolicy: IfNotPresent
@@ -206,8 +204,6 @@ oidc:
   replicaCount: 1
 
   image:
-    # registry: gcr.io
-    # repository: spiffe-io/oidc-discovery-provider
     registry: ghcr.io
     repository: spiffe/spire-oidc-provider
     pullPolicy: IfNotPresent
