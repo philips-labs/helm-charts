@@ -158,6 +158,17 @@ agent:
     logLevel: info
     socketPath: /run/spire/agent-sockets/spire-agent.sock
 
+  podSecurityContext: {}
+    # fsGroup: 2000
+
+  securityContext: {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+
 csiDriver:
   image:
     registry: ghcr.io
@@ -242,6 +253,17 @@ oidc:
 
   affinity: {}
   podAnnotations: {}
+
+  podSecurityContext: {}
+    # fsGroup: 2000
+
+  securityContext: {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
 
   insecureScheme:
     enabled: false
