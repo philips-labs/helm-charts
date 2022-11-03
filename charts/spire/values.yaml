@@ -9,13 +9,6 @@ waitForIt:
     version: ""
   resources: {}
 
-waitForIt:
-  image:
-    registry: gcr.io
-    repository: spiffe-io/wait-for-it
-    pullPolicy: IfNotPresent
-    version: ""
-
 workloadRegistrar:
   image:
     registry: gcr.io
