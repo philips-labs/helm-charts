@@ -169,6 +169,43 @@ agent:
     # runAsNonRoot: true
     # runAsUser: 1000
 
+  config:
+    logLevel: info
+    jwtIssuer: oidc-discovery.example.org
+
+    ca_subject:
+      country: NL
+      organization: Example
+      common_name: example.org
+
+agent:
+  image:
+    # registry: gcr.io
+    # repository: spiffe-io/spire-agent
+    registry: ghcr.io
+    repository: spiffe/spire-agent
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    version: ""
+
+  nodeSelector:
+    kubernetes.io/arch: amd64
+
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # requests:
+    #   cpu: 50m
+    #   memory: 64Mi
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  config:
+    logLevel: info
+
 csiDriver:
   image:
     registry: ghcr.io
@@ -237,22 +274,6 @@ oidc:
     port: 80
     annotations: {}
       # external-dns.alpha.kubernetes.io/hostname: oidc-discovery.example.org
-
-  podSecurityContext: {}
-    # fsGroup: 2000
-
-  securityContext: {}
-    # capabilities:
-    #   drop:
-    #   - ALL
-    # readOnlyRootFilesystem: true
-    # runAsNonRoot: true
-    # runAsUser: 1000
-
-  tolerations: []
-
-  affinity: {}
-  podAnnotations: {}
 
   podSecurityContext: {}
     # fsGroup: 2000
