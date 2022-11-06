@@ -119,19 +119,9 @@ Kubernetes: `>=1.21.0-0`
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
-| spiffeCsiDriver.image.pullPolicy | string `"IfNotPresent"` |
-| spiffeCsiDriver.image.repository | string `"ghcr.io/spiffe/spiffe-csi-driver"` |
-| spiffeCsiDriver.image.tag | string `"nightly"` |
-| spiffeCsiDriver.resources | object | `{}` |
-| spire.agent.logLevel | string | `"INFO"` |  |
-| spire.certManager.enabled | bool | `false` |  |
-| spire.certManager.issuerName | string | `spire-ca` |  |
-| spire.certManager.issuerKind | string | `Issuer` |  |
-| spire.certManager.issuerGroup | string | `cert-manager.io` |  |
-| spire.certManager.kubeConfigFile | string | `""` |  |
-| spire.certManager.namespace | string | `sandbox` |  |
+| spire.agent.logLevel | string | `"info"` |  |
 | spire.clusterName | string | `"example-cluster"` |  |
-| spire.server.logLevel | string | `"INFO"` |  |
+| spire.server.logLevel | string | `"info"` |  |
 | spire.trustDomain | string | `"example.org"` |  |
 | tolerations | list | `[]` |  |
 | topologySpreadConstraints | list | `[]` |  |
