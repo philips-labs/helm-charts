@@ -2,7 +2,7 @@
 
 <!-- This README.md is generated. -->
 
-![Version: 0.5.5](https://img.shields.io/badge/Version-0.5.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.0](https://img.shields.io/badge/AppVersion-1.5.0-informational?style=flat-square)
+![Version: 0.5.6](https://img.shields.io/badge/Version-0.5.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.0](https://img.shields.io/badge/AppVersion-1.5.0-informational?style=flat-square)
 
 A Helm chart for deploying spire-server and spire-agent.
 
@@ -118,9 +118,9 @@ Kubernetes: `>=1.21.0-0`
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
-| spire.agent.logLevel | string | `"INFO"` |  |
+| spire.agent.logLevel | string | `"info"` |  |
 | spire.clusterName | string | `"example-cluster"` |  |
-| spire.server.logLevel | string | `"INFO"` |  |
+| spire.server.logLevel | string | `"info"` |  |
 | spire.trustDomain | string | `"example.org"` |  |
 | tolerations | list | `[]` |  |
 | waitForIt.image.pullPolicy | string | `"IfNotPresent"` |  |
