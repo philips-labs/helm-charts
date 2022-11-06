@@ -1,8 +1,5 @@
-# Default values for spire.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-replicaCount: 1
+nameOverride: ""
+fullnameOverride: ""
 
 waitForIt:
   image:
@@ -32,6 +29,7 @@ workloadRegistrar:
     #   memory: 64Mi
 
 server:
+  replicaCount: 1
   image:
     # registry: gcr.io
     # repository: spiffe-io/spire-server
@@ -65,6 +63,54 @@ server:
   service:
     type: ClusterIP
     port: 8081
+
+  podSecurityContext: {}
+    # fsGroup: 2000
+
+  securityContext: {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+
+  config:
+    logLevel: info
+    jwtIssuer: oidc-discovery.example.org
+
+    ca_subject:
+      country: NL
+      organization: Example
+      common_name: example.org
+
+agent:
+  image:
+    # registry: gcr.io
+    # repository: spiffe-io/spire-agent
+    registry: ghcr.io
+    repository: spiffe/spire-agent
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    version: ""
+
+  nodeSelector:
+    kubernetes.io/arch: amd64
+
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # requests:
+    #   cpu: 50m
+    #   memory: 64Mi
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  config:
+    logLevel: info
 
 csiDriver:
   image:
@@ -104,6 +150,7 @@ nodeDriverRegistrar:
 
 oidc:
   enabled: false
+  replicaCount: 1
 
   image:
     # registry: gcr.io
@@ -128,71 +175,55 @@ oidc:
     #   cpu: 100m
     #   memory: 64Mi
 
-  logLevel: INFO
-
   service:
     type: NodePort
     port: 80
     annotations: {}
       # external-dns.alpha.kubernetes.io/hostname: oidc-discovery.example.org
 
-  jwtIssuer: oidc-discovery.example.org
+  podSecurityContext: {}
+    # fsGroup: 2000
 
-  domains:
-    - localhost
-    - spire-oidc.spire
-    - spire-oidc.spire.svc.cluster.local
-    - oidc-discovery.example.org
+  securityContext: {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+
+  tolerations: []
+
+  affinity: {}
+  podAnnotations: {}
 
   insecureScheme:
     enabled: false
 
     nginx:
       image:
-        registry: docker.io
-        repository: nginx
+        registry: cgr.dev
+        repository: chainguard/nginx
         pullPolicy: IfNotPresent
-        version: alpine
+        version: 1.23
 
-  acme:
-    tosAccepted: false
-    cacheDir: /run/spire
-    directoryUrl: https://acme-v02.api.letsencrypt.org/directory
-    emailAddress: letsencrypt@example.org
+  config:
+    logLevel: info
+    domains:
+      - localhost
+      - oidc-discovery.example.org
 
-agent:
-  image:
-    # registry: gcr.io
-    # repository: spiffe-io/spire-agent
-    registry: ghcr.io
-    repository: spiffe/spire-agent
-    pullPolicy: IfNotPresent
-    # Overrides the image tag whose default is the chart appVersion.
-    version: ""
-
-  nodeSelector:
-    kubernetes.io/arch: amd64
-
-  resources: {}
-    # We usually recommend not to specify default resources and to leave this as a conscious
-    # choice for the user. This also increases chances charts run on environments with little
-    # resources, such as Minikube. If you do want to specify resources, uncomment the following
-    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-    # requests:
-    #   cpu: 50m
-    #   memory: 64Mi
-    # limits:
-    #   cpu: 100m
-    #   memory: 128Mi
+    acme:
+      tosAccepted: false
+      cacheDir: /run/spire
+      directoryUrl: https://acme-v02.api.letsencrypt.org/directory
+      emailAddress: letsencrypt@example.org
 
 imagePullSecrets: []
   # - name: my-docker-registry
   #   username: my-docker-user
   #   password: my-docker-password
   #   registryURL: my-private.docker-registry.com
-
-nameOverride: ""
-fullnameOverride: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -203,36 +234,8 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
-podAnnotations: {}
-
-podSecurityContext: {}
-  # fsGroup: 2000
-
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
-
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
-
-tolerations: []
-
-affinity: {}
-
 # spireSettings
 
 spire:
   clusterName: "example-cluster"
   trustDomain: "example.org"
-  agent:
-    logLevel: info
-  server:
-    logLevel: info

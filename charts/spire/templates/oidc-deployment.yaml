@@ -7,15 +7,13 @@ metadata:
   labels:
     {{- include "spire.oidc.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
-  {{- end }}
+  replicas: {{ .Values.oidc.replicaCount }}
   selector:
     matchLabels:
       {{- include "spire.oidc.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
+      {{- with .Values.oidc.podAnnotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -30,7 +28,7 @@ spec:
       {{- end }}
       serviceAccountName: {{ include "spire.serviceAccountName" . }}-agent
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- toYaml .Values.oidc.podSecurityContext | nindent 8 }}
       containers:
         - name: spire-oidc
           securityContext:
@@ -102,15 +100,15 @@ spec:
         - name: spire-oidc-config
           configMap:
             name: {{ include "spire.fullname" . }}-oidc-discovery-provider
-      {{- with .Values.nodeSelector }}
+      {{- with .Values.oidc.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.affinity }}
+      {{- with .Values.oidc.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.tolerations }}
+      {{- with .Values.oidc.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}

@@ -6,21 +6,25 @@ metadata:
   namespace: {{ .Release.Namespace }}
 data:
   oidc-discovery-provider.conf: |
-    log_level = "{{ .Values.oidc.logLevel }}"
-    {{ if gt (len .Values.oidc.domains) 0 }}
-    domains = ["{{- join "\", \"" .Values.oidc.domains }}"]
-    {{ else }}
-    domains = []
-    {{ end }}
+    log_level = "{{ .Values.oidc.config.logLevel }}"
+
+    domains = [
+      "spire-oidc.{{ .Release.Namespace }}",
+      "spire-oidc.{{ .Release.Namespace }}.svc.cluster.local",
+    {{- if gt (len .Values.oidc.config.domains) 0 }}
+      "{{- join "\",\n      \"" .Values.oidc.config.domains }}"
+    {{- end }}
+    ]
+
     {{- if .Values.oidc.insecureScheme.enabled }}
     allow_insecure_scheme = {{ .Values.oidc.insecureScheme.enabled }}
     listen_socket_path = "/run/spire/oidc-sockets/oidc-server.sock"
     {{- else }}
     acme {
-      directory_url = "{{ .Values.oidc.acme.directoryUrl }}"
-      cache_dir = "{{ .Values.oidc.acme.cacheDir }}"
-      tos_accepted = {{ .Values.oidc.acme.tosAccepted }}
-      email = "{{ .Values.oidc.acme.emailAddress }}"
+      directory_url = "{{ .Values.oidc.config.acme.directoryUrl }}"
+      cache_dir = "{{ .Values.oidc.config.acme.cacheDir }}"
+      tos_accepted = {{ .Values.oidc.config.acme.tosAccepted }}
+      email = "{{ .Values.oidc.config.acme.emailAddress }}"
     }
     {{- end }}
 
