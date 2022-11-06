@@ -237,13 +237,6 @@ spire:
   clusterName: "example-cluster"
   trustDomain: "example.org"
   agent:
-    logLevel: INFO
+    logLevel: info
   server:
-    logLevel: INFO
-  certManager:
-    enabled: false
-    issuerName: "spire-ca"
-    issuerKind: "Issuer"
-    issuerGroup: "cert-manager.io"
-    namespace: "sandbox"
-    kubeConfigFile: ""
+    logLevel: info
