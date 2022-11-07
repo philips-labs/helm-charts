@@ -1,43 +1,61 @@
-# Default values for spire.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+nameOverride: ""
+fullnameOverride: ""
 
-replicaCount: 1
+waitForIt:
+  image:
+    registry: gcr.io
+    repository: spiffe-io/wait-for-it
+    pullPolicy: IfNotPresent
+    version: ""
 
 workloadRegistrar:
   image:
-    repository: gcr.io/spiffe-io/k8s-workload-registrar
+    registry: gcr.io
+    repository: spiffe-io/k8s-workload-registrar
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: ""
+    version: ""
+
   resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # requests:
+    #   cpu: 50m
+    #   memory: 32Mi
+    # limits:
+    #   cpu: 100m
+    #   memory: 64Mi
 
   service:
     annotations: {}
 
-spiffeCsiDriver:
-  image:
-    repository: ghcr.io/spiffe/spiffe-csi-driver
-    pullPolicy: IfNotPresent
-    tag: "nightly"
-  resources: {}
-
-nodeDriverRegistrar:
-  image:
-    repository: quay.io/k8scsi/csi-node-driver-registrar
-    pullPolicy: IfNotPresent
-    tag: "v2.0.1"
-  resources: {}
-
 server:
+  replicaCount: 1
   image:
-    repository: gcr.io/spiffe-io/spire-server
+    # registry: gcr.io
+    # repository: spiffe-io/spire-server
+    registry: ghcr.io
+    repository: spiffe/spire-server
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: ""
+    version: ""
 
   nodeSelector:
     kubernetes.io/arch: amd64
+
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # requests:
+    #   cpu: 200m
+    #   memory: 256Mi
+    # limits:
+    #   cpu: 200m
+    #   memory: 256Mi
 
   dataStorage:
     enabled: true
@@ -50,25 +68,119 @@ server:
     port: 8081
     annotations: {}
 
-waitForIt:
-  image:
-    repository: gcr.io/spiffe-io/wait-for-it
-    pullPolicy: IfNotPresent
-    tag: "latest"
-  resources: {}
+  podSecurityContext: {}
+    # fsGroup: 2000
 
-oidc:
-  enabled: false
+  securityContext: {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
 
+  topologySpreadConstraints: []
+
+  config:
+    logLevel: info
+    jwtIssuer: oidc-discovery.example.org
+
+    ca_subject:
+      country: NL
+      organization: Example
+      common_name: example.org
+
+agent:
   image:
-    repository: gcr.io/spiffe-io/oidc-discovery-provider
+    # registry: gcr.io
+    # repository: spiffe-io/spire-agent
+    registry: ghcr.io
+    repository: spiffe/spire-agent
     pullPolicy: IfNotPresent
-    tag: ""
+    # Overrides the image tag whose default is the chart appVersion.
+    version: ""
 
   nodeSelector:
     kubernetes.io/arch: amd64
 
-  logLevel: INFO
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # requests:
+    #   cpu: 50m
+    #   memory: 64Mi
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  socketPath: "/run/spire/agent-sockets/agent.sock"
+  config:
+    logLevel: info
+
+csiDriver:
+  image:
+    registry: ghcr.io
+    repository: spiffe/spiffe-csi-driver
+    pullPolicy: IfNotPresent
+    tag: 0.2.0
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # requests:
+    #   cpu: 50m
+    #   memory: 32Mi
+    # limits:
+    #   cpu: 100m
+    #   memory: 64Mi
+
+nodeDriverRegistrar:
+  image:
+    registry: quay.io
+    repository: k8scsi/csi-node-driver-registrar
+    pullPolicy: IfNotPresent
+    version: v2.0.1
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # requests:
+    #   cpu: 50m
+    #   memory: 32Mi
+    # limits:
+    #   cpu: 100m
+    #   memory: 64Mi
+
+oidc:
+  enabled: false
+  replicaCount: 1
+
+  image:
+    # registry: gcr.io
+    # repository: spiffe-io/oidc-discovery-provider
+    registry: ghcr.io
+    repository: spiffe/spire-oidc-provider
+    pullPolicy: IfNotPresent
+    version: ""
+
+  nodeSelector:
+    kubernetes.io/arch: amd64
+
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # requests:
+    #   cpu: 50m
+    #   memory: 32Mi
+    # limits:
+    #   cpu: 100m
+    #   memory: 64Mi
 
   service:
     type: NodePort
@@ -76,48 +188,48 @@ oidc:
     annotations: {}
       # external-dns.alpha.kubernetes.io/hostname: oidc-discovery.example.org
 
-  jwtIssuer: oidc-discovery.example.org
+  podSecurityContext: {}
+    # fsGroup: 2000
 
-  domains:
-    - localhost
-    - spire-oidc.spire
-    - spire-oidc.spire.svc.cluster.local
-    - oidc-discovery.example.org
+  securityContext: {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+
+  tolerations: []
+
+  affinity: {}
+  podAnnotations: {}
 
   insecureScheme:
     enabled: false
 
     nginx:
-      repository: nginx
-      pullPolicy: IfNotPresent
-      tag: "alpine"
+      image:
+        registry: cgr.dev
+        repository: chainguard/nginx
+        pullPolicy: IfNotPresent
+        version: 1.23
 
-  acme:
-    tosAccepted: false
-    cacheDir: /run/spire
-    directoryUrl: https://acme-v02.api.letsencrypt.org/directory
-    emailAddress: letsencrypt@example.org
-
-agent:
-  image:
-    repository: gcr.io/spiffe-io/spire-agent
-    pullPolicy: IfNotPresent
-    # Overrides the image tag whose default is the chart appVersion.
-    tag: ""
-  resources: {}
-  socketPath: "/run/spire/agent-sockets/agent.sock"
-
-  nodeSelector:
-    kubernetes.io/arch: amd64
+  config:
+    logLevel: info
+    domains:
+      - localhost
+      - oidc-discovery.example.org
+    acme:
+      tosAccepted: false
+      cacheDir: /run/spire
+      directoryUrl: https://acme-v02.api.letsencrypt.org/directory
+      emailAddress: letsencrypt@example.org
 
 imagePullSecrets: []
   # - name: my-docker-registry
   #   username: my-docker-user
   #   password: my-docker-password
   #   registryURL: my-private.docker-registry.com
-
-nameOverride: ""
-fullnameOverride: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -127,44 +239,6 @@ serviceAccount:
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: ""
-
-podAnnotations: {}
-
-podSecurityContext: {}
-  # fsGroup: 2000
-
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
-
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
-
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
-
-tolerations: []
-
-topologySpreadConstraints: []
-
-affinity: {}
 
 # spireSettings
 

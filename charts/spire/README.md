@@ -2,7 +2,7 @@
 
 <!-- This README.md is generated. -->
 
-![Version: 0.5.1](https://img.shields.io/badge/Version-0.5.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.4.4](https://img.shields.io/badge/AppVersion-1.4.4-informational?style=flat-square)
+![Version: 0.6.0](https://img.shields.io/badge/Version-0.6.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.0](https://img.shields.io/badge/AppVersion-1.5.0-informational?style=flat-square)
 
 A Helm chart for deploying spire-server and spire-agent.
 
@@ -50,10 +50,11 @@ Kubernetes: `>=1.21.0-0`
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| affinity | object | `{}` |  |
+| agent.config.logLevel | string | `"info"` |  |
 | agent.image.pullPolicy | string | `"IfNotPresent"` |  |
-| agent.image.repository | string | `"gcr.io/spiffe-io/spire-agent"` |  |
-| agent.image.tag | string | `""` |  |
+| agent.image.registry | string | `"ghcr.io"` |  |
+| agent.image.repository | string | `"spiffe/spire-agent"` |  |
+| agent.image.version | string | `""` |  |
 | agent.nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
 | agent.resources | object | `{}` |  |
 | agent.socketPath | string | `"/run/spire/agent-sockets/agent.sock"` |  |
@@ -61,51 +62,69 @@ Kubernetes: `>=1.21.0-0`
 | autoscaling.maxReplicas | int | `100` |  |
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
+| csiDriver.image.pullPolicy | string | `"IfNotPresent"` |  |
+| csiDriver.image.registry | string | `"ghcr.io"` |  |
+| csiDriver.image.repository | string | `"spiffe/spiffe-csi-driver"` |  |
+| csiDriver.image.version | string | `"0.2.0"` |  |
+| csiDriver.resources | object | `{}` |  |
 | fullnameOverride | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
 | nameOverride | string | `""` |  |
-| nodeDriverRegistrar.image.pullPolicy | string `"IfNotPresent"` |
-| nodeDriverRegistrar.image.repository | string `"quay.io/k8scsi/csi-node-driver-registrar"` |
-| nodeDriverRegistrar.image.tag | string `"v2.0.1"` |
-| nodeDriverRegistrar.resources | object | `{}` |
-| oidc.acme.cacheDir | string | `"/run/spire"` |  |
-| oidc.acme.directoryUrl | string | `"https://acme-v02.api.letsencrypt.org/directory"` |  |
-| oidc.acme.emailAddress | string | `"letsencrypt@example.org"` |  |
-| oidc.acme.tosAccepted | bool | `false` |  |
-| oidc.domains[0] | string | `"localhost"` |  |
-| oidc.domains[1] | string | `"spire-oidc.spire"` |  |
-| oidc.domains[2] | string | `"spire-oidc.spire.svc.cluster.local"` |  |
-| oidc.domains[3] | string | `"oidc-discovery.example.org"` |  |
+| nodeDriverRegistrar.image.pullPolicy | string | `"IfNotPresent"` |  |
+| nodeDriverRegistrar.image.registry | string | `"quay.io"` |  |
+| nodeDriverRegistrar.image.repository | string | `"k8scsi/csi-node-driver-registrar"` |  |
+| nodeDriverRegistrar.image.version | string | `"v2.0.1"` |  |
+| nodeDriverRegistrar.resources | object | `{}` |  |
+| oidc.affinity | object | `{}` |  |
+| oidc.config.acme.cacheDir | string | `"/run/spire"` |  |
+| oidc.config.acme.directoryUrl | string | `"https://acme-v02.api.letsencrypt.org/directory"` |  |
+| oidc.config.acme.emailAddress | string | `"letsencrypt@example.org"` |  |
+| oidc.config.acme.tosAccepted | bool | `false` |  |
+| oidc.config.domains[0] | string | `"localhost"` |  |
+| oidc.config.domains[1] | string | `"oidc-discovery.example.org"` |  |
+| oidc.config.logLevel | string | `"info"` |  |
 | oidc.enabled | bool | `false` |  |
 | oidc.image.pullPolicy | string | `"IfNotPresent"` |  |
-| oidc.image.repository | string | `"gcr.io/spiffe-io/oidc-discovery-provider"` |  |
-| oidc.image.tag | string | `""` |  |
+| oidc.image.registry | string | `"ghcr.io"` |  |
+| oidc.image.repository | string | `"spiffe/spire-oidc-provider"` |  |
+| oidc.image.version | string | `""` |  |
 | oidc.insecureScheme.enabled | bool | `false` |  |
-| oidc.insecureScheme.nginx.pullPolicy | string | `"IfNotPresent"` |  |
-| oidc.insecureScheme.nginx.repository | string | `"nginx"` |  |
-| oidc.insecureScheme.nginx.tag | string | `"alpine"` |  |
-| oidc.jwtIssuer | string | `"oidc-discovery.example.org"` |  |
-| oidc.logLevel | string | `"INFO"` |  |
+| oidc.insecureScheme.nginx.image.pullPolicy | string | `"IfNotPresent"` |  |
+| oidc.insecureScheme.nginx.image.registry | string | `"cgr.dev"` |  |
+| oidc.insecureScheme.nginx.image.repository | string | `"chainguard/nginx"` |  |
+| oidc.insecureScheme.nginx.image.version | float | `1.23` |  |
 | oidc.nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
+| oidc.podAnnotations | object | `{}` |  |
+| oidc.podSecurityContext | object | `{}` |  |
+| oidc.replicaCount | int | `1` |  |
+| oidc.resources | object | `{}` |  |
+| oidc.securityContext | object | `{}` |  |
 | oidc.service.annotations | object | `{}` |  |
 | oidc.service.port | int | `80` |  |
 | oidc.service.type | string | `"NodePort"` |  |
-| podAnnotations | object | `{}` |  |
-| podSecurityContext | object | `{}` |  |
-| replicaCount | int | `1` |  |
-| resources | object | `{}` |  |
-| securityContext | object | `{}` |  |
+| oidc.tolerations | list | `[]` |  |
+| server.config.ca_subject.common_name | string | `"example.org"` |  |
+| server.config.ca_subject.country | string | `"NL"` |  |
+| server.config.ca_subject.organization | string | `"Example"` |  |
+| server.config.jwtIssuer | string | `"oidc-discovery.example.org"` |  |
+| server.config.logLevel | string | `"info"` |  |
 | server.dataStorage.accessMode | string | `"ReadWriteOnce"` |  |
 | server.dataStorage.enabled | bool | `true` |  |
 | server.dataStorage.size | string | `"1Gi"` |  |
 | server.dataStorage.storageClass | string | `nil` |  |
 | server.image.pullPolicy | string | `"IfNotPresent"` |  |
-| server.image.repository | string | `"gcr.io/spiffe-io/spire-server"` |  |
-| server.image.tag | string | `""` |  |
+| server.image.registry | string | `"ghcr.io"` |  |
+| server.image.repository | string | `"spiffe/spire-server"` |  |
+| server.image.version | string | `""` |  |
 | server.nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
+| server.podSecurityContext | object | `{}` |  |
+| server.replicaCount | int | `1` |  |
+| server.resources | object | `{}` |  |
+| server.securityContext | object | `{}` |  |
 | server.service.annotations | object | `{}` |  |
 | server.service.port | int | `8081` |  |
 | server.service.type | string | `"ClusterIP"` |  |
+| server.topologySpreadConstraints | list | `[]` |  |
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
@@ -121,16 +140,14 @@ Kubernetes: `>=1.21.0-0`
 | spire.certManager.kubeConfigFile | string | `""` |  |
 | spire.certManager.namespace | string | `sandbox` |  |
 | spire.clusterName | string | `"example-cluster"` |  |
-| spire.server.logLevel | string | `"INFO"` |  |
 | spire.trustDomain | string | `"example.org"` |  |
 | tolerations | list | `[]` |  |
-| topologySpreadConstraints | list | `[]` |  |
 | waitForIt.image.pullPolicy | string | `"IfNotPresent"` |  |
-| waitForIt.image.repository | string | `"gcr.io/spiffe-io/waitForIt"` |  |
-| waitForIt.image.tag | string | `""` |  |
-| waitForIt.resources | object | `{}` |  |
+| waitForIt.image.registry | string | `"gcr.io"` |  |
+| waitForIt.image.repository | string | `"spiffe-io/wait-for-it"` |  |
+| waitForIt.image.version | string | `""` |  |
 | workloadRegistrar.image.pullPolicy | string | `"IfNotPresent"` |  |
-| workloadRegistrar.image.repository | string | `"gcr.io/spiffe-io/k8s-workload-registrar"` |  |
-| workloadRegistrar.image.tag | string | `""` |  |
+| workloadRegistrar.image.registry | string | `"gcr.io"` |  |
+| workloadRegistrar.image.repository | string | `"spiffe-io/k8s-workload-registrar"` |  |
+| workloadRegistrar.image.version | string | `""` |  |
 | workloadRegistrar.resources | object | `{}` |  |
-| workloadRegistrar.service.annotations | object | `{}` |  |

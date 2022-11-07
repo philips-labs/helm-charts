@@ -29,7 +29,7 @@ spec:
           # This is a small image with wait-for-it, choose whatever image
           # you prefer that waits for a service to be up. This image is built
           # from https://github.com/lqhl/wait-for-it
-          image: "{{ .Values.waitForIt.image.repository }}:{{ .Values.waitForIt.image.tag }}"
+          image: {{ template "spire.image" .Values.waitForIt }}
           imagePullPolicy: {{ .Values.waitForIt.image.pullPolicy }}
           args: ["-t", "30", "{{ include "spire.fullname" . }}-server:8081"]
           resources:
@@ -40,7 +40,8 @@ spec:
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}-agent
-          image: "{{ .Values.agent.image.repository }}:{{ .Values.agent.image.tag | default .Chart.AppVersion }}"
+          image: {{ template "spire.image" (dict "appVersion" $.Chart.AppVersion "image" .Values.agent.image) }}
+          imagePullPolicy: {{ .Values.agent.image.pullPolicy }}
           args: ["-config", "/run/spire/config/agent.conf"]
           volumeMounts:
             - name: spire-config
@@ -66,10 +67,12 @@ spec:
               port: 8080
             initialDelaySeconds: 15
             periodSeconds: 60
+          resources:
+            {{- toYaml .Values.agent.resources | nindent 12 }}
         # This is the container which runs the SPIFFE CSI driver.
         - name: spiffe-csi-driver
-          image: "{{ .Values.spiffeCsiDriver.image.repository }}:{{ .Values.spiffeCsiDriver.image.tag }}"
-          imagePullPolicy: {{ .Values.spiffeCsiDriver.image.pullPolicy }}
+          image: {{ template "spire.image" .Values.csiDriver }}
+          imagePullPolicy: {{ .Values.csiDriver.image.pullPolicy }}
           args: [
             "-workload-api-socket-dir", "/spire-agent-socket",
             "-csi-socket-path", "/spiffe-csi/csi.sock",
@@ -98,12 +101,12 @@ spec:
           securityContext:
             privileged: true
           resources:
-            {{- toYaml .Values.spiffeCsiDriver.resources | nindent 12 }}
+            {{- toYaml .Values.csiDriver.resources | nindent 12 }}
         # This container runs the CSI Node Driver Registrar which takes care
         # of all the little details required to register a CSI driver with
         # the kubelet.
         - name: node-driver-registrar
-          image: "{{ .Values.nodeDriverRegistrar.image.repository }}:{{ .Values.nodeDriverRegistrar.image.tag }}"
+          image: {{ template "spire.image" .Values.nodeDriverRegistrar }}
           imagePullPolicy: {{ .Values.nodeDriverRegistrar.image.pullPolicy }}
           args: [
             "-csi-address", "/spiffe-csi/csi.sock",
