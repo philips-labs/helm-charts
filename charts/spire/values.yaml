@@ -211,6 +211,9 @@ agent:
     #   cpu: 100m
     #   memory: 128Mi
 
+  service:
+    annotations: {}
+
   config:
     logLevel: info
     socketPath: "/run/spire/agent-sockets/agent.sock"
