@@ -10,7 +10,7 @@ data:
       log_level = "{{ .Values.agent.config.logLevel }}"
       server_address = "{{ include "spire.fullname" . }}-server"
       server_port = "{{ .Values.server.service.port }}"
-      socket_path = {{ .Values.agent.socketPath | quote }}
+      socket_path = {{ .Values.agent.config.socketPath | quote }}
       trust_bundle_path = "/run/spire/bundle/bundle.crt"
       trust_domain = {{ .Values.spire.trustDomain | quote }}
     }
