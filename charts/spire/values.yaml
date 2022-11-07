@@ -178,6 +178,14 @@ agent:
       organization: Example
       common_name: example.org
 
+    certManager:
+      enabled: false
+      issuerName: "spire-ca"
+      issuerKind: "Issuer"
+      issuerGroup: "cert-manager.io"
+      namespace: "sandbox"
+      kubeConfigFile: ""
+
 agent:
   image:
     # registry: gcr.io
@@ -205,6 +213,7 @@ agent:
 
   config:
     logLevel: info
+    socketPath: "/run/spire/agent-sockets/agent.sock"
 
 csiDriver:
   image:

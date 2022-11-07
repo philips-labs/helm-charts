@@ -107,6 +107,12 @@ Kubernetes: `>=1.21.0-0`
 | server.config.ca_subject.common_name | string | `"example.org"` |  |
 | server.config.ca_subject.country | string | `"NL"` |  |
 | server.config.ca_subject.organization | string | `"Example"` |  |
+| server.config.certManager.enabled | bool | `false` |  |
+| server.config.certManager.issuerGroup | string | `cert-manager.io` |  |
+| server.config.certManager.issuerKind | string | `Issuer` |  |
+| server.config.certManager.issuerName | string | `spire-ca` |  |
+| server.config.certManager.kubeConfigFile | string | `""` |  |
+| server.config.certManager.namespace | string | `sandbox` |  |
 | server.config.jwtIssuer | string | `"oidc-discovery.example.org"` |  |
 | server.config.logLevel | string | `"info"` |  |
 | server.config.socketPath | string | `"/run/spire/server-sockets/spire-server.sock"` |  |
