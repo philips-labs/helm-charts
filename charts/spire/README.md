@@ -58,6 +58,7 @@ Kubernetes: `>=1.21.0-0`
 | agent.image.version | string | `""` |  |
 | agent.nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
 | agent.resources | object | `{}` |  |
+| agent.service.annotations | object | `{}` |  |
 | csiDriver.image.pullPolicy | string | `"IfNotPresent"` |  |
 | csiDriver.image.registry | string | `"ghcr.io"` |  |
 | csiDriver.image.repository | string | `"spiffe/spiffe-csi-driver"` |  |

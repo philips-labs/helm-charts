@@ -13,7 +13,7 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
+      {{- with .Values.agent.service.annotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
