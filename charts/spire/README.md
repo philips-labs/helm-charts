@@ -144,6 +144,7 @@ Kubernetes: `>=1.21.0-0`
 | waitForIt.image.registry | string | `"gcr.io"` |  |
 | waitForIt.image.repository | string | `"spiffe-io/wait-for-it"` |  |
 | waitForIt.image.version | string | `""` |  |
+| waitForIt.resources | object | `{}` |
 | workloadRegistrar.image.pullPolicy | string | `"IfNotPresent"` |  |
 | workloadRegistrar.image.registry | string | `"gcr.io"` |  |
 | workloadRegistrar.image.repository | string | `"spiffe-io/k8s-workload-registrar"` |  |
