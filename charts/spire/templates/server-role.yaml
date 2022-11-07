@@ -26,6 +26,11 @@ rules:
   - apiGroups: [""]
     resources: ["events"]
     verbs: ["create"]
+  {{- if eq (.Values.server.config.certManager.enabled | toString) "true" }}
+  - apiGroups: ["cert-manager.io"]
+    resources: ["certificaterequests"]
+    verbs: ["create", "get", "list", "delete"]
+  {{- end }}
 
 ---
 kind: RoleBinding

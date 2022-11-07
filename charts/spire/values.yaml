@@ -90,6 +90,14 @@ server:
       organization: Example
       common_name: example.org
 
+    certManager:
+      enabled: false
+      issuerName: "spire-ca"
+      issuerKind: "Issuer"
+      issuerGroup: "cert-manager.io"
+      namespace: "sandbox"
+      kubeConfigFile: ""
+
 agent:
   image:
     # registry: gcr.io
@@ -115,16 +123,16 @@ agent:
     #   cpu: 100m
     #   memory: 128Mi
 
-  socketPath: "/run/spire/agent-sockets/agent.sock"
   config:
     logLevel: info
+    socketPath: "/run/spire/agent-sockets/agent.sock"
 
 csiDriver:
   image:
     registry: ghcr.io
     repository: spiffe/spiffe-csi-driver
     pullPolicy: IfNotPresent
-    tag: 0.2.0
+    version: 0.2.0
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
@@ -219,6 +227,7 @@ oidc:
     domains:
       - localhost
       - oidc-discovery.example.org
+
     acme:
       tosAccepted: false
       cacheDir: /run/spire
@@ -245,14 +254,3 @@ serviceAccount:
 spire:
   clusterName: "example-cluster"
   trustDomain: "example.org"
-  agent:
-    logLevel: INFO
-  server:
-    logLevel: INFO
-  certManager:
-    enabled: false
-    issuerName: "spire-ca"
-    issuerKind: "Issuer"
-    issuerGroup: "cert-manager.io"
-    namespace: "sandbox"
-    kubeConfigFile: ""
