@@ -131,10 +131,6 @@ Kubernetes: `>=1.21.0-0`
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
-| spiffeCsiDriver.image.pullPolicy | string `"IfNotPresent"` |
-| spiffeCsiDriver.image.repository | string `"ghcr.io/spiffe/spiffe-csi-driver"` |
-| spiffeCsiDriver.image.tag | string `"nightly"` |
-| spiffeCsiDriver.resources | object | `{}` |
 | spire.clusterName | string | `"example-cluster"` |  |
 | spire.trustDomain | string | `"example.org"` |  |
 | waitForIt.image.pullPolicy | string | `"IfNotPresent"` |  |
