@@ -1,3 +1,4 @@
+{{- if .Values.workloadRegistrar.enabled }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -12,3 +13,4 @@ data:
     server_address  = "unix://{{ .Values.server.config.socketPath }}"
     leader_election = true
     metrics_addr    = "0.0.0.0:18080"
+{{- end }}

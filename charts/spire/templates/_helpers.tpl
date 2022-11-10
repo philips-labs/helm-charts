@@ -110,6 +110,28 @@ app.kubernetes.io/name: {{ include "spire.name" . }}-oidc
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
+
+{{/*
+Common controllerManager labels
+*/}}
+{{- define "spire.controllerManager.labels" -}}
+helm.sh/chart: {{ include "spire.chart" . }}
+{{ include "spire.controllerManager.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end }}
+
+{{/*
+Selector controller-manager labels
+*/}}
+{{- define "spire.controllerManager.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "spire.name" . }}-controller-manager
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+
 {{/*
 Create the name of the service account to use
 */}}

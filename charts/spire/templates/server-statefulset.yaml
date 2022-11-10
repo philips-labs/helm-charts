@@ -75,6 +75,7 @@ spec:
             periodSeconds: 5
           resources:
             {{- toYaml .Values.server.resources | nindent 12 }}
+        {{- if .Values.workloadRegistrar.enabled }}
         - name: {{ .Chart.Name }}-workload-registrar
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
@@ -95,6 +96,7 @@ spec:
               readOnly: true
           resources:
             {{- toYaml .Values.workloadRegistrar.resources | nindent 12 }}
+        {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -112,9 +114,11 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
+        {{- if .Values.workloadRegistrar.enabled }}
         - name: spire-workload-registrar-config
           configMap:
             name: {{ include "spire.fullname" . }}-workload-registrar
+        {{- end }}
         - name: spire-config
           configMap:
             name: {{ include "spire.fullname" . }}-server

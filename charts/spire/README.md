@@ -2,7 +2,7 @@
 
 <!-- This README.md is generated. -->
 
-![Version: 0.7.6](https://img.shields.io/badge/Version-0.7.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.3](https://img.shields.io/badge/AppVersion-1.5.3-informational?style=flat-square)
+![Version: 0.8.0](https://img.shields.io/badge/Version-0.8.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.3](https://img.shields.io/badge/AppVersion-1.5.3-informational?style=flat-square)
 
 A Helm chart for deploying spire-server and spire-agent.
 
@@ -59,6 +59,19 @@ Kubernetes: `>=1.21.0-0`
 | agent.nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
 | agent.resources | object | `{}` |  |
 | agent.service.annotations | object | `{}` |  |
+| controllerManager.affinity | object | `{}` |  |
+| controllerManager.enabled | bool | `false` |  |
+| controllerManager.image.pullPolicy | string | `"IfNotPresent"` |  |
+| controllerManager.image.registry | string | `"ghcr.io"` |  |
+| controllerManager.image.repository | string | `"spiffe/spire-controller-manager"` |  |
+| controllerManager.image.version | string | `"0.2.1"` |  |
+| controllerManager.nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
+| controllerManager.podAnnotations | object | `{}` |  |
+| controllerManager.podSecurityContext | object | `{}` |  |
+| controllerManager.replicaCount | int | `1` |  |
+| controllerManager.resources | object | `{}` |  |
+| controllerManager.securityContext | object | `{}` |  |
+| controllerManager.tolerations | list | `[]` |  |
 | csiDriver.image.pullPolicy | string | `"IfNotPresent"` |  |
 | csiDriver.image.registry | string | `"ghcr.io"` |  |
 | csiDriver.image.repository | string | `"spiffe/spiffe-csi-driver"` |  |
@@ -135,6 +148,7 @@ Kubernetes: `>=1.21.0-0`
 | waitForIt.image.repository | string | `"chainguard/wait-for-it"` |  |
 | waitForIt.image.version | string | `"latest-20221215"` |  |
 | waitForIt.resources | object | `{}` |  |
+| workloadRegistrar.enabled | bool | `true` |  |
 | workloadRegistrar.image.pullPolicy | string | `"IfNotPresent"` |  |
 | workloadRegistrar.image.registry | string | `"gcr.io"` |  |
 | workloadRegistrar.image.repository | string | `"spiffe-io/k8s-workload-registrar"` |  |

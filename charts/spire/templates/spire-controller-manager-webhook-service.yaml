@@ -1,13 +1,9 @@
-{{- if .Values.workloadRegistrar.enabled }}
+{{- if eq (.Values.controllerManager.enabled | toString) "true" }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "spire.fullname" . }}-k8s-workload-registrar
+  name: {{ include "spire.fullname" . }}-controller-manager
   namespace: {{ .Release.Namespace }}
-  {{- with .Values.workloadRegistrar.service.annotations }}
-  annotations:
-    {{- toYaml . | nindent 8 }}
-  {{- end }}
   labels:
     {{- include "spire.server.labels" . | nindent 4 }}
 spec:
@@ -15,8 +11,9 @@ spec:
   ports:
     - name: https
       port: 443
-      targetPort: registrar-port
+      targetPort: 9443
       protocol: TCP
   selector:
     {{- include "spire.server.selectorLabels" . | nindent 4 }}
 {{- end }}
+
