@@ -128,7 +128,7 @@ agent:
 
   config:
     logLevel: info
-    socketPath: "/run/spire/agent-sockets/agent.sock"
+    socketPath: "/run/spire/agent-sockets/spire-agent.sock"
 
 csiDriver:
   image:
