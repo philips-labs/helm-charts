@@ -51,18 +51,18 @@ spec:
                 - /opt/spire/bin/spire-agent
                 - healthcheck
                 - -socketPath
-                - /run/spire/sockets/agent.sock
+                - /spiffe-workload-api/spire-agent.sock
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
-            - name: spire-agent-socket
-              mountPath: /run/spire/sockets
+            - name: spiffe-workload-api
+              mountPath: /spiffe-workload-api
               readOnly: true
       volumes:
-        - name: spire-agent-socket
-          hostPath:
-            path: /run/spire/sockets
-            type: Directory
+        - name: spiffe-workload-api
+          csi:
+            driver: "csi.spiffe.io"
+            readOnly: true
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
