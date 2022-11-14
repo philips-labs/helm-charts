@@ -51,7 +51,7 @@ Kubernetes: `>=1.21.0-0`
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | agent.config.logLevel | string | `"info"` |  |
-| agent.config.socketPath | string | `"/run/spire/agent-sockets/agent.sock"` |  |
+| agent.config.socketPath | string | `"/run/spire/agent-sockets/spire-agent.sock"` |  |
 | agent.image.pullPolicy | string | `"IfNotPresent"` |  |
 | agent.image.registry | string | `"ghcr.io"` |  |
 | agent.image.repository | string | `"spiffe/spire-agent"` |  |
