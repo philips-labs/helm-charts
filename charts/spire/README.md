@@ -2,7 +2,7 @@
 
 <!-- This README.md is generated. -->
 
-![Version: 0.6.3](https://img.shields.io/badge/Version-0.6.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.1](https://img.shields.io/badge/AppVersion-1.5.1-informational?style=flat-square)
+![Version: 0.7.0](https://img.shields.io/badge/Version-0.7.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.1](https://img.shields.io/badge/AppVersion-1.5.1-informational?style=flat-square)
 
 A Helm chart for deploying spire-server and spire-agent.
 
@@ -51,6 +51,7 @@ Kubernetes: `>=1.21.0-0`
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | agent.config.logLevel | string | `"info"` |  |
+| agent.config.socketPath | string | `"/run/spire/agent-sockets/spire-agent.sock"` |  |
 | agent.image.pullPolicy | string | `"IfNotPresent"` |  |
 | agent.image.registry | string | `"ghcr.io"` |  |
 | agent.image.repository | string | `"spiffe/spire-agent"` |  |
@@ -103,6 +104,7 @@ Kubernetes: `>=1.21.0-0`
 | server.config.ca_subject.organization | string | `"Example"` |  |
 | server.config.jwtIssuer | string | `"oidc-discovery.example.org"` |  |
 | server.config.logLevel | string | `"info"` |  |
+| server.config.socketPath | string | `"/run/spire/server-sockets/spire-server.sock"` |  |
 | server.dataStorage.accessMode | string | `"ReadWriteOnce"` |  |
 | server.dataStorage.enabled | bool | `true` |  |
 | server.dataStorage.size | string | `"1Gi"` |  |
