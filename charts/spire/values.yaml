@@ -85,6 +85,7 @@ waitForIt:
 
   config:
     logLevel: info
+    socketPath: /run/spire/server-sockets/spire-server.sock
     jwtIssuer: oidc-discovery.example.org
 
     ca_subject:
@@ -130,7 +131,7 @@ agent:
 
   config:
     logLevel: info
-    socketPath: "/run/spire/agent-sockets/agent.sock"
+    socketPath: /run/spire/agent-sockets/spire-agent.sock
 
 csiDriver:
   image:
@@ -222,10 +223,16 @@ oidc:
 
     nginx:
       image:
-        registry: cgr.dev
-        repository: chainguard/nginx
+        registry: docker.io
+        repository: nginx
         pullPolicy: IfNotPresent
-        version: 1.23
+        version: 1.23.2-alpine
+        # chainguard image does not support the templates feature
+        # https://github.com/chainguard-images/nginx/issues/43
+        # registry: cgr.dev
+        # repository: chainguard/nginx
+        # pullPolicy: IfNotPresent
+        # version: "1.23.2"
 
   config:
     logLevel: info
