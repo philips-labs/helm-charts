@@ -111,7 +111,17 @@ spec:
           args: [
             "-csi-address", "/spiffe-csi/csi.sock",
             "-kubelet-registration-path", "/var/lib/kubelet/plugins/csi.spiffe.io/csi.sock",
+            "-http-endpoint", ":9809",
           ]
+          ports:
+            - containerPort: 9809
+              name: healthz
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: healthz
+            initialDelaySeconds: 5
+            timeoutSeconds: 5
           volumeMounts:
             # The registrar needs access to the SPIFFE CSI driver socket
             - mountPath: /spiffe-csi
