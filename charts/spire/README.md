@@ -2,7 +2,7 @@
 
 <!-- This README.md is generated. -->
 
-![Version: 0.6.1](https://img.shields.io/badge/Version-0.6.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.1](https://img.shields.io/badge/AppVersion-1.5.1-informational?style=flat-square)
+![Version: 0.7.0](https://img.shields.io/badge/Version-0.7.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.1](https://img.shields.io/badge/AppVersion-1.5.1-informational?style=flat-square)
 
 A Helm chart for deploying spire-server and spire-agent.
 
@@ -87,9 +87,9 @@ Kubernetes: `>=1.21.0-0`
 | oidc.image.version | string | `""` |  |
 | oidc.insecureScheme.enabled | bool | `false` |  |
 | oidc.insecureScheme.nginx.image.pullPolicy | string | `"IfNotPresent"` |  |
-| oidc.insecureScheme.nginx.image.registry | string | `"cgr.dev"` |  |
-| oidc.insecureScheme.nginx.image.repository | string | `"chainguard/nginx"` |  |
-| oidc.insecureScheme.nginx.image.version | float | `1.23` |  |
+| oidc.insecureScheme.nginx.image.registry | string | `"docker.io"` |  |
+| oidc.insecureScheme.nginx.image.repository | string | `"nginx"` |  |
+| oidc.insecureScheme.nginx.image.version | string | `"1.23.2-alpine"` |  |
 | oidc.nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
 | oidc.podAnnotations | object | `{}` |  |
 | oidc.podSecurityContext | object | `{}` |  |
@@ -111,6 +111,7 @@ Kubernetes: `>=1.21.0-0`
 | server.config.certManager.namespace | string | `sandbox` |  |
 | server.config.jwtIssuer | string | `"oidc-discovery.example.org"` |  |
 | server.config.logLevel | string | `"info"` |  |
+| server.config.socketPath | string | `"/run/spire/server-sockets/spire-server.sock"` |  |
 | server.dataStorage.accessMode | string | `"ReadWriteOnce"` |  |
 | server.dataStorage.enabled | bool | `true` |  |
 | server.dataStorage.size | string | `"1Gi"` |  |
