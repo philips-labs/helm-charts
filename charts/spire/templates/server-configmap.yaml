@@ -60,18 +60,20 @@ data:
         }
       }
 
-      {{- if eq (.Values.server.config.certManager.enabled | toString) "true" }}
+      {{- with .Values.server.config.upstreamAuthority.certManager }}
+      {{- if eq (.enabled | toString) "true" }}
       UpstreamAuthority "cert-manager" {
         plugin_data {
-          issuer_name = "{{ .Values.server.config.certManager.issuerName }}"
-          issuer_kind =  "{{ .Values.server.config.certManager.issuerKind }}"
-          issuer_group = "{{ .Values.server.config.certManager.issuerGroup }}"
-          namespace = "{{ .Values.server.config.certManager.namespace }}"
-          {{- if ne .Values.server.config.certManager.kubeConfigFile "" }}
-          kube_config_file = "{{ .Values.server.config.certManager.kubeConfigFile }}"
+          issuer_name = "{{ .issuerName }}"
+          issuer_kind =  "{{ .issuerKind }}"
+          issuer_group = "{{ .issuerGroup }}"
+          namespace = "{{ .namespace }}"
+          {{- if ne .kubeConfigFile "" }}
+          kube_config_file = "{{ .kubeConfigFile }}"
           {{- end }}
         }
       }
+      {{- end }}
       {{- end }}
     }
 
