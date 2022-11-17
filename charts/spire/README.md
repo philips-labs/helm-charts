@@ -100,6 +100,9 @@ Kubernetes: `>=1.21.0-0`
 | oidc.service.port | int | `80` |  |
 | oidc.service.type | string | `"NodePort"` |  |
 | oidc.tolerations | list | `[]` |  |
+| server.caSecretStorage.enabled | bool | `false` |  |
+| server.caSecretStorage.path | string | `/conf/server/` |  |
+| server.caSecretStorage.secretName | string | `"csi-driver-spiffe-ca"` |  |
 | server.config.ca_subject.common_name | string | `"example.org"` |  |
 | server.config.ca_subject.country | string | `"NL"` |  |
 | server.config.ca_subject.organization | string | `"Example"` |  |
@@ -109,6 +112,9 @@ Kubernetes: `>=1.21.0-0`
 | server.config.certManager.issuerName | string | `spire-ca` |  |
 | server.config.certManager.kubeConfigFile | string | `""` |  |
 | server.config.certManager.namespace | string | `sandbox` |  |
+| server.config.upstreamAuthority.disk.certFilePath | string | `"/conf/server/tls.crt"` |  |
+| server.config.upstreamAuthority.disk.enabled | bool | `false` |  |
+| server.config.upstreamAuthority.disk.keyFilePath | string | `"/conf/server/tls.key"` |  |
 | server.config.jwtIssuer | string | `"oidc-discovery.example.org"` |  |
 | server.config.logLevel | string | `"info"` |  |
 | server.config.socketPath | string | `"/run/spire/server-sockets/spire-server.sock"` |  |

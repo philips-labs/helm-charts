@@ -75,6 +75,16 @@ data:
       }
       {{- end }}
       {{- end }}
+
+      {{- with .Values.server.config.upstreamAuthority.disk }}
+      {{- if eq (.enabled | toString) "true" }}
+      UpstreamAuthority "disk" {
+        plugin_data {
+            cert_file_path = "{{ .certFilePath }}"
+            key_file_path = "{{ .keyFilePath }}"
+        }
+      {{- end }}
+      {{- end }}
     }
 
     health_checks {
