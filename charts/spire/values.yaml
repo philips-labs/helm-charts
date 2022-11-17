@@ -7,6 +7,7 @@ waitForIt:
     repository: spiffe-io/wait-for-it
     pullPolicy: IfNotPresent
     version: ""
+  resources: {}
 
 workloadRegistrar:
   image:
@@ -81,6 +82,11 @@ server:
 
   topologySpreadConstraints: []
 
+  caSecretStorage:
+    enabled: false
+    path: /conf/server/
+    secretName: "csi-driver-spiffe-ca"
+
   config:
     logLevel: info
     socketPath: /run/spire/server-sockets/spire-server.sock
@@ -91,13 +97,18 @@ server:
       organization: Example
       common_name: example.org
 
-    certManager:
-      enabled: false
-      issuerName: "spire-ca"
-      issuerKind: "Issuer"
-      issuerGroup: "cert-manager.io"
-      namespace: "sandbox"
-      kubeConfigFile: ""
+    upstreamAuthority:
+      certManager:
+        enabled: false
+        issuerName: "spire-ca"
+        issuerKind: "Issuer"
+        issuerGroup: "cert-manager.io"
+        namespace: "sandbox"
+        kubeConfigFile: ""
+      disk:
+        enabled: false
+        certFilePath:
+        keyFilePath:
 
 agent:
   image:
