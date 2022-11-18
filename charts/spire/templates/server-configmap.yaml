@@ -80,9 +80,10 @@ data:
       {{- if eq (.enabled | toString) "true" }}
       UpstreamAuthority "disk" {
         plugin_data {
-            cert_file_path = "{{ .certFilePath }}"
-            key_file_path = "{{ .keyFilePath }}"
+          cert_file_path = "{{ .certFilePath }}"
+          key_file_path = "{{ .keyFilePath }}"
         }
+      }
       {{- end }}
       {{- end }}
     }
