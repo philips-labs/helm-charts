@@ -51,7 +51,7 @@ spec:
               mountPath: /run/spire/bundle
               readOnly: true
             - name: spire-agent-socket-dir
-              mountPath: /run/spire/agent-sockets
+              mountPath: {{ dir .Values.agent.config.socketPath }}
               readOnly: false
             - name: spire-token
               mountPath: /var/run/secrets/tokens
@@ -141,7 +141,7 @@ spec:
             name: {{ include "spire.fullname" . }}-bundle
         - name: spire-agent-sockets
           hostPath:
-            path: /run/spire/agent-sockets
+            path: {{ dir .Values.agent.config.socketPath }}
             type: DirectoryOrCreate
         - name: spire-token
           projected:
@@ -152,7 +152,7 @@ spec:
                 audience: spire-server
         - name: spire-agent-socket-dir
           hostPath:
-            path: /run/spire/agent-sockets
+            path: {{ dir .Values.agent.config.socketPath }}
             type: DirectoryOrCreate
         # This volume is where the socket for kubelet->driver communication lives
         - name: spiffe-csi-socket-dir

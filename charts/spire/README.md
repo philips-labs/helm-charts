@@ -107,6 +107,9 @@ Kubernetes: `>=1.21.0-0`
 | server.config.ca_subject.common_name | string | `"example.org"` |  |
 | server.config.ca_subject.country | string | `"NL"` |  |
 | server.config.ca_subject.organization | string | `"Example"` |  |
+| server.config.jwtIssuer | string | `"oidc-discovery.example.org"` |  |
+| server.config.logLevel | string | `"info"` |  |
+| server.config.socketPath | string | `"/run/spire/server-sockets/spire-server.sock"` |  |
 | server.config.upstreamAuthority.certManager.enabled | bool | `false` |  |
 | server.config.upstreamAuthority.certManager.issuerGroup | string | `cert-manager.io` |  |
 | server.config.upstreamAuthority.certManager.issuerKind | string | `Issuer` |  |
@@ -116,9 +119,6 @@ Kubernetes: `>=1.21.0-0`
 | server.config.upstreamAuthority.disk.certFilePath | string | `"/conf/server/tls.crt"` |  |
 | server.config.upstreamAuthority.disk.enabled | bool | `false` |  |
 | server.config.upstreamAuthority.disk.keyFilePath | string | `"/conf/server/tls.key"` |  |
-| server.config.jwtIssuer | string | `"oidc-discovery.example.org"` |  |
-| server.config.logLevel | string | `"info"` |  |
-| server.config.socketPath | string | `"/run/spire/server-sockets/spire-server.sock"` |  |
 | server.dataStorage.accessMode | string | `"ReadWriteOnce"` |  |
 | server.dataStorage.enabled | bool | `true` |  |
 | server.dataStorage.size | string | `"1Gi"` |  |
