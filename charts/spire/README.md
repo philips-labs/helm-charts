@@ -2,7 +2,7 @@
 
 <!-- This README.md is generated. -->
 
-![Version: 0.7.0](https://img.shields.io/badge/Version-0.7.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.1](https://img.shields.io/badge/AppVersion-1.5.1-informational?style=flat-square)
+![Version: 0.7.1](https://img.shields.io/badge/Version-0.7.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.1](https://img.shields.io/badge/AppVersion-1.5.1-informational?style=flat-square)
 
 A Helm chart for deploying spire-server and spire-agent.
 
@@ -90,6 +90,7 @@ Kubernetes: `>=1.21.0-0`
 | oidc.insecureScheme.nginx.image.registry | string | `"docker.io"` |  |
 | oidc.insecureScheme.nginx.image.repository | string | `"nginx"` |  |
 | oidc.insecureScheme.nginx.image.version | string | `"1.23.2-alpine"` |  |
+| oidc.insecureScheme.nginx.resources | object | `{}` |  |
 | oidc.nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
 | oidc.podAnnotations | object | `{}` |  |
 | oidc.podSecurityContext | object | `{}` |  |
