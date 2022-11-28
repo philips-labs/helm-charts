@@ -7,6 +7,7 @@ waitForIt:
     repository: spiffe-io/wait-for-it
     pullPolicy: IfNotPresent
     version: ""
+  resources: {}
 
 workloadRegistrar:
   image:
@@ -27,6 +28,9 @@ workloadRegistrar:
     # limits:
     #   cpu: 100m
     #   memory: 64Mi
+
+  service:
+    annotations: {}
 
 server:
   replicaCount: 1
@@ -63,6 +67,7 @@ server:
   service:
     type: ClusterIP
     port: 8081
+    annotations: {}
 
   podSecurityContext: {}
     # fsGroup: 2000
@@ -75,6 +80,13 @@ server:
     # runAsNonRoot: true
     # runAsUser: 1000
 
+  topologySpreadConstraints: []
+
+  caSecretStorage:
+    enabled: false
+    path: /conf/server/
+    secretName: "csi-driver-spiffe-ca"
+
   config:
     logLevel: info
     socketPath: /run/spire/server-sockets/spire-server.sock
@@ -84,6 +96,20 @@ server:
       country: NL
       organization: Example
       common_name: example.org
+
+    upstreamAuthority:
+      certManager:
+        enabled: false
+        issuerName: "spire-ca"
+        issuerKind: "Issuer"
+        issuerGroup: "cert-manager.io"
+        namespace: "sandbox"
+        kubeConfigFile: ""
+      disk:
+        enabled: false
+        certFilePath: "/conf/server/tls.crt"
+        keyFilePath: "/conf/server/tls.key"
+        bundleFilePath: ""
 
 agent:
   image:
@@ -109,6 +135,9 @@ agent:
     # limits:
     #   cpu: 100m
     #   memory: 128Mi
+
+  service:
+    annotations: {}
 
   config:
     logLevel: info
