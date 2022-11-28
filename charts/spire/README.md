@@ -116,6 +116,7 @@ Kubernetes: `>=1.21.0-0`
 | server.config.upstreamAuthority.certManager.issuerName | string | `spire-ca` |  |
 | server.config.upstreamAuthority.certManager.kubeConfigFile | string | `""` |  |
 | server.config.upstreamAuthority.certManager.namespace | string | `sandbox` |  |
+| server.config.upstreamAuthority.disk.bundleFilePath | string | `""` |  |
 | server.config.upstreamAuthority.disk.certFilePath | string | `"/conf/server/tls.crt"` |  |
 | server.config.upstreamAuthority.disk.enabled | bool | `false` |  |
 | server.config.upstreamAuthority.disk.keyFilePath | string | `"/conf/server/tls.key"` |  |

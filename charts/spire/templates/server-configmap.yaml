@@ -82,6 +82,9 @@ data:
         plugin_data {
           cert_file_path = "{{ .certFilePath }}"
           key_file_path = "{{ .keyFilePath }}"
+          {{- if ne .bundleFilePath "" }}
+          bundle_file_path = "{{ .bundleFilePath }}"
+          {{- end }}
         }
       }
       {{- end }}
