@@ -2,7 +2,7 @@
 
 <!-- This README.md is generated. -->
 
-![Version: 0.7.1](https://img.shields.io/badge/Version-0.7.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.1](https://img.shields.io/badge/AppVersion-1.5.1-informational?style=flat-square)
+![Version: 0.7.2](https://img.shields.io/badge/Version-0.7.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.1](https://img.shields.io/badge/AppVersion-1.5.1-informational?style=flat-square)
 
 A Helm chart for deploying spire-server and spire-agent.
 
@@ -58,6 +58,7 @@ Kubernetes: `>=1.21.0-0`
 | agent.image.version | string | `""` |  |
 | agent.nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
 | agent.resources | object | `{}` |  |
+| agent.service.annotations | object | `{}` |  |
 | csiDriver.image.pullPolicy | string | `"IfNotPresent"` |  |
 | csiDriver.image.registry | string | `"ghcr.io"` |  |
 | csiDriver.image.repository | string | `"spiffe/spiffe-csi-driver"` |  |
@@ -100,12 +101,25 @@ Kubernetes: `>=1.21.0-0`
 | oidc.service.port | int | `80` |  |
 | oidc.service.type | string | `"NodePort"` |  |
 | oidc.tolerations | list | `[]` |  |
+| server.caSecretStorage.enabled | bool | `false` |  |
+| server.caSecretStorage.path | string | `/conf/server/` |  |
+| server.caSecretStorage.secretName | string | `"csi-driver-spiffe-ca"` |  |
 | server.config.ca_subject.common_name | string | `"example.org"` |  |
 | server.config.ca_subject.country | string | `"NL"` |  |
 | server.config.ca_subject.organization | string | `"Example"` |  |
 | server.config.jwtIssuer | string | `"oidc-discovery.example.org"` |  |
 | server.config.logLevel | string | `"info"` |  |
 | server.config.socketPath | string | `"/run/spire/server-sockets/spire-server.sock"` |  |
+| server.config.upstreamAuthority.certManager.enabled | bool | `false` |  |
+| server.config.upstreamAuthority.certManager.issuerGroup | string | `cert-manager.io` |  |
+| server.config.upstreamAuthority.certManager.issuerKind | string | `Issuer` |  |
+| server.config.upstreamAuthority.certManager.issuerName | string | `spire-ca` |  |
+| server.config.upstreamAuthority.certManager.kubeConfigFile | string | `""` |  |
+| server.config.upstreamAuthority.certManager.namespace | string | `sandbox` |  |
+| server.config.upstreamAuthority.disk.bundleFilePath | string | `""` |  |
+| server.config.upstreamAuthority.disk.certFilePath | string | `"/conf/server/tls.crt"` |  |
+| server.config.upstreamAuthority.disk.enabled | bool | `false` |  |
+| server.config.upstreamAuthority.disk.keyFilePath | string | `"/conf/server/tls.key"` |  |
 | server.dataStorage.accessMode | string | `"ReadWriteOnce"` |  |
 | server.dataStorage.enabled | bool | `true` |  |
 | server.dataStorage.size | string | `"1Gi"` |  |
@@ -119,8 +133,10 @@ Kubernetes: `>=1.21.0-0`
 | server.replicaCount | int | `1` |  |
 | server.resources | object | `{}` |  |
 | server.securityContext | object | `{}` |  |
+| server.service.annotations | object | `{}` |  |
 | server.service.port | int | `8081` |  |
 | server.service.type | string | `"ClusterIP"` |  |
+| server.topologySpreadConstraints | list | `[]` |  |
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
@@ -130,8 +146,10 @@ Kubernetes: `>=1.21.0-0`
 | waitForIt.image.registry | string | `"gcr.io"` |  |
 | waitForIt.image.repository | string | `"spiffe-io/wait-for-it"` |  |
 | waitForIt.image.version | string | `""` |  |
+| waitForIt.resources | object | `{}` |
 | workloadRegistrar.image.pullPolicy | string | `"IfNotPresent"` |  |
 | workloadRegistrar.image.registry | string | `"gcr.io"` |  |
 | workloadRegistrar.image.repository | string | `"spiffe-io/k8s-workload-registrar"` |  |
 | workloadRegistrar.image.version | string | `""` |  |
 | workloadRegistrar.resources | object | `{}` |  |
+| workloadRegistrar.service.annotations | object | `{}` |  |

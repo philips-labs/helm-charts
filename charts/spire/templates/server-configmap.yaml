@@ -59,6 +59,36 @@ data:
           config_map = "{{ include "spire.fullname" . }}-bundle"
         }
       }
+
+      {{- with .Values.server.config.upstreamAuthority.certManager }}
+      {{- if eq (.enabled | toString) "true" }}
+      UpstreamAuthority "cert-manager" {
+        plugin_data {
+          issuer_name = "{{ .issuerName }}"
+          issuer_kind =  "{{ .issuerKind }}"
+          issuer_group = "{{ .issuerGroup }}"
+          namespace = "{{ .namespace }}"
+          {{- if ne .kubeConfigFile "" }}
+          kube_config_file = "{{ .kubeConfigFile }}"
+          {{- end }}
+        }
+      }
+      {{- end }}
+      {{- end }}
+
+      {{- with .Values.server.config.upstreamAuthority.disk }}
+      {{- if eq (.enabled | toString) "true" }}
+      UpstreamAuthority "disk" {
+        plugin_data {
+          cert_file_path = "{{ .certFilePath }}"
+          key_file_path = "{{ .keyFilePath }}"
+          {{- if ne .bundleFilePath "" }}
+          bundle_file_path = "{{ .bundleFilePath }}"
+          {{- end }}
+        }
+      }
+      {{- end }}
+      {{- end }}
     }
 
     health_checks {
