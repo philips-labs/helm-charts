@@ -108,7 +108,7 @@ server:
       disk:
         enabled: false
         certFilePath: /conf/server/tls.crt
-        keyFilePath: "/conf/server/tls.key"
+        keyFilePath: /conf/server/tls.key
         bundleFilePath: ""
 
 agent:
