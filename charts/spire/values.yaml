@@ -107,7 +107,7 @@ server:
         kubeConfigFile: ""
       disk:
         enabled: false
-        certFilePath: "/conf/server/tls.crt"
+        certFilePath: /conf/server/tls.crt
         keyFilePath: "/conf/server/tls.key"
         bundleFilePath: ""
 
