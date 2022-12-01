@@ -103,7 +103,7 @@ server:
         issuerName: spire-ca
         issuerKind: Issuer
         issuerGroup: cert-manager.io
-        namespace: "sandbox"
+        namespace: cert-manager
         kubeConfigFile: ""
       disk:
         enabled: false
