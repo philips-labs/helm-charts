@@ -100,7 +100,7 @@ server:
     upstreamAuthority:
       certManager:
         enabled: false
-        issuerName: "spire-ca"
+        issuerName: spire-ca
         issuerKind: "Issuer"
         issuerGroup: "cert-manager.io"
         namespace: "sandbox"
