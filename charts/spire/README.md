@@ -2,7 +2,7 @@
 
 <!-- This README.md is generated. -->
 
-![Version: 0.7.3](https://img.shields.io/badge/Version-0.7.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.2](https://img.shields.io/badge/AppVersion-1.5.2-informational?style=flat-square)
+![Version: 0.7.4](https://img.shields.io/badge/Version-0.7.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.2](https://img.shields.io/badge/AppVersion-1.5.2-informational?style=flat-square)
 
 A Helm chart for deploying spire-server and spire-agent.
 
@@ -130,9 +130,9 @@ Kubernetes: `>=1.21.0-0`
 | spire.clusterName | string | `"example-cluster"` |  |
 | spire.trustDomain | string | `"example.org"` |  |
 | waitForIt.image.pullPolicy | string | `"IfNotPresent"` |  |
-| waitForIt.image.registry | string | `"gcr.io"` |  |
-| waitForIt.image.repository | string | `"spiffe-io/wait-for-it"` |  |
-| waitForIt.image.version | string | `""` |  |
+| waitForIt.image.registry | string | `"cgr.dev"` |  |
+| waitForIt.image.repository | string | `"chainguard/wait-for-it"` |  |
+| waitForIt.image.version | string | `"latest-20221215"` |  |
 | waitForIt.resources | object | `{}` |  |
 | workloadRegistrar.image.pullPolicy | string | `"IfNotPresent"` |  |
 | workloadRegistrar.image.registry | string | `"gcr.io"` |  |
