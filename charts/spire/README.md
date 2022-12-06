@@ -1,8 +1,11 @@
 # spire
 
+
 <!-- This README.md is generated. -->
 
-![Version: 0.7.2](https://img.shields.io/badge/Version-0.7.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.1](https://img.shields.io/badge/AppVersion-1.5.1-informational?style=flat-square)
+
+
+![Version: 0.8.0](https://img.shields.io/badge/Version-0.8.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.1](https://img.shields.io/badge/AppVersion-1.5.1-informational?style=flat-square) 
 
 A Helm chart for deploying spire-server and spire-agent.
 
@@ -30,6 +33,7 @@ spec:
         - --service-account-signing-key-file=/run/config/pki/sa.key
 ```
 
+
 **Homepage:** <https://github.com/philips-labs/helm-charts/charts/spire>
 
 ## Maintainers
@@ -45,6 +49,8 @@ spec:
 ## Requirements
 
 Kubernetes: `>=1.21.0-0`
+
+
 
 ## Values
 
@@ -102,7 +108,7 @@ Kubernetes: `>=1.21.0-0`
 | oidc.service.type | string | `"NodePort"` |  |
 | oidc.tolerations | list | `[]` |  |
 | server.caSecretStorage.enabled | bool | `false` |  |
-| server.caSecretStorage.path | string | `/conf/server/` |  |
+| server.caSecretStorage.path | string | `"/conf/server/"` |  |
 | server.caSecretStorage.secretName | string | `"csi-driver-spiffe-ca"` |  |
 | server.config.ca_subject.common_name | string | `"example.org"` |  |
 | server.config.ca_subject.country | string | `"NL"` |  |
@@ -110,12 +116,6 @@ Kubernetes: `>=1.21.0-0`
 | server.config.jwtIssuer | string | `"oidc-discovery.example.org"` |  |
 | server.config.logLevel | string | `"info"` |  |
 | server.config.socketPath | string | `"/run/spire/server-sockets/spire-server.sock"` |  |
-| server.config.upstreamAuthority.certManager.enabled | bool | `false` |  |
-| server.config.upstreamAuthority.certManager.issuerGroup | string | `cert-manager.io` |  |
-| server.config.upstreamAuthority.certManager.issuerKind | string | `Issuer` |  |
-| server.config.upstreamAuthority.certManager.issuerName | string | `spire-ca` |  |
-| server.config.upstreamAuthority.certManager.kubeConfigFile | string | `""` |  |
-| server.config.upstreamAuthority.certManager.namespace | string | `sandbox` |  |
 | server.config.upstreamAuthority.disk.bundleFilePath | string | `""` |  |
 | server.config.upstreamAuthority.disk.certFilePath | string | `"/conf/server/tls.crt"` |  |
 | server.config.upstreamAuthority.disk.enabled | bool | `false` |  |
@@ -146,7 +146,7 @@ Kubernetes: `>=1.21.0-0`
 | waitForIt.image.registry | string | `"gcr.io"` |  |
 | waitForIt.image.repository | string | `"spiffe-io/wait-for-it"` |  |
 | waitForIt.image.version | string | `""` |  |
-| waitForIt.resources | object | `{}` |
+| waitForIt.resources | object | `{}` |  |
 | workloadRegistrar.image.pullPolicy | string | `"IfNotPresent"` |  |
 | workloadRegistrar.image.registry | string | `"gcr.io"` |  |
 | workloadRegistrar.image.repository | string | `"spiffe-io/k8s-workload-registrar"` |  |

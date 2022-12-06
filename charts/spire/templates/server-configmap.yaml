@@ -60,22 +60,6 @@ data:
         }
       }
 
-      {{- with .Values.server.config.upstreamAuthority.certManager }}
-      {{- if eq (.enabled | toString) "true" }}
-      UpstreamAuthority "cert-manager" {
-        plugin_data {
-          issuer_name = "{{ .issuerName }}"
-          issuer_kind =  "{{ .issuerKind }}"
-          issuer_group = "{{ .issuerGroup }}"
-          namespace = "{{ .namespace }}"
-          {{- if ne .kubeConfigFile "" }}
-          kube_config_file = "{{ .kubeConfigFile }}"
-          {{- end }}
-        }
-      }
-      {{- end }}
-      {{- end }}
-
       {{- with .Values.server.config.upstreamAuthority.disk }}
       {{- if eq (.enabled | toString) "true" }}
       UpstreamAuthority "disk" {

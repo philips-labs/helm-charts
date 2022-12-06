@@ -98,13 +98,6 @@ server:
       common_name: example.org
 
     upstreamAuthority:
-      certManager:
-        enabled: false
-        issuerName: spire-ca
-        issuerKind: Issuer
-        issuerGroup: cert-manager.io
-        namespace: cert-manager
-        kubeConfigFile: ""
       disk:
         enabled: false
         certFilePath: /conf/server/tls.crt
