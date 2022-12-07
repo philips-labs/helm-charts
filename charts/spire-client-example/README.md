@@ -44,4 +44,4 @@ Kubernetes: `>=1.19.0-0`
 | serviceAccount.name | string | `""` |  |
 | spire.namespace | string | `"spire"` |  |
 | spire.releaseName | string | `"spire-server"` |  |
-| tolerations | list | `[]` |  |
+| tolerations | list | `[]` |  | 
