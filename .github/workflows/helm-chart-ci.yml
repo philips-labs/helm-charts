@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: Helm Chart CI
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - 'charts/**'
       - '.github/workflows/ci.yml'
       - '.github/*.sh'
-      - '.github/kind-config.yaml'
+      - '.github/kind/conf/kind-config.yaml'
     branches-ignore:
       - main
   pull_request:
@@ -14,15 +14,30 @@ on:
       - 'charts/**'
       - '.github/workflows/ci.yml'
       - '.github/*.sh'
-      - '.github/kind-config.yaml'
+      - '.github/kind/conf/kind-config.yaml'
 
 concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  HELM_VERSION: v3.10.2
+  PYTHON_VERSION: 3.11.1
+  CHART_TESTING_VERSION: v3.7.1
+
 jobs:
+  check-docs:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.1.0
+
+      - name: Verify Docs updated
+        run: .github/helm-docs.sh
+
   lint-chart:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
 
     steps:
@@ -34,17 +49,17 @@ jobs:
       - name: Set up Helm
         uses: azure/setup-helm@v3.4
         with:
-          version: v3.9.2
+          version: ${{ env.HELM_VERSION }}
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.7
+          python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Setup chart-testing
         uses: helm/chart-testing-action@v2.3.1
         with:
-          version: v3.3.1
+          version: ${{ env.CHART_TESTING_VERSION }}
 
       - name: Run chart-testing (list-changed)
         id: list-changed
@@ -68,15 +83,12 @@ jobs:
         if: ${{ always() }}
         run: killall chartmuseum || true
 
-      - name: Run helm-docs
-        run: .github/helm-docs.sh
-
     outputs:
       changed: ${{ steps.list-changed.outputs.changed }}
 
   test:
     name: Test
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     needs:
       - lint-chart
@@ -100,17 +112,17 @@ jobs:
       - name: Set up Helm
         uses: azure/setup-helm@v3.4
         with:
-          version: v3.9.2
+          version: ${{ env.HELM_VERSION }}
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.7
+          python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Setup chart-testing
         uses: helm/chart-testing-action@v2.3.1
         with:
-          version: v3.3.1
+          version: ${{ env.CHART_TESTING_VERSION }}
 
       - name: Setup charts repo localhost
         if: ${{ needs.lint-chart.outputs.changed }}
