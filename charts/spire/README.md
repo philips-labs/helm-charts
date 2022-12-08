@@ -1,6 +1,5 @@
 # spire
 
-
 <!-- This README.md is generated. -->
 
 ![Version: 0.7.3](https://img.shields.io/badge/Version-0.7.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.2](https://img.shields.io/badge/AppVersion-1.5.2-informational?style=flat-square)
@@ -31,7 +30,6 @@ spec:
         - --service-account-signing-key-file=/run/config/pki/sa.key
 ```
 
-
 **Homepage:** <https://github.com/philips-labs/helm-charts/charts/spire>
 
 ## Maintainers
@@ -47,8 +45,6 @@ spec:
 ## Requirements
 
 Kubernetes: `>=1.21.0-0`
-
-
 
 ## Values
 
