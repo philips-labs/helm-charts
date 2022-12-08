@@ -28,6 +28,7 @@ data:
       email = "{{ .Values.oidc.config.acme.emailAddress }}"
     }
     {{- end }}
+    listen_socket_path = "/run/spire/oidc-sockets/oidc-server.sock"
 
     workload_api {
       socket_path = "/spiffe-workload-api/{{ splitList "/" .Values.agent.config.socketPath | last }}"
@@ -48,6 +49,33 @@ data:
     server {
       listen            80;
       listen       [::]:80;
+
+      location / {
+        proxy_pass http://oidc;
+        proxy_set_header Host $host;
+      }
+    }
+  {{- else }}
+  default.conf.template: |
+    upstream oidc {
+      server unix:/run/spire/oidc-sockets/oidc-server.sock;
+    }
+
+    server {
+      listen            80 default_server;
+      listen       [::]:80 default_server;
+
+      server_name _;
+
+      return 301 https://$host$request_uri;
+    }
+
+    server {
+      listen            443 ssl;
+      listen       [::]:443 ssl;
+
+      ssl_certificate       /etc/certs/cert.pem;
+      ssl_certificate_key   /etc/certs/key.pem;
 
       location / {
         proxy_pass http://oidc;

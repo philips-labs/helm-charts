@@ -29,6 +29,13 @@ spec:
       serviceAccountName: {{ include "spire.serviceAccountName" . }}-agent
       securityContext:
         {{- toYaml .Values.oidc.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: pre-install-job
+          image: "bitnami/kubectl:latest"
+          command: ["cp /opt/csr/gen-cert.sh /tmp/gen-cert.sh && /tmp/gen-cert.sh", "{{ include "spire.fullname" . }}-oidc", "{{ .Release.Namespace }}"]
+          volumeMounts:
+            - name: spire-gen-cert
+              mountPath: /opt/csr
       containers:
         - name: spire-oidc
           securityContext:
@@ -86,10 +93,9 @@ spec:
             - name: spire-oidc-config
               mountPath: /etc/nginx/templates/default.conf.template
               subPath: default.conf.template
+            - name: oidc-ssl-certs
+              mountPath: /etc/certs
               readOnly: true
-          resources:
-            {{- toYaml .Values.oidc.insecureScheme.nginx.resources | nindent 12 }}
-        {{- end }}
       volumes:
         - name: spiffe-workload-api
           csi:
@@ -102,6 +108,12 @@ spec:
         - name: spire-oidc-config
           configMap:
             name: {{ include "spire.fullname" . }}-oidc-discovery-provider
+        - name: spire-gen-cert
+          configMap:
+            name: {{ include "spire.fullname" . }}-gen-cert
+        - name: oidc-ssl-certs
+          secret:
+            secretName: {{ include "spire.fullname" . }}-oidc-ssl-certs
       {{- with .Values.oidc.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

@@ -1,0 +1,43 @@
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: {{ include "spire.fullname" . }}-csr-job
+#   labels:
+#     {{- include "spire.labels" . | nindent 4 }}
+# spec:
+#   template:
+#     metadata:
+#       name: {{ .Release.Name | quote }}
+#       labels:
+#         {{- include "spire.selectorLabels" . | nindent 8 }}
+#     spec:
+#       restartPolicy: Never
+#       containers:
+#         - name: pre-install-job
+#           image: "bitnami/kubectl:latest"
+#           command: ["cp /opt/csr/gen-cert.sh /tmp/gen-cert.sh && /tmp/gen-cert.sh", "{{ include "spire.fullname" . }}-oidc", "{{ .Release.Namespace }}"]
+#           volumeMounts:
+#             - name: spire-gen-cert
+#               mountPath: /opt/csr
+#       volumes:
+#         - name: spire-gen-cert
+#           configMap:
+#             name: {{ include "spire.fullname" . }}-gen-cert
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "spire.fullname" . }}-gen-cert
+  namespace: {{ .Release.Namespace }}
+data:
+{{ (.Files.Glob "scripts/gen-cert.sh").AsConfig | indent 2 }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "spire.fullname" . }}-oidc-ssl-certs
+  namespace: {{ .Release.Namespace }}
+data:
+  key.pem: ""
+  cert.pem: ""
+type: kubernetes.io/tls
