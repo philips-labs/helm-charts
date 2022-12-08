@@ -31,7 +31,6 @@ spec:
         - --service-account-signing-key-file=/run/config/pki/sa.key
 ```
 
-
 **Homepage:** <https://github.com/philips-labs/helm-charts/charts/spire>
 
 ## Maintainers
@@ -47,8 +46,6 @@ spec:
 ## Requirements
 
 Kubernetes: `>=1.21.0-0`
-
-
 
 ## Values
 
