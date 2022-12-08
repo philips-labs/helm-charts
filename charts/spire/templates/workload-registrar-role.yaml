@@ -1,0 +1,32 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ include "spire.fullname" . }}-k8s-workload-registrar-role
+  namespace: {{ .Release.Namespace }}
+rules:
+  - apiGroups: [coordination.k8s.io]
+    resources: [leases]
+    verbs: [create]
+  - apiGroups: [coordination.k8s.io]
+    resources: [leases]
+    resourceNames: [spire-k8s-registrar-leader-election]
+    verbs:
+      - get
+      - update
+  - apiGroups: [""]
+    resources: ["events"]
+    verbs: ["create"]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ include "spire.fullname" . }}-k8s-workload-registrar-role-binding
+  namespace: {{ .Release.Namespace }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "spire.serviceAccountName" . }}-k8s-workload-registrar
+    namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: Role
+  name: {{ include "spire.fullname" . }}-k8s-workload-registrar-role
+  apiGroup: rbac.authorization.k8s.io
