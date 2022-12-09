@@ -9,11 +9,13 @@ on:
 
 jobs:
   release:
+    runs-on: ubuntu-22.04
+
     permissions:
       contents: write # to push chart release and create a release (helm/chart-releaser-action)
       packages: write # needed for ghcr access
       id-token: write # needed for keyless signing
-    runs-on: ubuntu-20.04
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3.1.0
