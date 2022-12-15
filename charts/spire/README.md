@@ -83,8 +83,8 @@ Kubernetes: `>=1.21.0-0`
 | oidc.config.logLevel | string | `"info"` |  |
 | oidc.enabled | bool | `false` |  |
 | oidc.image.pullPolicy | string | `"IfNotPresent"` |  |
-| oidc.image.registry | string | `"ghcr.io"` |  |
-| oidc.image.repository | string | `"spiffe/spire-oidc-provider"` |  |
+| oidc.image.registry | string | `"gcr.io"` |  |
+| oidc.image.repository | string | `"spiffe-io/oidc-discovery-provider"` |  |
 | oidc.image.version | string | `""` |  |
 | oidc.insecureScheme.enabled | bool | `false` |  |
 | oidc.insecureScheme.nginx.image.pullPolicy | string | `"IfNotPresent"` |  |
@@ -138,9 +138,9 @@ Kubernetes: `>=1.21.0-0`
 | spire.clusterName | string | `"example-cluster"` |  |
 | spire.trustDomain | string | `"example.org"` |  |
 | waitForIt.image.pullPolicy | string | `"IfNotPresent"` |  |
-| waitForIt.image.registry | string | `"gcr.io"` |  |
-| waitForIt.image.repository | string | `"spiffe-io/wait-for-it"` |  |
-| waitForIt.image.version | string | `""` |  |
+| waitForIt.image.registry | string | `"cgr.dev"` |  |
+| waitForIt.image.repository | string | `"chainguard/wait-for-it"` |  |
+| waitForIt.image.version | string | `"latest-20221215"` |  |
 | waitForIt.resources | object | `{}` |  |
 | workloadRegistrar.image.pullPolicy | string | `"IfNotPresent"` |  |
 | workloadRegistrar.image.registry | string | `"gcr.io"` |  |
