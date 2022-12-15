@@ -104,6 +104,39 @@ entries:
   spire:
   - apiVersion: v2
     appVersion: 1.5.2
+    created: "2022-12-15T09:13:23.919940993Z"
+    description: 'A Helm chart for deploying spire-server and spire-agent.  > :warning:
+      Please note this chart requires Projected Service Account Tokens which has to
+      be enabled on your k8s api server.  > :warning: Minimum Spire version is `v1.0.2`.  To
+      enable Projected Service Account Tokens on Docker for Mac/Windows run the following
+      command to SSH into the Docker Desktop K8s VM.  ```bash docker run -it --privileged
+      --pid=host debian nsenter -t 1 -m -u -n -i sh ```  Then add the following to
+      `/etc/kubernetes/manifests/kube-apiserver.yaml`  ```yaml spec:   containers:     -
+      command:         - kube-apiserver         - --api-audiences=api,spire-server         -
+      --service-account-issuer=api,spire-agent         - --service-account-key-file=/run/config/pki/sa.pub         -
+      --service-account-signing-key-file=/run/config/pki/sa.key ``` '
+    digest: cebc86ab27a4e57bd27de855bbe3e90a44f553a8ee3f5cd84cc205c919e01928
+    home: https://github.com/philips-labs/helm-charts/charts/spire
+    keywords:
+    - spiffe
+    - spire
+    - spire-server
+    - spire-agent
+    - oidc
+    kubeVersion: '>=1.21.0-0'
+    maintainers:
+    - email: marco.franssen@philips.com
+      name: marcofranssen
+      url: https://marcofranssen.nl
+    name: spire
+    sources:
+    - https://github.com/philips-labs/helm-charts/charts/spire
+    type: application
+    urls:
+    - https://github.com/philips-labs/helm-charts/releases/download/spire-0.7.4/spire-0.7.4.tgz
+    version: 0.7.4
+  - apiVersion: v2
+    appVersion: 1.5.2
     created: "2022-12-08T07:51:00.176229644Z"
     description: 'A Helm chart for deploying spire-server and spire-agent.  > :warning:
       Please note this chart requires Projected Service Account Tokens which has to
@@ -1078,4 +1111,4 @@ entries:
     urls:
     - https://github.com/philips-labs/helm-charts/releases/download/spire-client-example-0.1.0/spire-client-example-0.1.0.tgz
     version: 0.1.0
-generated: "2022-12-08T07:51:00.176507042Z"
+generated: "2022-12-15T09:13:23.921370726Z"
