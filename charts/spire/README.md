@@ -2,7 +2,7 @@
 
 <!-- This README.md is generated. -->
 
-![Version: 0.7.5](https://img.shields.io/badge/Version-0.7.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.3](https://img.shields.io/badge/AppVersion-1.5.3-informational?style=flat-square)
+![Version: 0.7.6](https://img.shields.io/badge/Version-0.7.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.3](https://img.shields.io/badge/AppVersion-1.5.3-informational?style=flat-square)
 
 A Helm chart for deploying spire-server and spire-agent.
 
@@ -62,7 +62,7 @@ Kubernetes: `>=1.21.0-0`
 | csiDriver.image.pullPolicy | string | `"IfNotPresent"` |  |
 | csiDriver.image.registry | string | `"ghcr.io"` |  |
 | csiDriver.image.repository | string | `"spiffe/spiffe-csi-driver"` |  |
-| csiDriver.image.version | string | `"0.2.0"` |  |
+| csiDriver.image.version | string | `"0.2.1"` |  |
 | csiDriver.resources | object | `{}` |  |
 | fullnameOverride | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
@@ -82,8 +82,8 @@ Kubernetes: `>=1.21.0-0`
 | oidc.config.logLevel | string | `"info"` |  |
 | oidc.enabled | bool | `false` |  |
 | oidc.image.pullPolicy | string | `"IfNotPresent"` |  |
-| oidc.image.registry | string | `"gcr.io"` |  |
-| oidc.image.repository | string | `"spiffe-io/oidc-discovery-provider"` |  |
+| oidc.image.registry | string | `"ghcr.io"` |  |
+| oidc.image.repository | string | `"spiffe/oidc-discovery-provider"` |  |
 | oidc.image.version | string | `""` |  |
 | oidc.insecureScheme.enabled | bool | `false` |  |
 | oidc.insecureScheme.nginx.image.pullPolicy | string | `"IfNotPresent"` |  |
@@ -116,6 +116,7 @@ Kubernetes: `>=1.21.0-0`
 | server.image.repository | string | `"spiffe/spire-server"` |  |
 | server.image.version | string | `""` |  |
 | server.nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
+| server.podAnnotations | object | `{}` |  |
 | server.podSecurityContext | object | `{}` |  |
 | server.replicaCount | int | `1` |  |
 | server.resources | object | `{}` |  |
