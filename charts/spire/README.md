@@ -48,6 +48,7 @@ Kubernetes: `>=1.21.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
+| file://./charts/k8s-workload-registrar | k8s-workload-registrar | 0.1.0 |
 | file://./charts/spiffe-csi-driver | spiffe-csi-driver | 0.1.0 |
 | file://./charts/spiffe-oidc-discovery-provider | spiffe-oidc-discovery-provider | 0.1.0 |
 
@@ -66,6 +67,7 @@ Kubernetes: `>=1.21.0-0`
 | agent.service.annotations | object | `{}` |  |
 | fullnameOverride | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
+| k8s-workload-registrar.enabled | bool | `true` |  |
 | nameOverride | string | `""` |  |
 | server.config.ca_subject.common_name | string | `"example.org"` |  |
 | server.config.ca_subject.country | string | `"NL"` |  |
@@ -102,9 +104,3 @@ Kubernetes: `>=1.21.0-0`
 | waitForIt.image.repository | string | `"chainguard/wait-for-it"` |  |
 | waitForIt.image.version | string | `"latest-20221215"` |  |
 | waitForIt.resources | object | `{}` |  |
-| workloadRegistrar.image.pullPolicy | string | `"IfNotPresent"` |  |
-| workloadRegistrar.image.registry | string | `"gcr.io"` |  |
-| workloadRegistrar.image.repository | string | `"spiffe-io/k8s-workload-registrar"` |  |
-| workloadRegistrar.image.version | string | `""` |  |
-| workloadRegistrar.resources | object | `{}` |  |
-| workloadRegistrar.service.annotations | object | `{}` |  |
