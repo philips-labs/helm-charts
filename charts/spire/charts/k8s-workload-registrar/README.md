@@ -42,5 +42,5 @@ A Helm chart to install the SPIRE k8s workload registrator.
 | waitForIt.image.pullPolicy | string | `"IfNotPresent"` |  |
 | waitForIt.image.registry | string | `"cgr.dev"` |  |
 | waitForIt.image.repository | string | `"chainguard/wait-for-it"` |  |
-| waitForIt.image.version | string | `"latest-20221215"` |  |
+| waitForIt.image.version | string | `"latest-20221223"` |  |
 | waitForIt.resources | object | `{}` |  |
