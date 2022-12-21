@@ -2,7 +2,7 @@
 
 <!-- This README.md is generated. -->
 
-![Version: 0.7.6](https://img.shields.io/badge/Version-0.7.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.3](https://img.shields.io/badge/AppVersion-1.5.3-informational?style=flat-square)
+![Version: 0.8.0](https://img.shields.io/badge/Version-0.8.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.3](https://img.shields.io/badge/AppVersion-1.5.3-informational?style=flat-square)
 
 A Helm chart for deploying spire-server and spire-agent.
 
@@ -101,12 +101,19 @@ Kubernetes: `>=1.21.0-0`
 | oidc.service.port | int | `80` |  |
 | oidc.service.type | string | `"NodePort"` |  |
 | oidc.tolerations | list | `[]` |  |
+| server.caSecretStorage.enabled | bool | `false` |  |
+| server.caSecretStorage.path | string | `"/conf/server/"` |  |
+| server.caSecretStorage.secretName | string | `"csi-driver-spiffe-ca"` |  |
 | server.config.ca_subject.common_name | string | `"example.org"` |  |
 | server.config.ca_subject.country | string | `"NL"` |  |
 | server.config.ca_subject.organization | string | `"Example"` |  |
 | server.config.jwtIssuer | string | `"oidc-discovery.example.org"` |  |
 | server.config.logLevel | string | `"info"` |  |
 | server.config.socketPath | string | `"/run/spire/server-sockets/spire-server.sock"` |  |
+| server.config.upstreamAuthority.disk.bundleFilePath | string | `""` |  |
+| server.config.upstreamAuthority.disk.certFilePath | string | `"/conf/server/tls.crt"` |  |
+| server.config.upstreamAuthority.disk.enabled | bool | `false` |  |
+| server.config.upstreamAuthority.disk.keyFilePath | string | `"/conf/server/tls.key"` |  |
 | server.dataStorage.accessMode | string | `"ReadWriteOnce"` |  |
 | server.dataStorage.enabled | bool | `true` |  |
 | server.dataStorage.size | string | `"1Gi"` |  |
