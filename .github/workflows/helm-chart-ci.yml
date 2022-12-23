@@ -124,9 +124,9 @@ jobs:
         with:
           version: ${{ env.CHART_TESTING_VERSION }}
 
-      - name: Setup charts repo localhost
-        if: ${{ needs.lint-chart.outputs.changed }}
-        run: .github/local-helm-repo.sh
+      # - name: Setup charts repo localhost
+      #   if: ${{ needs.lint-chart.outputs.changed }}
+      #   run: .github/local-helm-repo.sh
 
       - name: Create kind ${{ matrix.k8s }} cluster
         uses: helm/kind-action@v1.5.0
@@ -146,6 +146,6 @@ jobs:
             --excluded-charts spire-client-example \
             --exclude-deprecated
 
-      - name: Shutdown chartmuseum
-        if: ${{ always() }}
-        run: killall chartmuseum || true
+      # - name: Shutdown chartmuseum
+      #   if: ${{ always() }}
+      #   run: killall chartmuseum || true
