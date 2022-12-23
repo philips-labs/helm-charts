@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'charts/**'
-      - '.github/workflows/ci.yml'
+      - '.github/workflows/helm-chart-ci.yml'
       - '.github/*.sh'
       - '.github/kind/conf/kind-config.yaml'
     branches-ignore:
@@ -12,7 +12,7 @@ on:
   pull_request:
     paths:
       - 'charts/**'
-      - '.github/workflows/ci.yml'
+      - '.github/workflows/helm-chart-ci.yml'
       - '.github/*.sh'
       - '.github/kind/conf/kind-config.yaml'
 
