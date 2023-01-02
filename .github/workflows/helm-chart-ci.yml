@@ -72,7 +72,9 @@ jobs:
 
       - name: Setup chartmuseum
         if: ${{ steps.list-changed.outputs.changed }}
-        uses: marcofranssen/setup-chartmuseum@v0.1.0
+        uses: marcofranssen/setup-chartmuseum@v0.2.0
+        with:
+          bootup: true
 
       - name: Setup charts repo localhost
         if: ${{ steps.list-changed.outputs.changed }}
@@ -83,10 +85,6 @@ jobs:
           ct lint --debug \
             --target-branch main \
             --chart-repos philips-labs=http://127.0.0.1:8879
-
-      - name: Shutdown chartmuseum
-        if: ${{ always() }}
-        run: killall chartmuseum || true
 
     outputs:
       changed: ${{ steps.list-changed.outputs.changed }}
@@ -131,7 +129,9 @@ jobs:
 
       - name: Setup chartmuseum
         if: ${{ needs.lint-chart.outputs.changed }}
-        uses: marcofranssen/setup-chartmuseum@v0.1.0
+        uses: marcofranssen/setup-chartmuseum@v0.2.0
+        with:
+          bootup: true
 
       - name: Setup charts repo localhost
         if: ${{ needs.lint-chart.outputs.changed }}
@@ -154,7 +154,3 @@ jobs:
             --chart-repos philips-labs=http://127.0.0.1:8879 \
             --excluded-charts spire-client-example \
             --exclude-deprecated
-
-      - name: Shutdown chartmuseum
-        if: ${{ always() }}
-        run: killall chartmuseum || true
