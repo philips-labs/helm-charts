@@ -31,11 +31,15 @@ spec:
           # from https://github.com/vishnubob/wait-for-it
           image: {{ template "spire.image" .Values.waitForIt }}
           imagePullPolicy: {{ .Values.waitForIt.image.pullPolicy }}
-          args: ["-t", "30", "-h", "{{ include "spire.fullname" . }}-server", "-p", "8081"]
+          args: ["-t", "30", "-h", "{{ include "spire.fullname" . }}-server", "-p", {{ .Values.server.service.port | quote }}]
           resources:
             {{- toYaml .Values.waitForIt.resources | nindent 12 }}
       {{- with .Values.agent.nodeSelector }}
       nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.agent.affinity }}
+      affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       containers:

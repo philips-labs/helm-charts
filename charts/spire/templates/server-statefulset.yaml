@@ -45,7 +45,7 @@ spec:
             - /run/spire/config/server.conf
           ports:
             - name: grpc
-              containerPort: 8081
+              containerPort: {{ .Values.server.service.port }}
               protocol: TCP
           volumeMounts:
             - name: spire-server-socket

@@ -50,6 +50,7 @@ Kubernetes: `>=1.21.0-0`
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| agent.affinity | object | `{}` |  |
 | agent.config.logLevel | string | `"info"` |  |
 | agent.config.socketPath | string | `"/run/spire/agent-sockets/spire-agent.sock"` |  |
 | agent.image.pullPolicy | string | `"IfNotPresent"` |  |
@@ -101,6 +102,7 @@ Kubernetes: `>=1.21.0-0`
 | oidc.service.port | int | `80` |  |
 | oidc.service.type | string | `"NodePort"` |  |
 | oidc.tolerations | list | `[]` |  |
+| server.affinity | object | `{}` |  |
 | server.caSecretStorage.enabled | bool | `false` |  |
 | server.caSecretStorage.path | string | `"/conf/server/"` |  |
 | server.caSecretStorage.secretName | string | `"csi-driver-spiffe-ca"` |  |

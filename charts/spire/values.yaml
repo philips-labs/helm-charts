@@ -82,6 +82,8 @@ server:
     # runAsNonRoot: true
     # runAsUser: 1000
 
+  affinity: {}
+
   topologySpreadConstraints: []
 
   caSecretStorage:
@@ -133,6 +135,8 @@ agent:
 
   service:
     annotations: {}
+
+  affinity: {}
 
   config:
     logLevel: info
