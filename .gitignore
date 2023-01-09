@@ -1,3 +1,4 @@
 .github/bin/
 chartmuseum/
 *.tgz
+.local/
