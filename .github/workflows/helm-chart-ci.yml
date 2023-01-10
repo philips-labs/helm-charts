@@ -7,6 +7,7 @@ on:
       - 'charts/**'
       - '.github/workflows/helm-chart-ci.yml'
       - '.github/*.sh'
+      - '.github/tests/**/*.yaml'
       - '.github/kind/conf/kind-config.yaml'
     branches-ignore:
       - main
@@ -15,6 +16,7 @@ on:
       - 'charts/**'
       - '.github/workflows/helm-chart-ci.yml'
       - '.github/*.sh'
+      - '.github/tests/**/*.yaml'
       - '.github/kind/conf/kind-config.yaml'
 
 concurrency:
@@ -32,7 +34,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.2.0
+        uses: actions/checkout@v3.3.0
 
       - name: Verify Docs updated
         run: .github/helm-docs.sh
@@ -43,7 +45,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.2.0
+        uses: actions/checkout@v3.3.0
         with:
           fetch-depth: 0
 
@@ -89,12 +91,31 @@ jobs:
     outputs:
       changed: ${{ steps.list-changed.outputs.changed }}
 
+  build-matrix:
+    name: Build matrix
+    runs-on: ubuntu-22.04
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.2.0
+
+      - id: set-matrix
+        run: |
+          tests="$(echo -e "default\n$(find .github/tests -maxdepth 1 -type d | grep -Ev 'tests$' | xargs -I % basename % | sort | uniq)")"
+          tests_json="$(echo "$tests" | jq -c --slurp --raw-input 'split("\n") | map(select(. != ""))')"
+          echo "tests=$tests_json" >> $GITHUB_OUTPUT
+
+    outputs:
+      tests: ${{ steps.set-matrix.outputs.tests }}
+
   test:
     name: Test
     runs-on: ubuntu-22.04
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     needs:
       - lint-chart
+      - build-matrix
 
     strategy:
       fail-fast: false
@@ -105,10 +126,12 @@ jobs:
           - v1.23.13
           - v1.24.7
           - v1.25.3
+        values:
+          - ${{ fromJson(needs.build-matrix.outputs.tests) }}
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.2.0
+        uses: actions/checkout@v3.3.0
         with:
           fetch-depth: 0
 
@@ -153,4 +176,8 @@ jobs:
             --target-branch main \
             --chart-repos philips-labs=http://127.0.0.1:8879 \
             --excluded-charts spire-client-example \
-            --exclude-deprecated
+            --exclude-deprecated \
+            ${{ (matrix.values != 'default' && '--helm-extra-set-args "--values=.github/tests/$VALUES/values.yaml"') || '' }}
+
+        env:
+          VALUES: ${{ matrix.values }}
