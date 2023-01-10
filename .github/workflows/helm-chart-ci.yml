@@ -91,12 +91,31 @@ jobs:
     outputs:
       changed: ${{ steps.list-changed.outputs.changed }}
 
+  build-matrix:
+    name: Build matrix
+    runs-on: ubuntu-22.04
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.2.0
+
+      - id: set-matrix
+        run: |
+          tests="$(echo -e "default\n$(find .github/tests -maxdepth 1 -type d | grep -Ev 'tests$' | xargs -I % basename % | sort | uniq)")"
+          tests_json="$(echo "$tests" | jq -c --slurp --raw-input 'split("\n") | map(select(. != ""))')"
+          echo "tests=$tests_json" >> $GITHUB_OUTPUT
+
+    outputs:
+      tests: ${{ steps.set-matrix.outputs.tests }}
+
   test:
     name: Test
     runs-on: ubuntu-22.04
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     needs:
       - lint-chart
+      - build-matrix
 
     strategy:
       fail-fast: false
@@ -108,8 +127,7 @@ jobs:
           - v1.24.7
           - v1.25.3
         values:
-          - default
-          - upstream-authority-disk
+          - ${{ fromJson(needs.build-matrix.outputs.tests) }}
 
     steps:
       - name: Checkout
