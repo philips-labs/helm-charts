@@ -41,7 +41,7 @@ spec:
             - /run/spire/config/server.conf
           ports:
             - name: grpc
-              containerPort: {{ .Values.server.service.port }}
+              containerPort: {{ .Values.service.port }}
               protocol: TCP
           livenessProbe:
             httpGet:

@@ -10,6 +10,7 @@ A Helm chart to install the SPIFFE CSI driver.
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| affinity | object | `{}` |  |
 | agentSocketPath | string | `"/run/spire/agent-sockets/spire-agent.sock"` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
@@ -19,6 +20,7 @@ A Helm chart to install the SPIFFE CSI driver.
 | imagePullSecrets | list | `[]` |  |
 | nameOverride | string | `""` |  |
 | namespaceOverride | string | `""` |  |
+| nodeDriverRegistrar.healthPort | int | `9809` |  |
 | nodeDriverRegistrar.image.pullPolicy | string | `"IfNotPresent"` |  |
 | nodeDriverRegistrar.image.registry | string | `"registry.k8s.io"` |  |
 | nodeDriverRegistrar.image.repository | string | `"sig-storage/csi-node-driver-registrar"` |  |
@@ -33,3 +35,4 @@ A Helm chart to install the SPIFFE CSI driver.
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
+| tolerations | list | `[]` |  |
