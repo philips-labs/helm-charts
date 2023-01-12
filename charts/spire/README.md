@@ -60,6 +60,7 @@ Kubernetes: `>=1.21.0-0`
 | agent.nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
 | agent.resources | object | `{}` |  |
 | agent.service.annotations | object | `{}` |  |
+| agent.tolerations | list | `[]` |  |
 | csiDriver.image.pullPolicy | string | `"IfNotPresent"` |  |
 | csiDriver.image.registry | string | `"ghcr.io"` |  |
 | csiDriver.image.repository | string | `"spiffe/spiffe-csi-driver"` |  |
@@ -68,6 +69,7 @@ Kubernetes: `>=1.21.0-0`
 | fullnameOverride | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
 | nameOverride | string | `""` |  |
+| nodeDriverRegistrar.healthPort | int | `9809` | |
 | nodeDriverRegistrar.image.pullPolicy | string | `"IfNotPresent"` |  |
 | nodeDriverRegistrar.image.registry | string | `"registry.k8s.io"` |  |
 | nodeDriverRegistrar.image.repository | string | `"sig-storage/csi-node-driver-registrar"` |  |
@@ -130,6 +132,7 @@ Kubernetes: `>=1.21.0-0`
 | server.service.annotations | object | `{}` |  |
 | server.service.port | int | `8081` |  |
 | server.service.type | string | `"ClusterIP"` |  |
+| server.tolerations | list | `[]` |  |
 | server.topologySpreadConstraints | list | `[]` |  |
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |

@@ -83,6 +83,7 @@ server:
     # runAsUser: 1000
 
   affinity: {}
+  tolerations: []
 
   topologySpreadConstraints: []
 
@@ -139,6 +140,7 @@ agent:
     annotations: {}
 
   affinity: {}
+  tolerations: []
 
   config:
     logLevel: info
@@ -179,6 +181,7 @@ nodeDriverRegistrar:
     # limits:
     #   cpu: 100m
     #   memory: 64Mi
+  healthPort: 9809
 
 oidc:
   enabled: false
