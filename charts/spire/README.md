@@ -2,7 +2,7 @@
 
 <!-- This README.md is generated. -->
 
-![Version: 0.9.0](https://img.shields.io/badge/Version-0.9.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.3](https://img.shields.io/badge/AppVersion-1.5.3-informational?style=flat-square)
+![Version: 0.10.0](https://img.shields.io/badge/Version-0.10.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.3](https://img.shields.io/badge/AppVersion-1.5.3-informational?style=flat-square)
 
 A Helm chart for deploying spire-server and spire-agent.
 
@@ -46,102 +46,29 @@ spec:
 
 Kubernetes: `>=1.21.0-0`
 
+| Repository | Name | Version |
+|------------|------|---------|
+| file://./charts/spiffe-csi-driver | spiffe-csi-driver | 0.1.0 |
+| file://./charts/spiffe-oidc-discovery-provider | spiffe-oidc-discovery-provider | 0.1.0 |
+| file://./charts/spire-agent | spire-agent | 0.1.0 |
+| file://./charts/spire-server | spire-server | 0.1.0 |
+
 ## Values
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| agent.config.logLevel | string | `"info"` |  |
-| agent.config.socketPath | string | `"/run/spire/agent-sockets/spire-agent.sock"` |  |
-| agent.image.pullPolicy | string | `"IfNotPresent"` |  |
-| agent.image.registry | string | `"ghcr.io"` |  |
-| agent.image.repository | string | `"spiffe/spire-agent"` |  |
-| agent.image.version | string | `""` |  |
-| agent.nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
-| agent.resources | object | `{}` |  |
-| agent.service.annotations | object | `{}` |  |
-| csiDriver.image.pullPolicy | string | `"IfNotPresent"` |  |
-| csiDriver.image.registry | string | `"ghcr.io"` |  |
-| csiDriver.image.repository | string | `"spiffe/spiffe-csi-driver"` |  |
-| csiDriver.image.version | string | `"0.2.1"` |  |
-| csiDriver.resources | object | `{}` |  |
 | fullnameOverride | string | `""` |  |
-| imagePullSecrets | list | `[]` |  |
 | nameOverride | string | `""` |  |
-| nodeDriverRegistrar.image.pullPolicy | string | `"IfNotPresent"` |  |
-| nodeDriverRegistrar.image.registry | string | `"registry.k8s.io"` |  |
-| nodeDriverRegistrar.image.repository | string | `"sig-storage/csi-node-driver-registrar"` |  |
-| nodeDriverRegistrar.image.version | string | `"v2.6.2"` |  |
-| nodeDriverRegistrar.resources | object | `{}` |  |
-| oidc.affinity | object | `{}` |  |
-| oidc.config.acme.cacheDir | string | `"/run/spire"` |  |
-| oidc.config.acme.directoryUrl | string | `"https://acme-v02.api.letsencrypt.org/directory"` |  |
-| oidc.config.acme.emailAddress | string | `"letsencrypt@example.org"` |  |
-| oidc.config.acme.tosAccepted | bool | `false` |  |
-| oidc.config.domains[0] | string | `"localhost"` |  |
-| oidc.config.domains[1] | string | `"oidc-discovery.example.org"` |  |
-| oidc.config.logLevel | string | `"info"` |  |
-| oidc.enabled | bool | `false` |  |
-| oidc.image.pullPolicy | string | `"IfNotPresent"` |  |
-| oidc.image.registry | string | `"ghcr.io"` |  |
-| oidc.image.repository | string | `"spiffe/oidc-discovery-provider"` |  |
-| oidc.image.version | string | `""` |  |
-| oidc.insecureScheme.enabled | bool | `false` |  |
-| oidc.insecureScheme.nginx.image.pullPolicy | string | `"IfNotPresent"` |  |
-| oidc.insecureScheme.nginx.image.registry | string | `"docker.io"` |  |
-| oidc.insecureScheme.nginx.image.repository | string | `"nginx"` |  |
-| oidc.insecureScheme.nginx.image.version | string | `"1.23.2-alpine"` |  |
-| oidc.insecureScheme.nginx.resources | object | `{}` |  |
-| oidc.nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
-| oidc.podAnnotations | object | `{}` |  |
-| oidc.podSecurityContext | object | `{}` |  |
-| oidc.replicaCount | int | `1` |  |
-| oidc.resources | object | `{}` |  |
-| oidc.securityContext | object | `{}` |  |
-| oidc.service.annotations | object | `{}` |  |
-| oidc.service.port | int | `80` |  |
-| oidc.service.type | string | `"NodePort"` |  |
-| oidc.tolerations | list | `[]` |  |
-| server.config.ca_subject.common_name | string | `"example.org"` |  |
-| server.config.ca_subject.country | string | `"NL"` |  |
-| server.config.ca_subject.organization | string | `"Example"` |  |
-| server.config.jwtIssuer | string | `"oidc-discovery.example.org"` |  |
-| server.config.logLevel | string | `"info"` |  |
-| server.config.socketPath | string | `"/run/spire/server-sockets/spire-server.sock"` |  |
-| server.config.upstreamAuthority.disk.enabled | bool | `false` |  |
-| server.config.upstreamAuthority.disk.secret.create | bool | `true` | If disabled requires you to create a secret with the given keys (certificate, key and optional bundle) yourself. |
-| server.config.upstreamAuthority.disk.secret.data | object | `{"bundle":"","certificate":"","key":""}` | If secret creation is enabled, will create a secret with following certificate info |
-| server.config.upstreamAuthority.disk.secret.name | string | `"spiffe-upstream-ca"` | If secret creation is disabled, the secret with this name will be used. |
-| server.dataStorage.accessMode | string | `"ReadWriteOnce"` |  |
-| server.dataStorage.enabled | bool | `true` |  |
-| server.dataStorage.size | string | `"1Gi"` |  |
-| server.dataStorage.storageClass | string | `nil` |  |
-| server.image.pullPolicy | string | `"IfNotPresent"` |  |
-| server.image.registry | string | `"ghcr.io"` |  |
-| server.image.repository | string | `"spiffe/spire-server"` |  |
-| server.image.version | string | `""` |  |
-| server.nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
-| server.podAnnotations | object | `{}` |  |
-| server.podSecurityContext | object | `{}` |  |
-| server.replicaCount | int | `1` |  |
-| server.resources | object | `{}` |  |
-| server.securityContext | object | `{}` |  |
-| server.service.annotations | object | `{}` |  |
-| server.service.port | int | `8081` |  |
-| server.service.type | string | `"ClusterIP"` |  |
-| server.topologySpreadConstraints | list | `[]` |  |
-| serviceAccount.annotations | object | `{}` |  |
-| serviceAccount.create | bool | `true` |  |
-| serviceAccount.name | string | `""` |  |
-| spire.clusterName | string | `"example-cluster"` |  |
-| spire.trustDomain | string | `"example.org"` |  |
-| waitForIt.image.pullPolicy | string | `"IfNotPresent"` |  |
-| waitForIt.image.registry | string | `"cgr.dev"` |  |
-| waitForIt.image.repository | string | `"chainguard/wait-for-it"` |  |
-| waitForIt.image.version | string | `"latest-20221223"` |  |
-| waitForIt.resources | object | `{}` |  |
-| workloadRegistrar.image.pullPolicy | string | `"IfNotPresent"` |  |
-| workloadRegistrar.image.registry | string | `"gcr.io"` |  |
-| workloadRegistrar.image.repository | string | `"spiffe-io/k8s-workload-registrar"` |  |
-| workloadRegistrar.image.version | string | `""` |  |
-| workloadRegistrar.resources | object | `{}` |  |
-| workloadRegistrar.service.annotations | object | `{}` |  |
+| spiffe-csi-driver.agentSocketPath | string | `"/run/spire/agent-sockets/spire-agent.sock"` |  |
+| spiffe-oidc-discovery-provider.enabled | bool | `false` |  |
+| spiffe-oidc-discovery-provider.trustDomain | string | `"example.org"` |  |
+| spire-agent.bundleConfigMap | string | `"spire-bundle"` |  |
+| spire-agent.clusterName | string | `"example-cluster"` |  |
+| spire-agent.nameOverride | string | `"agent"` |  |
+| spire-agent.socketPath | string | `"/run/spire/agent-sockets/spire-agent.sock"` |  |
+| spire-agent.trustDomain | string | `"example.org"` |  |
+| spire-server.bundleConfigMap | string | `"spire-bundle"` |  |
+| spire-server.clusterName | string | `"example-cluster"` |  |
+| spire-server.nameOverride | string | `"server"` |  |
+| spire-server.socketPath | string | `"/run/spire/server-sockets/spire-server.sock"` |  |
+| spire-server.trustDomain | string | `"example.org"` |  |
