@@ -27,7 +27,7 @@ description: |
           - --service-account-signing-key-file=/run/config/pki/sa.key
   ```
 type: application
-version: 0.9.0
+version: 0.10.0
 appVersion: "1.5.3"
 keywords: ["spiffe", "spire", "spire-server", "spire-agent", "oidc"]
 home: https://github.com/philips-labs/helm-charts/charts/spire
@@ -38,3 +38,17 @@ maintainers:
     email: marco.franssen@philips.com
     url: https://marcofranssen.nl
 kubeVersion: ">=1.21.0-0"
+dependencies:
+  - name: spire-server
+    repository: file://./charts/spire-server
+    version: 0.1.0
+  - name: spire-agent
+    repository: file://./charts/spire-agent
+    version: 0.1.0
+  - name: spiffe-csi-driver
+    repository: file://./charts/spiffe-csi-driver
+    version: 0.1.0
+  - name: spiffe-oidc-discovery-provider
+    condition: spiffe-oidc-discovery-provider.enabled
+    repository: file://./charts/spiffe-oidc-discovery-provider
+    version: 0.1.0
