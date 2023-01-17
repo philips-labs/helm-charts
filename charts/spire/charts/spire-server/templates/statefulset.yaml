@@ -85,6 +85,10 @@ spec:
           args:
             - -config
             - /run/spire/k8s-workload-registrar/config/workload-registrar.conf
+          ports:
+            - name: k8s-registrar
+              containerPort: 9443
+              protocol: TCP
           resources:
             {{- toYaml .Values.k8sWorkloadRegistrar.resources | nindent 12 }}
           volumeMounts:
@@ -127,7 +131,7 @@ spec:
         {{- if eq (.Values.k8sWorkloadRegistrar.enabled | toString) "true" }}
         - name: k8s-workload-registrar-config
           configMap:
-            name: {{ include "spire-server.fullname" . }}-k8s-workload-registrar
+            name: {{ include "spire-k8s-workload-registrar.fullname" . }}
         {{- end }}
   volumeClaimTemplates:
     {{- if eq (.Values.dataStorage.enabled | toString) "true" }}
