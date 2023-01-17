@@ -60,7 +60,6 @@ trustDomain: example.org
 bundleConfigMap: spire-bundle
 
 server:
-  host: spire-server
   port: 8081
 
 waitForIt:
@@ -68,5 +67,5 @@ waitForIt:
     registry: cgr.dev
     repository: chainguard/wait-for-it
     pullPolicy: IfNotPresent
-    version: latest-20221215
+    version: latest-20230113
   resources: {}

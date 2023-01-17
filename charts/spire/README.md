@@ -2,13 +2,13 @@
 
 <!-- This README.md is generated. -->
 
-![Version: 0.10.0](https://img.shields.io/badge/Version-0.10.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.3](https://img.shields.io/badge/AppVersion-1.5.3-informational?style=flat-square)
+![Version: 0.10.2](https://img.shields.io/badge/Version-0.10.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.4](https://img.shields.io/badge/AppVersion-1.5.4-informational?style=flat-square)
 
 A Helm chart for deploying spire-server and spire-agent.
 
-> :warning: Please note this chart requires Projected Service Account Tokens which has to be enabled on your k8s api server.
+> **Warning**: Please note this chart requires Projected Service Account Tokens which has to be enabled on your k8s api server.
 
-> :warning: Minimum Spire version is `v1.0.2`.
+> **Note**: Minimum Spire version is `v1.5.3`.
 
 To enable Projected Service Account Tokens on Docker for Mac/Windows run the following
 command to SSH into the Docker Desktop K8s VM.
