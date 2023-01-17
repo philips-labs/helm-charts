@@ -30,7 +30,7 @@ spec:
         - --service-account-signing-key-file=/run/config/pki/sa.key
 ```
 
-**Homepage:** <https://github.com/philips-labs/helm-charts/charts/spire>
+**Homepage:** <https://github.com/philips-labs/helm-charts/tree/main/charts/spire>
 
 ## Maintainers
 
@@ -40,7 +40,7 @@ spec:
 
 ## Source Code
 
-* <https://github.com/philips-labs/helm-charts/charts/spire>
+* <https://github.com/philips-labs/helm-charts/tree/main/charts/spire>
 
 ## Requirements
 
