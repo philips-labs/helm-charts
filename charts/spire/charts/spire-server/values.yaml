@@ -64,8 +64,7 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-nodeSelector:
-  kubernetes.io/arch: amd64
+nodeSelector: {}
 
 tolerations: []
 
@@ -108,7 +107,7 @@ upstreamAuthority:
         bundle: ""
 
 controllerManager:
-  enabled: false
+  enabled: true
 
   image:
     registry: ghcr.io
@@ -162,8 +161,9 @@ controllerManager:
 
 k8sWorkloadRegistrar:
   # -- The `k8s-workload-registrar` is deprecated in favor of the `spire-controller-manager`
-  # A next release will switch to use the `spire-controller-manager` by default.
-  enabled: true
+  # `k8s-workload-registrar` does not have a arm64 compatible build and requires you to limit
+  # to amd64 nodes. Ensure to set an appropiate nodeSelector.
+  enabled: false
 
   image:
     registry: gcr.io

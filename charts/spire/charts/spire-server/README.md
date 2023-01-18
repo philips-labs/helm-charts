@@ -20,7 +20,7 @@ A Helm chart to install the SPIRE server.
 | ca_subject.country | string | `"NL"` |  |
 | ca_subject.organization | string | `"Example"` |  |
 | clusterName | string | `"example-cluster"` |  |
-| controllerManager.enabled | bool | `false` |  |
+| controllerManager.enabled | bool | `true` |  |
 | controllerManager.identities.dnsNameTemplates | list | `[]` |  |
 | controllerManager.identities.enabled | bool | `true` |  |
 | controllerManager.identities.namespaceSelector | object | `{}` |  |
@@ -49,7 +49,7 @@ A Helm chart to install the SPIRE server.
 | image.version | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
 | jwtIssuer | string | `"oidc-discovery.example.org"` |  |
-| k8sWorkloadRegistrar.enabled | bool | `true` | The `k8s-workload-registrar` is deprecated in favor of the `spire-controller-manager` A next release will switch to use the `spire-controller-manager` by default. |
+| k8sWorkloadRegistrar.enabled | bool | `false` | The `k8s-workload-registrar` is deprecated in favor of the `spire-controller-manager` `k8s-workload-registrar` does not have a arm64 compatible build and requires you to limit to amd64 nodes. Ensure to set an appropiate nodeSelector. |
 | k8sWorkloadRegistrar.image.pullPolicy | string | `"IfNotPresent"` |  |
 | k8sWorkloadRegistrar.image.registry | string | `"gcr.io"` |  |
 | k8sWorkloadRegistrar.image.repository | string | `"spiffe-io/k8s-workload-registrar"` |  |
@@ -59,7 +59,7 @@ A Helm chart to install the SPIRE server.
 | k8sWorkloadRegistrar.securityContext | object | `{}` |  |
 | logLevel | string | `"info"` |  |
 | nameOverride | string | `""` |  |
-| nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
+| nodeSelector | object | `{}` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | replicaCount | int | `1` | SPIRE server currently runs with a sqlite database. Scaling to multiple instances will not work until we use an external database. |
