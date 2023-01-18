@@ -1,0 +1,6 @@
+spire-server:
+  k8sWorkloadRegistrar:
+    enabled: false
+
+  controllerManager:
+    enabled: true
