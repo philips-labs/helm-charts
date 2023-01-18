@@ -7,7 +7,7 @@ data:
   server.conf: |
     server {
       bind_address = "0.0.0.0"
-      bind_port = {{ .Values.service.port | quote }}
+      bind_port = "8081"
       socket_path = {{ .Values.socketPath | quote }}
       trust_domain = {{ .Values.trustDomain | quote }}
       data_dir = "/run/spire/data"
