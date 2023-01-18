@@ -32,7 +32,7 @@ A Helm chart to install the SPIRE server.
 | controllerManager.image.pullPolicy | string | `"IfNotPresent"` |  |
 | controllerManager.image.registry | string | `"ghcr.io"` |  |
 | controllerManager.image.repository | string | `"spiffe/spire-controller-manager"` |  |
-| controllerManager.image.version | string | `"0.2.1"` |  |
+| controllerManager.image.version | string | `"0.2.2"` |  |
 | controllerManager.resources | object | `{}` |  |
 | controllerManager.securityContext | object | `{}` |  |
 | controllerManager.service.annotations | object | `{}` |  |
