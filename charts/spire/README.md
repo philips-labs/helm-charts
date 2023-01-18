@@ -2,7 +2,7 @@
 
 <!-- This README.md is generated. -->
 
-![Version: 0.10.2](https://img.shields.io/badge/Version-0.10.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.4](https://img.shields.io/badge/AppVersion-1.5.4-informational?style=flat-square)
+![Version: 0.11.0](https://img.shields.io/badge/Version-0.11.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.4](https://img.shields.io/badge/AppVersion-1.5.4-informational?style=flat-square)
 
 A Helm chart for deploying spire-server and spire-agent.
 
@@ -30,7 +30,7 @@ spec:
         - --service-account-signing-key-file=/run/config/pki/sa.key
 ```
 
-**Homepage:** <https://github.com/philips-labs/helm-charts/charts/spire>
+**Homepage:** <https://github.com/philips-labs/helm-charts/tree/main/charts/spire>
 
 ## Maintainers
 
@@ -40,7 +40,7 @@ spec:
 
 ## Source Code
 
-* <https://github.com/philips-labs/helm-charts/charts/spire>
+* <https://github.com/philips-labs/helm-charts/tree/main/charts/spire>
 
 ## Requirements
 
@@ -70,5 +70,4 @@ Kubernetes: `>=1.21.0-0`
 | spire-server.bundleConfigMap | string | `"spire-bundle"` |  |
 | spire-server.clusterName | string | `"example-cluster"` |  |
 | spire-server.nameOverride | string | `"server"` |  |
-| spire-server.socketPath | string | `"/run/spire/server-sockets/spire-server.sock"` |  |
 | spire-server.trustDomain | string | `"example.org"` |  |
