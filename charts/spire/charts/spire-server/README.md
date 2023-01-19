@@ -37,7 +37,6 @@ A Helm chart to install the SPIRE server.
 | controllerManager.service.annotations | object | `{}` |  |
 | controllerManager.service.port | int | `443` |  |
 | controllerManager.service.type | string | `"ClusterIP"` |  |
-| createCRDs | bool | `true` | |
 | dataStorage.accessMode | string | `"ReadWriteOnce"` |  |
 | dataStorage.enabled | bool | `true` |  |
 | dataStorage.size | string | `"1Gi"` |  |

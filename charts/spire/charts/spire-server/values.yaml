@@ -4,7 +4,6 @@
 
 # -- SPIRE server currently runs with a sqlite database. Scaling to multiple instances will not work until we use an external database.
 replicaCount: 1
-createCRDs: true
 
 image:
   # registry: gcr.io
