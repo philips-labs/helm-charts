@@ -46,6 +46,9 @@ securityContext:
 nodeSelector:
   kubernetes.io/arch: amd64
 
+affinity: {}
+tolerations: []
+
 nodeDriverRegistrar:
   image:
     registry: registry.k8s.io
@@ -63,5 +66,6 @@ nodeDriverRegistrar:
     # limits:
     #   cpu: 100m
     #   memory: 64Mi
+  healthPort: 9809
 
 agentSocketPath: /run/spire/agent-sockets/spire-agent.sock
