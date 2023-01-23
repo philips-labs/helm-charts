@@ -25,6 +25,14 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
         # This is the container which runs the SPIFFE CSI driver.
         - name: {{ .Chart.Name }}
@@ -68,7 +76,7 @@ spec:
           args: [
             "-csi-address", "/spiffe-csi/csi.sock",
             "-kubelet-registration-path", "/var/lib/kubelet/plugins/csi.spiffe.io/csi.sock",
-            "-health-port", "9809"
+            "-health-port", {{ .Values.nodeDriverRegistrar.healthPort | quote }}
           ]
           volumeMounts:
             # The registrar needs access to the SPIFFE CSI driver socket
@@ -79,7 +87,7 @@ spec:
             - name: kubelet-plugin-registration-dir
               mountPath: /registration
           ports:
-            - containerPort: 9809
+            - containerPort: {{ .Values.nodeDriverRegistrar.healthPort }}
               name: healthz
           livenessProbe:
             httpGet:
