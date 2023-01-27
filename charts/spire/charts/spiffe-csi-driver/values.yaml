@@ -46,9 +46,6 @@ securityContext:
 nodeSelector:
   kubernetes.io/arch: amd64
 
-affinity: {}
-tolerations: []
-
 nodeDriverRegistrar:
   image:
     registry: registry.k8s.io
