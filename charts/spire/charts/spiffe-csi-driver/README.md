@@ -19,7 +19,6 @@ A Helm chart to install the SPIFFE CSI driver.
 | imagePullSecrets | list | `[]` |  |
 | nameOverride | string | `""` |  |
 | namespaceOverride | string | `""` |  |
-| nodeDriverRegistrar.healthPort | int | `9809` |  |
 | nodeDriverRegistrar.image.pullPolicy | string | `"IfNotPresent"` |  |
 | nodeDriverRegistrar.image.registry | string | `"registry.k8s.io"` |  |
 | nodeDriverRegistrar.image.repository | string | `"sig-storage/csi-node-driver-registrar"` |  |
