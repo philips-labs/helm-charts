@@ -2,7 +2,7 @@
 
 <!-- This README.md is generated. -->
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5.5](https://img.shields.io/badge/AppVersion-1.5.5-informational?style=flat-square)
+![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.6.0](https://img.shields.io/badge/AppVersion-1.6.0-informational?style=flat-square)
 
 A Helm chart to install the SPIRE server.
 
@@ -53,7 +53,7 @@ A Helm chart to install the SPIRE server.
 | k8sWorkloadRegistrar.image.pullPolicy | string | `"IfNotPresent"` |  |
 | k8sWorkloadRegistrar.image.registry | string | `"gcr.io"` |  |
 | k8sWorkloadRegistrar.image.repository | string | `"spiffe-io/k8s-workload-registrar"` |  |
-| k8sWorkloadRegistrar.image.version | string | `""` |  |
+| k8sWorkloadRegistrar.image.version | string | `"1.5.5"` |  |
 | k8sWorkloadRegistrar.logLevel | string | `"info"` |  |
 | k8sWorkloadRegistrar.resources | object | `{}` |  |
 | k8sWorkloadRegistrar.securityContext | object | `{}` |  |

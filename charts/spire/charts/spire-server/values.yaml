@@ -170,7 +170,7 @@ k8sWorkloadRegistrar:
     repository: spiffe-io/k8s-workload-registrar
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    version: ""
+    version: "1.5.5"
 
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
