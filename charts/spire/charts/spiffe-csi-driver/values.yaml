@@ -29,6 +29,9 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+# Priority class assigned to pods
+priorityClassName: ""
+
 podAnnotations: {}
 
 podSecurityContext: {}
