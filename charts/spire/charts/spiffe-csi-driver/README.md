@@ -27,6 +27,7 @@ A Helm chart to install the SPIFFE CSI driver.
 | nodeSelector."kubernetes.io/arch" | string | `"amd64"` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
+| priorityClassName | string | `""` |  |
 | resources | object | `{}` |  |
 | securityContext.privileged | bool | `true` |  |
 | securityContext.readOnlyRootFilesystem | bool | `true` |  |
