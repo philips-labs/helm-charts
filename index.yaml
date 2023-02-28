@@ -104,6 +104,55 @@ entries:
   spire:
   - apiVersion: v2
     appVersion: 1.5.5
+    created: "2023-02-28T10:53:20.85879147Z"
+    dependencies:
+    - name: spire-server
+      repository: file://./charts/spire-server
+      version: 0.1.0
+    - name: spire-agent
+      repository: file://./charts/spire-agent
+      version: 0.1.0
+    - name: spiffe-csi-driver
+      repository: file://./charts/spiffe-csi-driver
+      version: 0.1.0
+    - condition: spiffe-oidc-discovery-provider.enabled
+      name: spiffe-oidc-discovery-provider
+      repository: file://./charts/spiffe-oidc-discovery-provider
+      version: 0.1.0
+    description: 'A Helm chart for deploying spire-server and spire-agent.  > **Warning**:
+      Please note this chart requires Projected Service Account Tokens which has to
+      be enabled on your k8s api server.  > **Note**: Minimum Spire version is `v1.5.3`.  To
+      enable Projected Service Account Tokens on Docker for Mac/Windows run the following
+      command to SSH into the Docker Desktop K8s VM.  ```bash docker run -it --privileged
+      --pid=host debian nsenter -t 1 -m -u -n -i sh ```  Then add the following to
+      `/etc/kubernetes/manifests/kube-apiserver.yaml`  ```yaml spec:   containers:     -
+      command:         - kube-apiserver         - --api-audiences=api,spire-server         -
+      --service-account-issuer=api,spire-agent         - --service-account-key-file=/run/config/pki/sa.pub         -
+      --service-account-signing-key-file=/run/config/pki/sa.key ``` '
+    digest: dece38705b81e2e5b0af09b695486ee715cdc2b69a0a30738aa9d3f54a86ec58
+    home: https://github.com/philips-labs/helm-charts/tree/main/charts/spire
+    icon: https://spiffe.io/img/logos/spire/icon/color/spire-icon-color.png
+    keywords:
+    - spiffe
+    - spire
+    - spire-server
+    - spire-agent
+    - oidc
+    - spire-controller-manager
+    kubeVersion: '>=1.21.0-0'
+    maintainers:
+    - email: marco.franssen@philips.com
+      name: marcofranssen
+      url: https://marcofranssen.nl
+    name: spire
+    sources:
+    - https://github.com/philips-labs/helm-charts/tree/main/charts/spire
+    type: application
+    urls:
+    - https://github.com/philips-labs/helm-charts/releases/download/spire-0.11.5/spire-0.11.5.tgz
+    version: 0.11.5
+  - apiVersion: v2
+    appVersion: 1.5.5
     created: "2023-02-22T10:42:40.037517837Z"
     dependencies:
     - name: spire-server
@@ -1662,4 +1711,4 @@ entries:
     urls:
     - https://github.com/philips-labs/helm-charts/releases/download/spire-client-example-0.1.0/spire-client-example-0.1.0.tgz
     version: 0.1.0
-generated: "2023-02-22T10:42:40.037959661Z"
+generated: "2023-02-28T10:53:20.85919837Z"
