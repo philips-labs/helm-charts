@@ -111,15 +111,17 @@ spec:
             - name: https
               containerPort: 9443
               protocol: TCP
-          # TODO: implement probes
-          # livenessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: https
-          # readinessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: https
+            - containerPort: 8083
+              name: healthz
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: healthz
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: healthz
           resources:
             {{- toYaml .Values.controllerManager.resources | nindent 12 }}
           volumeMounts:
