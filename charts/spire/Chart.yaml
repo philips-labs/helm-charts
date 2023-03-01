@@ -37,7 +37,7 @@ description: |
           - --service-account-signing-key-file=/run/config/pki/sa.key
   ```
 type: application
-version: 0.12.0
+version: 0.12.1
 appVersion: "1.6.0"
 keywords: ["spiffe", "spire", "spire-server", "spire-agent", "oidc", "spire-controller-manager"]
 home: https://github.com/philips-labs/helm-charts/tree/main/charts/spire
