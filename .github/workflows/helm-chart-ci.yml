@@ -74,7 +74,7 @@ jobs:
 
       - name: Setup chartmuseum
         if: ${{ steps.list-changed.outputs.changed }}
-        uses: marcofranssen/setup-chartmuseum@v0.4.0
+        uses: marcofranssen/setup-chartmuseum@v0.5.0
         with:
           bootup: true
 
@@ -152,7 +152,7 @@ jobs:
 
       - name: Setup chartmuseum
         if: ${{ needs.lint-chart.outputs.changed }}
-        uses: marcofranssen/setup-chartmuseum@v0.4.0
+        uses: marcofranssen/setup-chartmuseum@v0.5.0
         with:
           bootup: true
 
