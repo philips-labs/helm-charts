@@ -6,7 +6,7 @@ jobs:
   greeting:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/first-interaction@v3.0.0
+    - uses: actions/first-interaction@v3.1.0
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         issue-message: 'Thank you for submitting your first issue. We will be looking into it as soon as possible.'
